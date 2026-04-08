@@ -7,7 +7,7 @@ namespace ServiceFlow.Class.Repositories
         Task<int> Create(T IEntity);
         Task Delete(int id);
         Task<ICollection<T>> GetAll();
-        Task<T> GetById(int id);
+        Task<T?> GetById(int id);
         Task Update(T entity);
 
     }
