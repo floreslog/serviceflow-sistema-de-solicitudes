@@ -3,10 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using ServiceFlow.Class.Data;
 using ServiceFlow.Class.Models;
 using ServiceFlow.Class.Repositories;
+using ServiceFlow.Web.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// AGREGAR LOS SERVICIOS QUE VAYA NECESITANDO.
+// Agregar los servicios que vaya necesitando
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ServiceFlowDB>(options =>
@@ -26,6 +27,13 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+
+// Creacion de los roles en el arranque de la aplicacion
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await RoleInitializer.SeedRoleAsync(services);
 }
 
 app.UseHttpsRedirection();
