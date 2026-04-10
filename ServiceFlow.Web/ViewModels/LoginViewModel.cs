@@ -6,9 +6,12 @@ namespace ServiceFlow.Web.ViewModels
     {
         [Required]
         [EmailAddress]
+        [Display(Name = "Correo electronico")]
         public string Email { get; set; } = null!;
 
         [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
         public string Password { get; set; } = null!;
     }
 }

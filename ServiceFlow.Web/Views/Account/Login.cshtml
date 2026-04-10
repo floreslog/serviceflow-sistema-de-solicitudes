@@ -1,0 +1,60 @@
+﻿@model ServiceFlow.Web.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+<div class="container mt-5">
+    <div class="row justify-content-center w-100">
+        <div class="col-md-5">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <h3 class="card-title text-center mb-4">Iniciar Sesión</h3>
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["Success"]</div>
+                    }
+                    <form asp-action="Login" asp-controller="Account" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label"></label>
+                            <div class="input-group">
+                                <input asp-for="Password" class="form-control border-end-0" />
+                                <button type="button" class="btn border-start-0" style="border-color: #ced4da;" onclick="togglePassword('Password', this)">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                        <div class="text-center">
+                            <button type="submit" class="btn px-5" style="background-color: #25262a; color: white;">Acceder</button>
+                        </div>
+                    </form>
+                    <hr />
+                    <p class="text-center mb-0">
+                        ¿Aun no tienes una cuenta? <a asp-action="Register" asp-controller="Account">Crea una.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const icon = btn.querySelector('i');
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+        } else {
+            input.type = "password";
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+        }
+    }
+</script>

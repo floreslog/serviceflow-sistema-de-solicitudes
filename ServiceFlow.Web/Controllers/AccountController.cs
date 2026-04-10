@@ -31,7 +31,7 @@ namespace ServiceFlow.Web.Controllers
                return View(model);
             }
 
-            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, "Email o contraseña incorrectos.");

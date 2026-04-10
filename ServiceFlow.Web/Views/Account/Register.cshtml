@@ -1,0 +1,86 @@
+﻿@model ServiceFlow.Web.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Registro";
+}
+<div class="container mt-5">
+    <div class="row justify-content-center w-100">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <h3 class="card-title text-center mb-4">Crear cuenta</h3>
+                    <form asp-action="Register" asp-controller="Account" method="post">
+                        <div class="mb-3">
+                            <label asp-for="FirstName" class="form-label"></label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="PaternalSurname" class="form-label"></label>
+                            <input asp-for="PaternalSurname" class="form-control" />
+                            <span asp-validation-for="PaternalSurname" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="MaternalSurname" class="form-label"></label>
+                            <input asp-for="MaternalSurname" class="form-control" />
+                            <span asp-validation-for="MaternalSurname" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label"></label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label"></label>
+                            <div class="input-group">
+                                <input asp-for="Password" class="form-control border-end-0" />
+                                <button type="button" class="btn border-start-0" style="border-color: #ced4da;" onclick="togglePassword('Password', this)">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="ConfirmPassword" class="form-label"></label>
+                            <div class="input-group">
+                                <input asp-for="ConfirmPassword" class="form-control border-end-0" />
+                                <button type="button" class="btn border-start-0" style="border-color: #ced4da;" onclick="togglePassword('ConfirmPassword', this)">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                        <div class="text-center">
+                            <button type="submit" class="btn px-5" style="background-color: #25262a; color: white;">Registrarse</button>
+                        </div>
+                    </form>
+                    <hr />
+                    <p class="text-center mb-0">
+                        ¿Ya tienes cuenta? <a asp-action="Login" asp-controller="Account">Inicia sesión.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const icon = btn.querySelector('i');
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+        } else {
+            input.type = "password";
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+        }
+    }
+</script>
