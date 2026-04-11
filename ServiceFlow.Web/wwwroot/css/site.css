@@ -20,3 +20,34 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+
+.nav-link-custom {
+    position: relative;
+    color: white !important;
+    text-decoration: none;
+    padding-bottom: 4px;
+    font-weight: normal;
+    transition: font-weight 0.1s;
+}
+
+    .nav-link-custom::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        transition: width 0.3s ease;
+    }
+
+    .nav-link-custom:hover::after,
+    .nav-link-custom.active::after {
+        width: 100%;
+    }
+
+    .nav-link-custom.active {
+        font-weight: bold;
+    }

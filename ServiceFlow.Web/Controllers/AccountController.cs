@@ -20,6 +20,9 @@ namespace ServiceFlow.Web.Controllers
         //Login GET
         public IActionResult Login()
         {
+            if (User.Identity!.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
+
             return View(new LoginViewModel());
         }
 
@@ -43,6 +46,9 @@ namespace ServiceFlow.Web.Controllers
         //Register GET
         public IActionResult Register()
         {
+            if (User.Identity!.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
+
             return View(new RegisterViewModel());
         }
 
@@ -74,6 +80,7 @@ namespace ServiceFlow.Web.Controllers
 
                 return View(model);
             }
+            await userManager.AddToRoleAsync(user, "User");
             TempData["Success"] = "Cuenta creada exitosamente. Inicia sesion.";
             return RedirectToAction("Login");
         }

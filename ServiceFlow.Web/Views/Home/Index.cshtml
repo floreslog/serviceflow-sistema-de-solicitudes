@@ -1,8 +1,157 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model ServiceFlow.Web.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-4">
+    <div class="mb-4">
+        <h2 class="fw-bold" style="color: #25262a;">Panel de Control</h2>
+        <p class="text-muted">Resumen del estado actual del sistema</p>
+    </div>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 p-4">
+                        <div class="rounded-3 p-3" style="background-color: #e8f4fd;">
+                            <i class="bi bi-clipboard-data fs-3" style="color: #2196F3;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0 small">Total Solicitudes</p>
+                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.TotalRequests</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 p-4">
+                        <div class="rounded-3 p-3" style="background-color: #fff3e0;">
+                            <i class="bi bi-folder2-open fs-3" style="color: #FF9800;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0 small">Abiertas</p>
+                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.OpenRequests</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 p-4">
+                        <div class="rounded-3 p-3" style="background-color: #e8f5e9;">
+                            <i class="bi bi-check-circle fs-3" style="color: #4CAF50;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0 small">Resueltas</p>
+                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.ResolvedRequests</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 p-4">
+                        <div class="rounded-3 p-3" style="background-color: #fce4ec;">
+                            <i class="bi bi-exclamation-triangle fs-3" style="color: #E91E63;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0 small">Urgentes</p>
+                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.UrgentRequests</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (User.IsInRole("Agent"))
+    {
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 p-4">
+                        <div class="rounded-3 p-3" style="background-color: #e8f4fd;">
+                            <i class="bi bi-person-check fs-3" style="color: #2196F3;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0 small">Asignadas a mí</p>
+                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.TotalAssignedRequests</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 p-4">
+                        <div class="rounded-3 p-3" style="background-color: #fff3e0;">
+                            <i class="bi bi-arrow-repeat fs-3" style="color: #FF9800;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0 small">En Proceso</p>
+                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.InProgressRequests</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 p-4">
+                        <div class="rounded-3 p-3" style="background-color: #f3e5f5;">
+                            <i class="bi bi-pause-circle fs-3" style="color: #9C27B0;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0 small">En Espera</p>
+                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.PendingRequests</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (User.IsInRole("User"))
+    {
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 p-4">
+                        <div class="rounded-3 p-3" style="background-color: #e8f4fd;">
+                            <i class="bi bi-clipboard fs-3" style="color: #2196F3;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0 small">Mis Solicitudes</p>
+                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.TotalRequests</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 p-4">
+                        <div class="rounded-3 p-3" style="background-color: #fff3e0;">
+                            <i class="bi bi-folder2-open fs-3" style="color: #FF9800;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0 small">Abiertas</p>
+                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.OpenRequests</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 p-4">
+                        <div class="rounded-3 p-3" style="background-color: #e8f5e9;">
+                            <i class="bi bi-check-circle fs-3" style="color: #4CAF50;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted mb-0 small">Resueltas</p>
+                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.ResolvedRequests</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
