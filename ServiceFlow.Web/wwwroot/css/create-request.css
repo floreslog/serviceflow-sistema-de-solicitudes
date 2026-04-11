@@ -1,0 +1,41 @@
+﻿.priority-card {
+    border: 2px solid #dee2e6;
+    border-radius: 12px;
+    padding: 16px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 100px;
+    background-color: white;
+}
+
+.priority-card:hover {
+        border-color: #25262a;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+.priority-card.selected {
+        border-color: #25262a;
+        background-color: #25262a;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+.priority-icon {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+
+.priority-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.priority-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin: 0 auto 8px auto;
+}

@@ -56,5 +56,38 @@ namespace ServiceFlow.Web.Controllers
 
             return View(vm);
         }
+
+        [Authorize(Roles ="User")]
+        public async Task<IActionResult> Create()
+        {
+            ViewBag.Categories = await categoryRepo.GetAll();
+            return View(new CreateRequestViewModel());
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> Create(CreateRequestViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = await categoryRepo.GetAll();
+                return View(model);
+            }
+
+            var rm = new RequestModel
+            {
+                Title = model.Title,
+                Description = model.Description,
+                Location = model.Location,
+                Priority = model.Priority,
+                CategoryId = model.CategoryId,
+                Status = Status.Open,
+                Creation = DateTime.Now,
+                RequesterId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            };
+
+            await requestRepo.Create(rm);
+            return RedirectToAction("Index");
+        }
     }
 }

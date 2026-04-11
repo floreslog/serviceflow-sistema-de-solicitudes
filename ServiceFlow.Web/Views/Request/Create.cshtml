@@ -1,0 +1,97 @@
+﻿@model ServiceFlow.Web.ViewModels.CreateRequestViewModel
+@{
+    ViewData["Title"] = "Nueva Solicitud";
+}
+
+<link rel="stylesheet" href="~/css/create-request.css" asp-append-version="true" />
+
+<div class="container py-4">
+    <div class="mb-4">
+        <h2 class="fw-bold" style="color: #25262a;">Nueva Solicitud</h2>
+        <p class="text-muted">Complete los campos para registrar una nueva solicitud.</p>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+            <form asp-action="Create" asp-controller="Request" method="post">
+
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label asp-for="Title" class="form-label fw-semibold"></label>
+                        <input asp-for="Title" class="form-control" placeholder="Ej. Proyector dañado en Aula 3" />
+                        <span asp-validation-for="Title" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="CategoryId" class="form-label fw-semibold"></label>
+                        <select asp-for="CategoryId" class="form-select" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))">
+                            <option value="">-- Selecciona una categoría --</option>
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-semibold"></label>
+                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="Describe detalladamente el problema o solicitud..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Location" class="form-label fw-semibold"></label>
+                    <input asp-for="Location" class="form-control" placeholder="Ej. Laboratorio de Cómputo, Edificio A" />
+                    <span asp-validation-for="Location" class="text-danger small"></span>
+                </div>
+
+                <!-- PRIORIDAD -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Prioridad sugerida</label>
+                    <small class="text-muted d-block mb-2">El administrador podrá ajustar la prioridad según sea necesario.</small>
+                    <input asp-for="Priority" type="hidden" id="priorityInput" />
+                    <span asp-validation-for="Priority" class="text-danger small d-block"></span>
+                    <div class="d-flex gap-3 mt-2">
+                        <div class="priority-card" data-value="0" onclick="selectPriority(this)">
+                            <div class="priority-dot" style="background-color: #4CAF50;"></div>
+                            <div class="priority-label">Baja</div>
+                        </div>
+                        <div class="priority-card" data-value="1" onclick="selectPriority(this)">
+                            <div class="priority-dot" style="background-color: #FFC107;"></div>
+                            <div class="priority-label">Media</div>
+                        </div>
+                        <div class="priority-card" data-value="2" onclick="selectPriority(this)">
+                            <div class="priority-dot" style="background-color: #FF9800 ;"></div>
+                            <div class="priority-label">Alta</div>
+                        </div>
+                        <div class="priority-card" data-value="3" onclick="selectPriority(this)">
+                            <div class="priority-dot" style="background-color: #F44336;"></div>
+                            <div class="priority-label">Urgente</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FECHA INFORMATIVA -->
+                <div class="mb-4">
+                    <small class="text-muted">
+                        <i class="bi bi-calendar3 me-1"></i>
+                        Esta solicitud se registrará el <strong>@DateTime.Now.ToString("dd/MM/yyyy")</strong>
+                    </small>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn px-4" style="background-color: #25262a; color: white;">
+                        <i class="bi bi-send me-1"></i>Enviar Solicitud
+                    </button>
+                    <a asp-controller="Request" asp-action="Index" class="btn btn-outline-secondary px-4">Cancelar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function selectPriority(card) {
+        document.querySelectorAll('.priority-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        document.getElementById('priorityInput').value = card.dataset.value;
+    }
+</script>
