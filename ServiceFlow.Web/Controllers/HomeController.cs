@@ -12,16 +12,17 @@ namespace ServiceFlow.Web.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly IRepository<RequestModel> requestModel;
+        private readonly IRepository<RequestModel> requestRepo;
 
-        public HomeController(IRepository<RequestModel> requestModel)
+        public HomeController(IRepository<RequestModel> requestRepo)
         {
-            this.requestModel = requestModel;
+            this.requestRepo = requestRepo;
         }
         public async Task<IActionResult> Index()
         {
-            var requests = await requestModel.GetAll();
+            var requests = await requestRepo.GetAll();
             var vm = new DashboardViewModel();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (User.IsInRole("Admin"))
             {
@@ -32,15 +33,12 @@ namespace ServiceFlow.Web.Controllers
             }
             else if (User.IsInRole("Agent"))
             {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
                 vm.TotalAssignedRequests = requests.Count(r => r.AssigneeId == userId);
                 vm.InProgressRequests = requests.Count(r => r.AssigneeId == userId && r.Status == Status.InProgress);
                 vm.PendingRequests = requests.Count(r => r.AssigneeId == userId && r.Status == Status.OnHold);
             }
-            else if (User.IsInRole("User"))
+            else
             {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 vm.TotalRequests = requests.Count(r => r.RequesterId == userId);
                 vm.OpenRequests = requests.Count(r => r.RequesterId == userId && r.Status == Status.Open);
                 vm.ResolvedRequests = requests.Count(r => r.RequesterId == userId && r.Status == Status.Resolved);

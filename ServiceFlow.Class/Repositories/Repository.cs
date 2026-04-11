@@ -7,7 +7,7 @@ namespace ServiceFlow.Class.Repositories
     public class Repository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly ServiceFlowDB db;
-        private readonly DbSet<T> dbSet;
+        protected readonly DbSet<T> dbSet;
 
         public Repository(ServiceFlowDB db)
         {
@@ -31,7 +31,7 @@ namespace ServiceFlow.Class.Repositories
             await db.SaveChangesAsync();
         }
 
-        public async Task<ICollection<T>> GetAll()
+        public virtual async Task<ICollection<T>> GetAll()
         {
             return await dbSet.ToListAsync();
         }

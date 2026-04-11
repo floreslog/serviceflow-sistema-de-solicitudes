@@ -24,6 +24,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+builder.Services.AddScoped<IRepository<RequestModel>, RequestRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

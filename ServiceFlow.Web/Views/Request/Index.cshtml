@@ -1,0 +1,142 @@
+﻿@model IEnumerable<ServiceFlow.Web.ViewModels.RequestListViewModel>
+@{
+    ViewData["Title"] = "Solicitudes";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-0" style="color: #25262a;">
+                @if (User.IsInRole("User"))
+                {
+                    <span>Mis Solicitudes</span>
+                }
+                else if (User.IsInRole("Agent"))
+                {
+                    <span>Mi Trabajo</span>
+                }
+                else
+                {
+                    <span>Todas las Solicitudes</span>
+                }
+            </h2>
+            <p class="text-muted mb-0 small">@Model.Count() solicitudes encontradas</p>
+        </div>
+        @if (User.IsInRole("User"))
+        {
+            <a asp-controller="Request" asp-action="Create" class="btn" style="background-color: #25262a; color: white;">
+                <i class="bi bi-plus-lg me-1"></i>Nueva Solicitud
+            </a>
+        }
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="bi bi-clipboard-x fs-1 text-muted"></i>
+            <p class="text-muted mt-3">No hay solicitudes para mostrar.</p>
+        </div>
+    }
+    else
+    {
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead style="background-color: #25262a; color: white;">
+                            <tr>
+                                <th class="px-4 py-3">#</th>
+                                <th class="py-3">Título</th>
+                                <th class="py-3">Categoría</th>
+                                <th class="py-3">Estado</th>
+                                <th class="py-3">Prioridad</th>
+                                <th class="py-3">Solicitante</th>
+                                <th class="py-3">Asignado a</th>
+                                <th class="py-3">Fecha</th>
+                                <th class="py-3">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="px-4">@item.Id</td>
+                                    <td>@item.Title</td>
+                                    <td>@item.CategoryName</td>
+                                    <td>
+                                        @{
+                                            var statusClass = item.Status switch
+                                            {
+                                                ServiceFlow.Class.Models.Status.Open => "bg-primary",
+                                                ServiceFlow.Class.Models.Status.Assigned => "bg-info text-dark",
+                                                ServiceFlow.Class.Models.Status.InProgress => "bg-warning text-dark",
+                                                ServiceFlow.Class.Models.Status.OnHold => "bg-secondary",
+                                                ServiceFlow.Class.Models.Status.Resolved => "bg-success",
+                                                ServiceFlow.Class.Models.Status.Closed => "bg-dark",
+                                                ServiceFlow.Class.Models.Status.Cancelled => "bg-danger",
+                                                _ => "bg-secondary"
+                                            };
+                                            var statusText = item.Status switch
+                                            {
+                                                ServiceFlow.Class.Models.Status.Open => "Abierta",
+                                                ServiceFlow.Class.Models.Status.Assigned => "Asignada",
+                                                ServiceFlow.Class.Models.Status.InProgress => "En Proceso",
+                                                ServiceFlow.Class.Models.Status.OnHold => "En Espera",
+                                                ServiceFlow.Class.Models.Status.Resolved => "Resuelta",
+                                                ServiceFlow.Class.Models.Status.Closed => "Cerrada",
+                                                ServiceFlow.Class.Models.Status.Cancelled => "Cancelada",
+                                                _ => "Desconocido"
+                                            };
+                                        }
+                                        <span class="badge @statusClass">@statusText</span>
+                                    </td>
+                                    <td>
+                                        @{
+                                            var priorityClass = item.Priority switch
+                                            {
+                                                ServiceFlow.Class.Models.Priority.Low => "bg-success",
+                                                ServiceFlow.Class.Models.Priority.Medium => "bg-warning text-dark",
+                                                ServiceFlow.Class.Models.Priority.High => "bg-orange text-dark",
+                                                ServiceFlow.Class.Models.Priority.Urgent => "bg-danger",
+                                                _ => "bg-secondary"
+                                            };
+                                            var priorityText = item.Priority switch
+                                            {
+                                                ServiceFlow.Class.Models.Priority.Low => "Baja",
+                                                ServiceFlow.Class.Models.Priority.Medium => "Media",
+                                                ServiceFlow.Class.Models.Priority.High => "Alta",
+                                                ServiceFlow.Class.Models.Priority.Urgent => "Urgente",
+                                                _ => "Desconocida"
+                                            };
+                                        }
+                                        <span class="badge @priorityClass">@priorityText</span>
+                                    </td>
+                                    <td>@item.RequesterName</td>
+                                    <td>@item.AssigneeName</td>
+                                    <td>@item.Creation.ToString("dd/MM/yyyy")</td>
+                                    <td>
+                                        <a asp-controller="Request" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        @if (User.IsInRole("User") || User.IsInRole("Admin"))
+                                        {
+                                            <a asp-controller="Request" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                        }
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <a asp-controller="Request" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>
