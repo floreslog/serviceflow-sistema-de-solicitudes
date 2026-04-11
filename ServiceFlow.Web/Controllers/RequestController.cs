@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ServiceFlow.Class.Models;
 using ServiceFlow.Class.Repositories;
 using ServiceFlow.Web.ViewModels;
+using System.Reflection;
 using System.Security.Claims;
 
 namespace ServiceFlow.Web.Controllers
@@ -88,6 +89,46 @@ namespace ServiceFlow.Web.Controllers
 
             await requestRepo.Create(rm);
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Detail(int id)
+        {
+            var request = await requestRepo.GetById(id);
+            var comments = await commentRepo.GetAll();
+
+            var requestdetailvm = new RequestDetailViewModel();
+
+            requestdetailvm.Id = id;
+            requestdetailvm.Title = request.Title;
+            requestdetailvm.Description = request.Description;
+            requestdetailvm.Location = request.Location;
+            requestdetailvm.Priority = request.Priority;
+            requestdetailvm.CategoryId = request.CategoryId;
+            requestdetailvm.Status = request.Status;
+            requestdetailvm.Creation = request.Creation;
+            if (request.AssigneeId != null)
+            {
+                var assignee = await userManager.FindByIdAsync(request.AssigneeId);
+                requestdetailvm.AssigneeName = assignee.FirstName + " " + assignee.PaternalSurname;
+            }
+
+            var requester = await userManager.FindByIdAsync(request.RequesterId);
+            requestdetailvm.RequesterName = requester.FirstName + " " + requester.PaternalSurname;
+
+            //llenar lista de comentarios
+            var filteredComments = comments.Where(c => c.RequestId == id).ToList();
+            foreach (var comment in filteredComments)
+            {
+                var author = await userManager.FindByIdAsync(comment.AuthorId);
+                requestdetailvm.Comments.Add(new CommentViewModel
+                {
+                    Text = comment.Text,
+                    CreatedAt = comment.CreatedAt,
+                    AuthorName = author.FirstName + " " + author.PaternalSurname
+                });
+            }
+
+            return View(requestdetailvm);
         }
     }
 }
