@@ -1,0 +1,82 @@
+﻿@model ServiceFlow.Web.ViewModels.EditRequestViewModel
+@{
+    ViewData["Title"] = "Editar Solicitud";
+}
+
+<div class="container py-4">
+    <div class="mb-4">
+        <a asp-controller="Request" asp-action="Detail" asp-route-id="@Model.Id" class="text-muted small text-decoration-none">
+            <i class="bi bi-arrow-left me-1"></i>Volver al detalle
+        </a>
+        <h2 class="fw-bold mt-1" style="color: #25262a;">Editar Solicitud #@Model.Id</h2>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+            <form asp-action="Edit" asp-controller="Request" method="post">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label asp-for="Title" class="form-label fw-semibold"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="CategoryId" class="form-label fw-semibold"></label>
+                        <select asp-for="CategoryId" class="form-select" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))">
+                            <option value="">-- Selecciona una categoría --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-semibold"></label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Location" class="form-label fw-semibold"></label>
+                    <input asp-for="Location" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger small"></span>
+                </div>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Priority" class="form-label fw-semibold"></label>
+                            <select asp-for="Priority" class="form-select">
+                                <option value="0">🟢 Baja</option>
+                                <option value="1">🟡 Media</option>
+                                <option value="2">🟠 Alta</option>
+                                <option value="3">🔴 Urgente</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Status" class="form-label fw-semibold"></label>
+                            <select asp-for="Status" class="form-select">
+                                <option value="0">Abierta</option>
+                                <option value="1">Asignada</option>
+                                <option value="2">En Proceso</option>
+                                <option value="3">En Espera</option>
+                                <option value="4">Resuelta</option>
+                                <option value="5">Cerrada</option>
+                                <option value="6">Cancelada</option>
+                            </select>
+                        </div>
+                    </div>
+                }
+
+                <div class="d-flex gap-2 mt-2">
+                    <button type="submit" class="btn px-4" style="background-color: #25262a; color: white;">
+                        <i class="bi bi-floppy me-1"></i>Guardar Cambios
+                    </button>
+                    <a asp-controller="Request" asp-action="Detail" asp-route-id="@Model.Id" class="btn btn-outline-secondary px-4">Cancelar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

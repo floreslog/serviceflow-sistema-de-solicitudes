@@ -126,7 +126,7 @@
                                         }
                                         @if (User.IsInRole("Admin"))
                                         {
-                                            <a asp-controller="Request" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+                                            <a asp-controller="Request" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         }
