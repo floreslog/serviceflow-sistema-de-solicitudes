@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using ServiceFlow.Class.Models;
 using ServiceFlow.Class.Repositories;
 using ServiceFlow.Web.ViewModels;
-using System.Reflection;
 using System.Security.Claims;
 
 namespace ServiceFlow.Web.Controllers
@@ -130,5 +129,25 @@ namespace ServiceFlow.Web.Controllers
 
             return View(requestdetailvm);
         }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(int requestId, string text)
+        {
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                var comment = new CommentModel
+                {
+                    Text = text,
+                    CreatedAt = DateTime.Now,
+                    RequestId = requestId,
+                    AuthorId = User.FindFirstValue(ClaimTypes.NameIdentifier)!
+                };
+                await commentRepo.Create(comment);
+            }
+            return RedirectToAction("Detail", new { id = requestId });
+        }
+
     }
 }
