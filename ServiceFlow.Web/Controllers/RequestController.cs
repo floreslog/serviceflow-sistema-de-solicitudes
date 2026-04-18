@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using ServiceFlow.Class.Models;
 using ServiceFlow.Class.Repositories;
 using ServiceFlow.Web.ViewModels;
-using System.Reflection;
 using System.Security.Claims;
 
 namespace ServiceFlow.Web.Controllers
@@ -129,6 +128,75 @@ namespace ServiceFlow.Web.Controllers
             }
 
             return View(requestdetailvm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(int requestId, string text)
+        {
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                var comment = new CommentModel
+                {
+                    Text = text,
+                    CreatedAt = DateTime.Now,
+                    RequestId = requestId,
+                    AuthorId = User.FindFirstValue(ClaimTypes.NameIdentifier)!
+                };
+                await commentRepo.Create(comment);
+            }
+            return RedirectToAction("Detail", new { id = requestId });
+        }
+
+        [Authorize(Roles = "User,Admin")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var request = await requestRepo.GetById(id);
+            if (request == null) return NotFound();
+            ViewBag.Categories = await categoryRepo.GetAll();
+            var vm = new EditRequestViewModel
+            {
+                Id = request.Id,
+                Title = request.Title,
+                Description = request.Description,
+                Location = request.Location,
+                CategoryId = request.CategoryId,
+                Priority = request.Priority,
+                Status = request.Status
+            };
+            return View(vm);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<IActionResult> Edit(EditRequestViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = await categoryRepo.GetAll();
+                return View(model);
+            }
+            var request = await requestRepo.GetById(model.Id);
+            if (request == null) return NotFound();
+            request.Title = model.Title;
+            request.Description = model.Description;
+            request.Location = model.Location;
+            request.CategoryId = model.CategoryId;
+            request.LastUpdated = DateTime.Now;
+            if (User.IsInRole("Admin"))
+            {
+                request.Priority = model.Priority;
+                request.Status = model.Status;
+            }
+            await requestRepo.Update(request);
+            return RedirectToAction("Detail", new { id = model.Id });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await requestRepo.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }

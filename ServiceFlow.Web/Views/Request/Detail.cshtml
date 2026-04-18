@@ -16,7 +16,7 @@
             <h2 class="fw-bold mt-1 mb-0" style="color: #25262a;">@Model.Title</h2>
             <p class="text-muted small mb-0">Solicitud #@Model.Id · Registrada el @Model.Creation.ToString("dd/MM/yyyy")</p>
         </div>
-        <div class="d-flex gap-2">
+        <div class="d-flex gap-2 align-items-center">
             @{
                 var statusClass = Model.Status switch
                 {
@@ -59,6 +59,15 @@
             }
             <span class="badge @priorityClass fs-6">@priorityText</span>
             <span class="badge @statusClass fs-6">@statusText</span>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-controller="Request" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-pencil me-1"></i>Editar
+                </a>
+                <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    <i class="bi bi-trash me-1"></i>Eliminar
+                </button>
+            }
         </div>
     </div>
 
@@ -167,3 +176,55 @@
         </div>
     </div>
 </div>
+
+<!-- MODAL ELIMINAR (SOLO ADMIN) -->
+@if (User.IsInRole("Admin"))
+{
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-danger">
+                        <i class="bi bi-exclamation-triangle me-2"></i>Eliminar Solicitud
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted">Esta acción es <strong>irreversible</strong>. Se eliminará permanentemente la solicitud <strong>#@Model.Id — @Model.Title</strong> y todos sus comentarios.</p>
+                    <hr />
+                    <p class="small fw-semibold mb-2">Escribe <span class="text-danger fw-bold">CONFIRMAR</span> para continuar:</p>
+                    <input type="text" id="confirmInput" class="form-control confirm-input" placeholder="CONFIRMAR" autocomplete="off" />
+                    <p id="confirmError" class="text-danger small mt-1 d-none">Debes escribir CONFIRMAR exactamente.</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form asp-controller="Request" asp-action="Delete" method="post">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <button type="submit" id="deleteBtn" class="btn btn-danger" disabled>
+                            <i class="bi bi-trash me-1"></i>Eliminar definitivamente
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('confirmInput').addEventListener('input', function () {
+            const val = this.value;
+            const btn = document.getElementById('deleteBtn');
+            const error = document.getElementById('confirmError');
+            if (val === 'CONFIRMAR') {
+                btn.disabled = false;
+                error.classList.add('d-none');
+            } else {
+                btn.disabled = true;
+                if (val.length > 0) {
+                    error.classList.remove('d-none');
+                } else {
+                    error.classList.add('d-none');
+                }
+            }
+        });
+    </script>
+}
