@@ -5,7 +5,6 @@ namespace ServiceFlow.Web.ViewModels
     public class RequestDetailViewModel
     {
         public int Id { get; set; }
-
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
         public string Location { get; set; } = null!;

@@ -105,11 +105,17 @@ namespace ServiceFlow.Web.Controllers
             requestdetailvm.CategoryId = request.CategoryId;
             requestdetailvm.Status = request.Status;
             requestdetailvm.Creation = request.Creation;
+            
             if (request.AssigneeId != null)
             {
                 var assignee = await userManager.FindByIdAsync(request.AssigneeId);
                 requestdetailvm.AssigneeName = assignee.FirstName + " " + assignee.PaternalSurname;
             }
+
+            var agents = await userManager.GetUsersInRoleAsync("Agent");
+            ViewBag.Asignees = agents
+                .Select(a => new { Id = a.Id, Name = a.FirstName + " " + a.PaternalSurname })
+                .ToList();
 
             var requester = await userManager.FindByIdAsync(request.RequesterId);
             requestdetailvm.RequesterName = requester.FirstName + " " + requester.PaternalSurname;
@@ -129,7 +135,7 @@ namespace ServiceFlow.Web.Controllers
 
             return View(requestdetailvm);
         }
-
+         
         [HttpPost]
         public async Task<IActionResult> AddComment(int requestId, string text)
         {
@@ -147,12 +153,19 @@ namespace ServiceFlow.Web.Controllers
             return RedirectToAction("Detail", new { id = requestId });
         }
 
+
         [Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> Edit(int id)
         {
             var request = await requestRepo.GetById(id);
             if (request == null) return NotFound();
             ViewBag.Categories = await categoryRepo.GetAll();
+
+            var agents = await userManager.GetUsersInRoleAsync("Agent");
+            ViewBag.Asignees = agents
+                .Select(a => new { Id = a.Id, Name = a.FirstName + " " + a.PaternalSurname })
+                .ToList();
+
             var vm = new EditRequestViewModel
             {
                 Id = request.Id,
@@ -161,7 +174,8 @@ namespace ServiceFlow.Web.Controllers
                 Location = request.Location,
                 CategoryId = request.CategoryId,
                 Priority = request.Priority,
-                Status = request.Status
+                Status = request.Status,
+                AssigneeId = request.AssigneeId
             };
             return View(vm);
         }
@@ -173,6 +187,12 @@ namespace ServiceFlow.Web.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.Categories = await categoryRepo.GetAll();
+
+                var agents = await userManager.GetUsersInRoleAsync("Agent");
+                ViewBag.Asignees = agents
+                    .Select(a => new { Id = a.Id, Name = a.FirstName + " " + a.PaternalSurname })
+                    .ToList();
+
                 return View(model);
             }
             var request = await requestRepo.GetById(model.Id);
@@ -186,6 +206,7 @@ namespace ServiceFlow.Web.Controllers
             {
                 request.Priority = model.Priority;
                 request.Status = model.Status;
+                request.AssigneeId = model.AssigneeId;
             }
             await requestRepo.Update(request);
             return RedirectToAction("Detail", new { id = model.Id });

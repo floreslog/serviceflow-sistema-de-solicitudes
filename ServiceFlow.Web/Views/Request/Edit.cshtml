@@ -66,6 +66,13 @@
                                 <option value="6">Cancelada</option>
                             </select>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="AssigneeId" class="form-label fw-semibold"></label>
+                            <select asp-for="AssigneeId" class="form-select"
+                                    asp-items="@(new SelectList(ViewBag.Asignees, "Id", "Name"))">
+                                <option value="">-- Selecciona un agente --</option>
+                            </select>
+                        </div>
                     </div>
                 }
 

@@ -21,5 +21,7 @@ namespace ServiceFlow.Web.ViewModels
         public Priority Priority { get; set; }
         [Display(Name = "Estado")]
         public Status Status { get; set; }
+        [Display(Name = "Agente asignado")]
+        public string? AssigneeId { get; set; }
     }
 }
