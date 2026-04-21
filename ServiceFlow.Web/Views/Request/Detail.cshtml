@@ -3,68 +3,250 @@
     ViewData["Title"] = "Detalle de Solicitud";
 }
 
-<link rel="stylesheet" href="~/css/request-detail.css" asp-append-version="true" />
+<style>
+    .ticket-wrapper {
+        max-width: 960px;
+        margin: 0 auto;
+    }
 
-<div class="container py-4">
+    .ticket-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 24px;
+    }
+
+    .ticket-back {
+        font-size: 0.8rem;
+        color: #9aa0a6;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 8px;
+    }
+
+        .ticket-back:hover {
+            color: #25262a;
+        }
+
+    .ticket-id {
+        font-size: 0.8rem;
+        color: #9aa0a6;
+        margin-bottom: 4px;
+    }
+
+    .ticket-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .ticket-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+        border: 1px solid #e9ecef;
+    }
+
+    .ticket-body {
+        padding: 28px;
+    }
+
+    .ticket-section-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9aa0a6;
+        margin-bottom: 6px;
+    }
+
+    .ticket-section-value {
+        font-size: 0.9rem;
+        color: #25262a;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .ticket-divider {
+        border: none;
+        border-top: 1px solid #f0f0f0;
+        margin: 12px 0;
+    }
+
+    .ticket-meta-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .priority-dot-inline {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 6px;
+    }
+
+    /* COMMENTS */
+    .comments-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+        border: 1px solid #e9ecef;
+        margin-top: 20px;
+    }
+
+    .comments-header {
+        padding: 20px 28px 0 28px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .comments-title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .comments-count {
+        font-size: 0.75rem;
+        background-color: #f0f0f0;
+        color: #6c757d;
+        border-radius: 20px;
+        padding: 2px 8px;
+        font-weight: 600;
+    }
+
+    .comments-list {
+        padding: 16px 28px;
+    }
+
+    .comment-bubble {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .comment-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: #e8e8e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #6c757d;
+        flex-shrink: 0;
+    }
+
+    .comment-content {
+        flex: 1;
+        background-color: #f8f9fa;
+        border-radius: 0 10px 10px 10px;
+        padding: 12px 16px;
+    }
+
+    .comment-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .comment-author {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #25262a;
+    }
+
+    .comment-time {
+        font-size: 0.75rem;
+        color: #9aa0a6;
+    }
+
+    .comment-text {
+        font-size: 0.85rem;
+        color: #495057;
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    .comment-form-area {
+        padding: 0 28px 24px 28px;
+        border-top: 1px solid #f0f0f0;
+        padding-top: 20px;
+    }
+
+        .comment-form-area textarea {
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 0.875rem;
+            resize: none;
+            transition: border-color 0.2s ease;
+        }
+
+            .comment-form-area textarea:focus {
+                border-color: #25262a;
+                box-shadow: none;
+            }
+
+    .btn-comment {
+        background-color: #25262a;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: background-color 0.2s ease;
+    }
+
+        .btn-comment:hover {
+            background-color: #3a3b40;
+            color: white;
+        }
+
+    .confirm-input:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+
+    .status-badge {
+        font-size: 0.75rem;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+</style>
+
+<div class="ticket-wrapper">
 
     <!-- HEADER -->
-    <div class="d-flex justify-content-between align-items-start mb-4">
+    <div class="ticket-header">
         <div>
-            <a asp-controller="Request" asp-action="Index" class="text-muted small text-decoration-none">
-                <i class="bi bi-arrow-left me-1"></i>Volver a solicitudes
+            <a asp-controller="Request" asp-action="Index" class="ticket-back">
+                <i class="bi bi-arrow-left"></i> Volver a solicitudes
             </a>
-            <h2 class="fw-bold mt-1 mb-0" style="color: #25262a;">@Model.Title</h2>
-            <p class="text-muted small mb-0">Solicitud #@Model.Id · Registrada el @Model.Creation.ToString("dd/MM/yyyy")</p>
+            <p class="ticket-id">Solicitud #@Model.Id · @Model.Creation.ToString("dd/MM/yyyy HH:mm")</p>
+            <h1 class="ticket-title">@Model.Title</h1>
         </div>
-        <div class="d-flex gap-2 align-items-center">
-            @{
-                var statusClass = Model.Status switch
-                {
-                    ServiceFlow.Class.Models.Status.Open => "bg-primary",
-                    ServiceFlow.Class.Models.Status.Assigned => "bg-info text-dark",
-                    ServiceFlow.Class.Models.Status.InProgress => "bg-warning text-dark",
-                    ServiceFlow.Class.Models.Status.OnHold => "bg-secondary",
-                    ServiceFlow.Class.Models.Status.Resolved => "bg-success",
-                    ServiceFlow.Class.Models.Status.Closed => "bg-dark",
-                    ServiceFlow.Class.Models.Status.Cancelled => "bg-danger",
-                    _ => "bg-secondary"
-                };
-                var statusText = Model.Status switch
-                {
-                    ServiceFlow.Class.Models.Status.Open => "Abierta",
-                    ServiceFlow.Class.Models.Status.Assigned => "Asignada",
-                    ServiceFlow.Class.Models.Status.InProgress => "En Proceso",
-                    ServiceFlow.Class.Models.Status.OnHold => "En Espera",
-                    ServiceFlow.Class.Models.Status.Resolved => "Resuelta",
-                    ServiceFlow.Class.Models.Status.Closed => "Cerrada",
-                    ServiceFlow.Class.Models.Status.Cancelled => "Cancelada",
-                    _ => "Desconocido"
-                };
-                var priorityClass = Model.Priority switch
-                {
-                    ServiceFlow.Class.Models.Priority.Low => "bg-success",
-                    ServiceFlow.Class.Models.Priority.Medium => "bg-warning text-dark",
-                    ServiceFlow.Class.Models.Priority.High => "bg-orange",
-                    ServiceFlow.Class.Models.Priority.Urgent => "bg-danger",
-                    _ => "bg-secondary"
-                };
-                var priorityText = Model.Priority switch
-                {
-                    ServiceFlow.Class.Models.Priority.Low => "Baja",
-                    ServiceFlow.Class.Models.Priority.Medium => "Media",
-                    ServiceFlow.Class.Models.Priority.High => "Alta",
-                    ServiceFlow.Class.Models.Priority.Urgent => "Urgente",
-                    _ => "Desconocida"
-                };
-            }
-            <span class="badge @priorityClass fs-6">@priorityText</span>
-            <span class="badge @statusClass fs-6">@statusText</span>
+        <div class="d-flex gap-2 align-items-center mt-4">
             @if (User.IsInRole("Admin"))
             {
-                <a asp-controller="Request" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary btn-sm">
+                <a asp-controller="Request" asp-action="Edit" asp-route-id="@Model.Id"
+                   class="btn btn-sm btn-outline-secondary">
                     <i class="bi bi-pencil me-1"></i>Editar
                 </a>
-                <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                <button type="button" class="btn btn-sm btn-outline-danger"
+                        data-bs-toggle="modal" data-bs-target="#deleteModal">
                     <i class="bi bi-trash me-1"></i>Eliminar
                 </button>
             }
@@ -73,111 +255,158 @@
 
     <div class="row g-4">
 
-        <!-- COLUMNA IZQUIERDA: DETALLES -->
+        <!-- COLUMNA PRINCIPAL -->
         <div class="col-md-8">
 
-            <!-- DESCRIPCION -->
-            <div class="card border-0 shadow-sm mb-4">
-                <div class="card-body p-4">
-                    <h5 class="fw-bold mb-3" style="color: #25262a;">Descripción</h5>
-                    <p class="mb-0">@Model.Description</p>
+            <!-- DESCRIPCIÓN -->
+            <div class="ticket-card">
+                <div class="ticket-body">
+                    <p class="ticket-section-label">Descripción</p>
+                    <p style="font-size: 0.9rem; color: #495057; line-height: 1.7; margin: 0;">@Model.Description</p>
                 </div>
             </div>
 
             <!-- COMENTARIOS -->
-            <div class="card border-0 shadow-sm mb-4">
-                <div class="card-body p-4">
-                    <h5 class="fw-bold mb-4" style="color: #25262a;">
-                        <i class="bi bi-chat-left-text me-2"></i>Comentarios
-                        <span class="badge bg-secondary ms-2">@Model.Comments.Count</span>
-                    </h5>
+            <div class="comments-card">
+                <div class="comments-header">
+                    <span class="comments-title">Comentarios</span>
+                    <span class="comments-count">@Model.Comments.Count</span>
+                </div>
 
+                <div class="comments-list">
                     @if (!Model.Comments.Any())
                     {
-                        <p class="text-muted text-center py-3">No hay comentarios aún.</p>
+                        <p class="text-muted text-center py-3" style="font-size: 0.85rem;">No hay comentarios aún.</p>
                     }
                     else
                     {
                         @foreach (var comment in Model.Comments.OrderByDescending(c => c.CreatedAt))
                         {
-                            <div class="comment-item mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="fw-semibold">@comment.AuthorName</span>
-                                    <span class="text-muted small">
-                                        @{
-                                            var diff = DateTime.Now - comment.CreatedAt;
-                                            string timeAgo;
-                                            if (diff.TotalMinutes < 1)
-                                                timeAgo = "Hace un momento";
-                                            else if (diff.TotalMinutes < 60)
-                                                timeAgo = $"Hace {(int)diff.TotalMinutes} min";
-                                            else if (diff.TotalHours < 24)
-                                                timeAgo = $"Hace {(int)diff.TotalHours} h";
-                                            else if (diff.TotalDays < 7)
-                                                timeAgo = $"Hace {(int)diff.TotalDays} días";
-                                            else
-                                                timeAgo = comment.CreatedAt.ToString("dd/MM/yyyy");
-                                        }
-                                        @timeAgo
-                                    </span>
+                            var initials = string.Join("", comment.AuthorName.Split(' ').Take(2).Select(w => w[0]));
+                            <div class="comment-bubble">
+                                <div class="comment-avatar">@initials</div>
+                                <div class="comment-content">
+                                    <div class="comment-meta">
+                                        <span class="comment-author">@comment.AuthorName</span>
+                                        <span class="comment-time">
+                                            @{
+                                                var diff = DateTime.Now - comment.CreatedAt;
+                                                string timeAgo;
+                                                if (diff.TotalMinutes < 1)
+                                                    timeAgo = "Hace un momento";
+                                                else if (diff.TotalMinutes < 60)
+                                                    timeAgo = $"Hace {(int)diff.TotalMinutes} min";
+                                                else if (diff.TotalHours < 24)
+                                                    timeAgo = $"Hace {(int)diff.TotalHours} h";
+                                                else if (diff.TotalDays < 7)
+                                                    timeAgo = $"Hace {(int)diff.TotalDays} días";
+                                                else
+                                                    timeAgo = comment.CreatedAt.ToString("dd/MM/yyyy");
+                                            }
+                                            @timeAgo
+                                        </span>
+                                    </div>
+                                    <p class="comment-text">@comment.Text</p>
                                 </div>
-                                <p class="mb-0 text-secondary">@comment.Text</p>
                             </div>
-                            @if (comment != Model.Comments.OrderByDescending(c => c.CreatedAt).Last())
-                            {
-                                <hr class="my-3" />
-                            }
                         }
                     }
+                </div>
 
-                    <!-- FORMULARIO COMENTARIO -->
-                    <hr class="mt-4" />
-                    <h6 class="fw-bold mb-3">Agregar comentario</h6>
+                <div class="comment-form-area">
                     <form asp-controller="Request" asp-action="AddComment" method="post">
                         <input type="hidden" name="requestId" value="@Model.Id" />
-                        <div class="mb-3">
-                            <textarea name="text" class="form-control" rows="3" placeholder="Escribe tu comentario..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-sm px-4" style="background-color: #25262a; color: white;">
-                            <i class="bi bi-send me-1"></i>Comentar
-                        </button>
+                        <textarea name="text" class="form-control mb-3" rows="3"
+                                  placeholder="Escribe un comentario..."></textarea>
+                        <button type="submit" class="btn-comment">Comentar</button>
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- COLUMNA DERECHA: INFO -->
+        <!-- COLUMNA DERECHA: METADATA -->
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body p-4">
-                    <h5 class="fw-bold mb-4" style="color: #25262a;">Información</h5>
+            <div class="ticket-card">
+                <div class="ticket-body">
 
-                    <div class="mb-3">
-                        <p class="text-muted small mb-1">Solicitante</p>
-                        <p class="fw-semibold mb-0">@Model.RequesterName</p>
-                    </div>
-                    <hr />
-                    <div class="mb-3">
-                        <p class="text-muted small mb-1">Asignado a</p>
-                        <p class="fw-semibold mb-0">@(Model.AssigneeName ?? "Sin asignar")</p>
-                    </div>
-                    <hr />
-                    <div class="mb-3">
-                        <p class="text-muted small mb-1">Ubicación</p>
-                        <p class="fw-semibold mb-0">@Model.Location</p>
-                    </div>
-                    <hr />
-                    <div class="mb-0">
-                        <p class="text-muted small mb-1">Fecha de registro</p>
-                        <p class="fw-semibold mb-0">@Model.Creation.ToString("dd/MM/yyyy HH:mm")</p>
-                    </div>
+                    <p class="ticket-section-label">Estado</p>
+                    @{
+                        var statusClass = Model.Status switch
+                        {
+                            ServiceFlow.Class.Models.Status.Open => "bg-primary",
+                            ServiceFlow.Class.Models.Status.Assigned => "bg-info text-dark",
+                            ServiceFlow.Class.Models.Status.InProgress => "bg-warning text-dark",
+                            ServiceFlow.Class.Models.Status.OnHold => "bg-secondary",
+                            ServiceFlow.Class.Models.Status.Resolved => "bg-success",
+                            ServiceFlow.Class.Models.Status.Closed => "bg-dark",
+                            ServiceFlow.Class.Models.Status.Cancelled => "bg-danger",
+                            _ => "bg-secondary"
+                        };
+                        var statusText = Model.Status switch
+                        {
+                            ServiceFlow.Class.Models.Status.Open => "Abierta",
+                            ServiceFlow.Class.Models.Status.Assigned => "Asignada",
+                            ServiceFlow.Class.Models.Status.InProgress => "En Proceso",
+                            ServiceFlow.Class.Models.Status.OnHold => "En Espera",
+                            ServiceFlow.Class.Models.Status.Resolved => "Resuelta",
+                            ServiceFlow.Class.Models.Status.Closed => "Cerrada",
+                            ServiceFlow.Class.Models.Status.Cancelled => "Cancelada",
+                            _ => "Desconocido"
+                        };
+                        var priorityColor = Model.Priority switch
+                        {
+                            ServiceFlow.Class.Models.Priority.Low => "#4CAF50",
+                            ServiceFlow.Class.Models.Priority.Medium => "#FFC107",
+                            ServiceFlow.Class.Models.Priority.High => "#FF9800",
+                            ServiceFlow.Class.Models.Priority.Urgent => "#F44336",
+                            _ => "#adb5bd"
+                        };
+                        var priorityText = Model.Priority switch
+                        {
+                            ServiceFlow.Class.Models.Priority.Low => "Baja",
+                            ServiceFlow.Class.Models.Priority.Medium => "Media",
+                            ServiceFlow.Class.Models.Priority.High => "Alta",
+                            ServiceFlow.Class.Models.Priority.Urgent => "Urgente",
+                            _ => "Desconocida"
+                        };
+                    }
+                    <span class="badge @statusClass status-badge mb-2">@statusText</span>
+
+                    <hr class="ticket-divider" />
+
+                    <p class="ticket-section-label">Prioridad</p>
+                    <p class="ticket-section-value mb-2">
+                        <span class="priority-dot-inline" style="background-color: @priorityColor;"></span>
+                        @priorityText
+                    </p>
+
+                    <hr class="ticket-divider" />
+
+                    <p class="ticket-section-label">Solicitante</p>
+                    <p class="ticket-section-value mb-2">@Model.RequesterName</p>
+
+                    <hr class="ticket-divider" />
+
+                    <p class="ticket-section-label">Asignado a</p>
+                    <p class="ticket-section-value mb-2">@(Model.AssigneeName ?? "Sin asignar")</p>
+
+                    <hr class="ticket-divider" />
+
+                    <p class="ticket-section-label">Ubicación</p>
+                    <p class="ticket-section-value mb-2">@Model.Location</p>
+
+                    <hr class="ticket-divider" />
+
+                    <p class="ticket-section-label">Fecha de registro</p>
+                    <p class="ticket-section-value mb-0">@Model.Creation.ToString("dd/MM/yyyy HH:mm")</p>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
-<!-- MODAL ELIMINAR (SOLO ADMIN) -->
+<!-- MODAL ELIMINAR -->
 @if (User.IsInRole("Admin"))
 {
     <div class="modal fade" id="deleteModal" tabindex="-1">
@@ -219,11 +448,8 @@
                 error.classList.add('d-none');
             } else {
                 btn.disabled = true;
-                if (val.length > 0) {
-                    error.classList.remove('d-none');
-                } else {
-                    error.classList.add('d-none');
-                }
+                if (val.length > 0) error.classList.remove('d-none');
+                else error.classList.add('d-none');
             }
         });
     </script>

@@ -22,25 +22,56 @@ namespace ServiceFlow.Web.Controllers
             this.categoryRepo = categoryRepo;
             this.userManager = userManager;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? status, string? priority, string? filter)
         {
             var requests = await requestRepo.GetAll();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             IEnumerable<RequestModel> filtered;
 
             if (User.IsInRole("User"))
-            {
-                filtered = requests.Where(r => r.RequesterId == userId).ToList();
-            }
-            else if(User.IsInRole("Agent"))
-            {
-                filtered = requests.Where(r => r.AssigneeId == userId).ToList();
-            }
+                filtered = requests.Where(r => r.RequesterId == userId);
+            else if (User.IsInRole("Agent"))
+                filtered = requests.Where(r => r.AssigneeId == userId);
             else
-            {
                 filtered = requests;
-            }
 
+            // Filtro rápido (sin atender / atendidas)
+            if (filter == "pending")
+                filtered = filtered.Where(r => r.Status == Status.Open || r.Status == Status.Assigned || r.Status == Status.InProgress || r.Status == Status.OnHold);
+            else if (filter == "resolved")
+                filtered = filtered.Where(r => r.Status == Status.Resolved || r.Status == Status.Closed);
+
+            // Filtro por estado
+            if (!string.IsNullOrEmpty(status) && Enum.TryParse<Status>(status, out var parsedStatus))
+                filtered = filtered.Where(r => r.Status == parsedStatus);
+
+            // Filtro por prioridad
+            if (!string.IsNullOrEmpty(priority) && Enum.TryParse<Priority>(priority, out var parsedPriority))
+                filtered = filtered.Where(r => r.Priority == parsedPriority);
+
+            // Conteos para la sidebar
+            var baseList = User.IsInRole("User") ? requests.Where(r => r.RequesterId == userId) :
+                           User.IsInRole("Agent") ? requests.Where(r => r.AssigneeId == userId) :
+                           requests;
+
+            ViewBag.CountAll = baseList.Count();
+            ViewBag.CountPending = baseList.Count(r => r.Status == Status.Open || r.Status == Status.Assigned || r.Status == Status.InProgress || r.Status == Status.OnHold);
+            ViewBag.CountResolved = baseList.Count(r => r.Status == Status.Resolved || r.Status == Status.Closed);
+            ViewBag.CountOpen = baseList.Count(r => r.Status == Status.Open);
+            ViewBag.CountAssigned = baseList.Count(r => r.Status == Status.Assigned);
+            ViewBag.CountInProgress = baseList.Count(r => r.Status == Status.InProgress);
+            ViewBag.CountOnHold = baseList.Count(r => r.Status == Status.OnHold);
+            ViewBag.CountResolved2 = baseList.Count(r => r.Status == Status.Resolved);
+            ViewBag.CountClosed = baseList.Count(r => r.Status == Status.Closed);
+            ViewBag.CountCancelled = baseList.Count(r => r.Status == Status.Cancelled);
+            ViewBag.CountLow = baseList.Count(r => r.Priority == Priority.Low);
+            ViewBag.CountMedium = baseList.Count(r => r.Priority == Priority.Medium);
+            ViewBag.CountHigh = baseList.Count(r => r.Priority == Priority.High);
+            ViewBag.CountUrgent = baseList.Count(r => r.Priority == Priority.Urgent);
+
+            ViewBag.CurrentStatus = status;
+            ViewBag.CurrentPriority = priority;
+            ViewBag.CurrentFilter = filter;
 
             var vm = filtered.Select(r => new RequestListViewModel
             {
@@ -87,6 +118,7 @@ namespace ServiceFlow.Web.Controllers
             };
 
             await requestRepo.Create(rm);
+            TempData["Success"] = "Solicitud creada exitosamente.";
             return RedirectToAction("Index");
         }
 
@@ -209,6 +241,7 @@ namespace ServiceFlow.Web.Controllers
                 request.AssigneeId = model.AssigneeId;
             }
             await requestRepo.Update(request);
+            TempData["Success"] = "Solicitud actualizada correctamente.";
             return RedirectToAction("Detail", new { id = model.Id });
         }
 
@@ -217,6 +250,7 @@ namespace ServiceFlow.Web.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await requestRepo.Delete(id);
+            TempData["Success"] = "Solicitud eliminada.";
             return RedirectToAction("Index");
         }
     }

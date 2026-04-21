@@ -1,142 +1,375 @@
 ﻿@model IEnumerable<ServiceFlow.Web.ViewModels.RequestListViewModel>
 @{
     ViewData["Title"] = "Solicitudes";
+    var currentStatus = ViewBag.CurrentStatus as string;
+    var currentPriority = ViewBag.CurrentPriority as string;
+    var currentFilter = ViewBag.CurrentFilter as string;
 }
 
-<div class="container-fluid py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="fw-bold mb-0" style="color: #25262a;">
-                @if (User.IsInRole("User"))
-                {
-                    <span>Mis Solicitudes</span>
-                }
-                else if (User.IsInRole("Agent"))
-                {
-                    <span>Mi Trabajo</span>
-                }
-                else
-                {
-                    <span>Todas las Solicitudes</span>
-                }
-            </h2>
-            <p class="text-muted mb-0 small">@Model.Count() solicitudes encontradas</p>
-        </div>
-        @if (User.IsInRole("User"))
-        {
-            <a asp-controller="Request" asp-action="Create" class="btn" style="background-color: #25262a; color: white;">
-                <i class="bi bi-plus-lg me-1"></i>Nueva Solicitud
-            </a>
-        }
-    </div>
-
-    @if (!Model.Any())
-    {
-        <div class="text-center py-5">
-            <i class="bi bi-clipboard-x fs-1 text-muted"></i>
-            <p class="text-muted mt-3">No hay solicitudes para mostrar.</p>
-        </div>
+<style>
+    .requests-layout {
+        display: flex;
+        gap: 0;
+        margin: -32px;
+        min-height: calc(100vh - 60px);
     }
-    else
-    {
-        <div class="card border-0 shadow-sm">
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead style="background-color: #25262a; color: white;">
-                            <tr>
-                                <th class="px-4 py-3">#</th>
-                                <th class="py-3">Título</th>
-                                <th class="py-3">Categoría</th>
-                                <th class="py-3">Estado</th>
-                                <th class="py-3">Prioridad</th>
-                                <th class="py-3">Solicitante</th>
-                                <th class="py-3">Asignado a</th>
-                                <th class="py-3">Fecha</th>
-                                <th class="py-3">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
+
+    .requests-sidebar {
+        width: 220px;
+        min-width: 220px;
+        background-color: #eaeef0;
+        border-right: 1px solid #d8dee2;
+        padding: 24px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+        .requests-sidebar .sidebar-section-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #9aa0a6;
+            padding: 0 8px;
+            margin-bottom: 4px;
+        }
+
+        .requests-sidebar .filter-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #495057;
+            text-decoration: none;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+            .requests-sidebar .filter-link:hover {
+                background-color: #d8dee2;
+                color: #25262a;
+            }
+
+            .requests-sidebar .filter-link.active {
+                background-color: #25262a;
+                color: #ffffff;
+            }
+
+                .requests-sidebar .filter-link.active .filter-count {
+                    background-color: rgba(255,255,255,0.2);
+                    color: #ffffff;
+                }
+
+    .filter-count {
+        font-size: 0.75rem;
+        background-color: #d8dee2;
+        color: #495057;
+        border-radius: 20px;
+        padding: 1px 8px;
+        font-weight: 600;
+    }
+
+    .requests-main {
+        flex: 1;
+        padding: 28px 32px;
+        overflow: auto;
+    }
+
+    .requests-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .requests-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .requests-subtitle {
+        font-size: 0.8rem;
+        color: #9aa0a6;
+        margin: 2px 0 0 0;
+    }
+
+    .table thead th {
+        background-color: #f8f9fa;
+        color: #6c757d;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid #e9ecef;
+        padding: 12px 16px;
+    }
+
+    .table tbody td {
+        padding: 14px 16px;
+        vertical-align: middle;
+        font-size: 0.875rem;
+        border-bottom: 1px solid #f0f0f0;
+        color: #25262a;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .sidebar-divider {
+        border: none;
+        border-top: 1px solid #d0d5d8;
+        margin: 0;
+    }
+</style>
+
+<div class="requests-layout">
+
+    <!-- SIDEBAR FILTROS -->
+    <aside class="requests-sidebar">
+
+        <div>
+            <p class="sidebar-section-title">Solicitudes</p>
+
+            <a href="@Url.Action("Index", "Request")"
+               class="filter-link @(currentFilter == null && currentStatus == null && currentPriority == null ? "active" : "")">
+                <span><i class="bi bi-list-ul me-2"></i>Todas</span>
+                <span class="filter-count">@ViewBag.CountAll</span>
+            </a>
+
+            <a href="@Url.Action("Index", "Request", new { filter = "pending" })"
+               class="filter-link @(currentFilter == "pending" ? "active" : "")">
+                <span><i class="bi bi-hourglass-split me-2"></i>Sin atender</span>
+                <span class="filter-count">@ViewBag.CountPending</span>
+            </a>
+
+            <a href="@Url.Action("Index", "Request", new { filter = "resolved" })"
+               class="filter-link @(currentFilter == "resolved" ? "active" : "")">
+                <span><i class="bi bi-check-circle me-2"></i>Atendidas</span>
+                <span class="filter-count">@ViewBag.CountResolved</span>
+            </a>
+        </div>
+
+        <hr class="sidebar-divider" />
+
+        <div>
+            <p class="sidebar-section-title">Por estado</p>
+
+            <a href="@Url.Action("Index", "Request", new { status = "Open" })"
+               class="filter-link @(currentStatus == "Open" ? "active" : "")">
+                <span><i class="bi bi-circle me-2"></i>Abierta</span>
+                <span class="filter-count">@ViewBag.CountOpen</span>
+            </a>
+
+            <a href="@Url.Action("Index", "Request", new { status = "Assigned" })"
+               class="filter-link @(currentStatus == "Assigned" ? "active" : "")">
+                <span><i class="bi bi-person-check me-2"></i>Asignada</span>
+                <span class="filter-count">@ViewBag.CountAssigned</span>
+            </a>
+
+            <a href="@Url.Action("Index", "Request", new { status = "InProgress" })"
+               class="filter-link @(currentStatus == "InProgress" ? "active" : "")">
+                <span><i class="bi bi-arrow-repeat me-2"></i>En Proceso</span>
+                <span class="filter-count">@ViewBag.CountInProgress</span>
+            </a>
+
+            <a href="@Url.Action("Index", "Request", new { status = "OnHold" })"
+               class="filter-link @(currentStatus == "OnHold" ? "active" : "")">
+                <span><i class="bi bi-pause-circle me-2"></i>En Espera</span>
+                <span class="filter-count">@ViewBag.CountOnHold</span>
+            </a>
+
+            <a href="@Url.Action("Index", "Request", new { status = "Resolved" })"
+               class="filter-link @(currentStatus == "Resolved" ? "active" : "")">
+                <span><i class="bi bi-check2-circle me-2"></i>Resuelta</span>
+                <span class="filter-count">@ViewBag.CountResolved2</span>
+            </a>
+
+            <a href="@Url.Action("Index", "Request", new { status = "Closed" })"
+               class="filter-link @(currentStatus == "Closed" ? "active" : "")">
+                <span><i class="bi bi-lock me-2"></i>Cerrada</span>
+                <span class="filter-count">@ViewBag.CountClosed</span>
+            </a>
+
+            <a href="@Url.Action("Index", "Request", new { status = "Cancelled" })"
+               class="filter-link @(currentStatus == "Cancelled" ? "active" : "")">
+                <span><i class="bi bi-x-circle me-2"></i>Cancelada</span>
+                <span class="filter-count">@ViewBag.CountCancelled</span>
+            </a>
+        </div>
+
+        <hr class="sidebar-divider" />
+
+        <div>
+            <p class="sidebar-section-title">Por prioridad</p>
+
+            <a href="@Url.Action("Index", "Request", new { priority = "Low" })"
+               class="filter-link @(currentPriority == "Low" ? "active" : "")">
+                <span><i class="bi bi-circle-fill me-2" style="color: #4CAF50; font-size: 0.6rem;"></i>Baja</span>
+                <span class="filter-count">@ViewBag.CountLow</span>
+            </a>
+
+            <a href="@Url.Action("Index", "Request", new { priority = "Medium" })"
+               class="filter-link @(currentPriority == "Medium" ? "active" : "")">
+                <span><i class="bi bi-circle-fill me-2" style="color: #FFC107; font-size: 0.6rem;"></i>Media</span>
+                <span class="filter-count">@ViewBag.CountMedium</span>
+            </a>
+
+            <a href="@Url.Action("Index", "Request", new { priority = "High" })"
+               class="filter-link @(currentPriority == "High" ? "active" : "")">
+                <span><i class="bi bi-circle-fill me-2" style="color: #FF9800; font-size: 0.6rem;"></i>Alta</span>
+                <span class="filter-count">@ViewBag.CountHigh</span>
+            </a>
+
+            <a href="@Url.Action("Index", "Request", new { priority = "Urgent" })"
+               class="filter-link @(currentPriority == "Urgent" ? "active" : "")">
+                <span><i class="bi bi-circle-fill me-2" style="color: #F44336; font-size: 0.6rem;"></i>Urgente</span>
+                <span class="filter-count">@ViewBag.CountUrgent</span>
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="requests-main">
+
+        <div class="requests-header">
+            <div>
+                <h2 class="requests-title">
+                    @if (User.IsInRole("User"))
+                    {
+                        <span>Mis Solicitudes</span>
+                    }
+                    else if (User.IsInRole("Agent"))
+                    {
+                        <span>Mi Trabajo</span>
+                    }
+                    else
+                    {
+                        <span>Solicitudes</span>
+                    }
+                </h2>
+                <p class="requests-subtitle">@Model.Count() solicitudes encontradas</p>
+            </div>
+            @if (User.IsInRole("User"))
+            {
+                <a asp-controller="Request" asp-action="Create" class="btn btn-sm px-4" style="background-color: #25262a; color: white;">
+                    <i class="bi bi-plus-lg me-1"></i>Nueva Solicitud
+                </a>
+            }
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="text-center py-5">
+                <i class="bi bi-clipboard-x fs-1 text-muted"></i>
+                <p class="text-muted mt-3">No hay solicitudes para mostrar.</p>
+            </div>
+        }
+        else
+        {
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
                                 <tr>
-                                    <td class="px-4">@item.Id</td>
-                                    <td>@item.Title</td>
-                                    <td>@item.CategoryName</td>
-                                    <td>
-                                        @{
-                                            var statusClass = item.Status switch
-                                            {
-                                                ServiceFlow.Class.Models.Status.Open => "bg-primary",
-                                                ServiceFlow.Class.Models.Status.Assigned => "bg-info text-dark",
-                                                ServiceFlow.Class.Models.Status.InProgress => "bg-warning text-dark",
-                                                ServiceFlow.Class.Models.Status.OnHold => "bg-secondary",
-                                                ServiceFlow.Class.Models.Status.Resolved => "bg-success",
-                                                ServiceFlow.Class.Models.Status.Closed => "bg-dark",
-                                                ServiceFlow.Class.Models.Status.Cancelled => "bg-danger",
-                                                _ => "bg-secondary"
-                                            };
-                                            var statusText = item.Status switch
-                                            {
-                                                ServiceFlow.Class.Models.Status.Open => "Abierta",
-                                                ServiceFlow.Class.Models.Status.Assigned => "Asignada",
-                                                ServiceFlow.Class.Models.Status.InProgress => "En Proceso",
-                                                ServiceFlow.Class.Models.Status.OnHold => "En Espera",
-                                                ServiceFlow.Class.Models.Status.Resolved => "Resuelta",
-                                                ServiceFlow.Class.Models.Status.Closed => "Cerrada",
-                                                ServiceFlow.Class.Models.Status.Cancelled => "Cancelada",
-                                                _ => "Desconocido"
-                                            };
-                                        }
-                                        <span class="badge @statusClass">@statusText</span>
-                                    </td>
-                                    <td>
-                                        @{
-                                            var priorityClass = item.Priority switch
-                                            {
-                                                ServiceFlow.Class.Models.Priority.Low => "bg-success",
-                                                ServiceFlow.Class.Models.Priority.Medium => "bg-warning text-dark",
-                                                ServiceFlow.Class.Models.Priority.High => "bg-orange text-dark",
-                                                ServiceFlow.Class.Models.Priority.Urgent => "bg-danger",
-                                                _ => "bg-secondary"
-                                            };
-                                            var priorityText = item.Priority switch
-                                            {
-                                                ServiceFlow.Class.Models.Priority.Low => "Baja",
-                                                ServiceFlow.Class.Models.Priority.Medium => "Media",
-                                                ServiceFlow.Class.Models.Priority.High => "Alta",
-                                                ServiceFlow.Class.Models.Priority.Urgent => "Urgente",
-                                                _ => "Desconocida"
-                                            };
-                                        }
-                                        <span class="badge @priorityClass">@priorityText</span>
-                                    </td>
-                                    <td>@item.RequesterName</td>
-                                    <td>@item.AssigneeName</td>
-                                    <td>@item.Creation.ToString("dd/MM/yyyy")</td>
-                                    <td>
-                                        <a asp-controller="Request" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        @if (User.IsInRole("User") || User.IsInRole("Admin"))
-                                        {
-                                            <a asp-controller="Request" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                        }
-                                        @if (User.IsInRole("Admin"))
-                                        {
-                                            <a asp-controller="Request" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
-                                                <i class="bi bi-trash"></i>
-                                            </a>
-                                        }
-                                    </td>
+                                    <th class="px-4">#</th>
+                                    <th>Título</th>
+                                    <th>Categoría</th>
+                                    <th>Estado</th>
+                                    <th>Prioridad</th>
+                                    <th>Solicitante</th>
+                                    <th>Asignado a</th>
+                                    <th>Fecha</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="px-4 text-muted">#@item.Id</td>
+                                        <td class="fw-semibold">@item.Title</td>
+                                        <td class="text-muted">@item.CategoryName</td>
+                                        <td>
+                                            @{
+                                                var statusClass = item.Status switch
+                                                {
+                                                    ServiceFlow.Class.Models.Status.Open => "bg-primary",
+                                                    ServiceFlow.Class.Models.Status.Assigned => "bg-info text-dark",
+                                                    ServiceFlow.Class.Models.Status.InProgress => "bg-warning text-dark",
+                                                    ServiceFlow.Class.Models.Status.OnHold => "bg-secondary",
+                                                    ServiceFlow.Class.Models.Status.Resolved => "bg-success",
+                                                    ServiceFlow.Class.Models.Status.Closed => "bg-dark",
+                                                    ServiceFlow.Class.Models.Status.Cancelled => "bg-danger",
+                                                    _ => "bg-secondary"
+                                                };
+                                                var statusText = item.Status switch
+                                                {
+                                                    ServiceFlow.Class.Models.Status.Open => "Abierta",
+                                                    ServiceFlow.Class.Models.Status.Assigned => "Asignada",
+                                                    ServiceFlow.Class.Models.Status.InProgress => "En Proceso",
+                                                    ServiceFlow.Class.Models.Status.OnHold => "En Espera",
+                                                    ServiceFlow.Class.Models.Status.Resolved => "Resuelta",
+                                                    ServiceFlow.Class.Models.Status.Closed => "Cerrada",
+                                                    ServiceFlow.Class.Models.Status.Cancelled => "Cancelada",
+                                                    _ => "Desconocido"
+                                                };
+                                            }
+                                            <span class="badge @statusClass">@statusText</span>
+                                        </td>
+                                        <td>
+                                            @{
+                                                var priorityDot = item.Priority switch
+                                                {
+                                                    ServiceFlow.Class.Models.Priority.Low => "#4CAF50",
+                                                    ServiceFlow.Class.Models.Priority.Medium => "#FFC107",
+                                                    ServiceFlow.Class.Models.Priority.High => "#FF9800",
+                                                    ServiceFlow.Class.Models.Priority.Urgent => "#F44336",
+                                                    _ => "#adb5bd"
+                                                };
+                                                var priorityText = item.Priority switch
+                                                {
+                                                    ServiceFlow.Class.Models.Priority.Low => "Baja",
+                                                    ServiceFlow.Class.Models.Priority.Medium => "Media",
+                                                    ServiceFlow.Class.Models.Priority.High => "Alta",
+                                                    ServiceFlow.Class.Models.Priority.Urgent => "Urgente",
+                                                    _ => "Desconocida"
+                                                };
+                                            }
+                                            <span class="d-flex align-items-center gap-2">
+                                                <span style="width:8px;height:8px;border-radius:50%;background-color:@priorityDot;display:inline-block;"></span>
+                                                @priorityText
+                                            </span>
+                                        </td>
+                                        <td class="text-muted">@item.RequesterName</td>
+                                        <td class="text-muted">@item.AssigneeName</td>
+                                        <td class="text-muted">@item.Creation.ToString("dd/MM/yyyy")</td>
+                                        <td>
+                                            <a asp-controller="Request" asp-action="Detail" asp-route-id="@item.Id"
+                                               class="btn btn-sm btn-outline-secondary me-1">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            @if (User.IsInRole("User") || User.IsInRole("Admin"))
+                                            {
+                                                <a asp-controller="Request" asp-action="Edit" asp-route-id="@item.Id"
+                                                   class="btn btn-sm btn-outline-secondary me-1">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>

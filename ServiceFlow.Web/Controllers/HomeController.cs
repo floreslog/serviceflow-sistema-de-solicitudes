@@ -13,7 +13,6 @@ namespace ServiceFlow.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IRepository<RequestModel> requestRepo;
-
         public HomeController(IRepository<RequestModel> requestRepo)
         {
             this.requestRepo = requestRepo;
@@ -23,7 +22,6 @@ namespace ServiceFlow.Web.Controllers
             var requests = await requestRepo.GetAll();
             var vm = new DashboardViewModel();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             if (User.IsInRole("Admin"))
             {
                 vm.TotalRequests = requests.Count;
@@ -43,8 +41,9 @@ namespace ServiceFlow.Web.Controllers
                 vm.OpenRequests = requests.Count(r => r.RequesterId == userId && r.Status == Status.Open);
                 vm.ResolvedRequests = requests.Count(r => r.RequesterId == userId && r.Status == Status.Resolved);
             }
-                return View(vm);
+            return View(vm);
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
