@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ServiceFlow.Class.Models;
@@ -118,6 +119,7 @@ namespace ServiceFlow.Web.Controllers
             };
 
             await requestRepo.Create(rm);
+            await LogStatusChange(rm.Id, "Solicitud creada.");
             TempData["Success"] = "Solicitud creada exitosamente.";
             return RedirectToAction("Index");
         }
@@ -185,6 +187,17 @@ namespace ServiceFlow.Web.Controllers
             return RedirectToAction("Detail", new { id = requestId });
         }
 
+        private async Task LogStatusChange(int requestId, string message)
+        {
+            var comment = new CommentModel
+            {
+                Text = message,
+                CreatedAt = DateTime.Now,
+                RequestId = requestId,
+                AuthorId = User.FindFirstValue(ClaimTypes.NameIdentifier)!
+            };
+            await commentRepo.Create(comment);
+        }
 
         [Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> Edit(int id)
@@ -239,6 +252,27 @@ namespace ServiceFlow.Web.Controllers
                 request.Priority = model.Priority;
                 request.Status = model.Status;
                 request.AssigneeId = model.AssigneeId;
+
+                var assigneeChanged = request.AssigneeId != model.AssigneeId;
+
+                if (!string.IsNullOrEmpty(model.AssigneeId) && (assigneeChanged || request.Status == Status.Open || request.Status == Status.Assigned))
+                {
+                    request.Status = Status.Assigned;
+                    var agent = await userManager.FindByIdAsync(model.AssigneeId);
+                    var agentName = agent.FirstName + " " + agent.PaternalSurname;
+                    await LogStatusChange(model.Id, $"Solicitud asignada a {agentName}.");
+                }
+                else
+                {
+                    var statusMessage = model.Status switch
+                    {
+                        Status.Closed => "Solicitud cerrada.",
+                        Status.Cancelled => "Solicitud cancelada.",
+                        _ => null
+                    };
+                    request.Status = model.Status;
+                }
+
             }
             await requestRepo.Update(request);
             TempData["Success"] = "Solicitud actualizada correctamente.";
@@ -252,6 +286,92 @@ namespace ServiceFlow.Web.Controllers
             await requestRepo.Delete(id);
             TempData["Success"] = "Solicitud eliminada.";
             return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Agent")]
+        public async Task<IActionResult> MyWork(string? status, string? priority, string? filter)
+        {
+            var requests = await requestRepo.GetAll();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            IEnumerable<RequestModel> filtered;
+
+            filtered = requests.Where(r => r.AssigneeId == userId);
+
+            // Filtro rápido (sin atender / atendidas)
+            if (filter == "pending")
+                filtered = filtered.Where(r => r.Status == Status.Open || r.Status == Status.Assigned || r.Status == Status.InProgress || r.Status == Status.OnHold);
+            else if (filter == "resolved")
+                filtered = filtered.Where(r => r.Status == Status.Resolved || r.Status == Status.Closed);
+
+            // Filtro por estado
+            if (!string.IsNullOrEmpty(status) && Enum.TryParse<Status>(status, out var parsedStatus))
+                filtered = filtered.Where(r => r.Status == parsedStatus);
+
+            // Filtro por prioridad
+            if (!string.IsNullOrEmpty(priority) && Enum.TryParse<Priority>(priority, out var parsedPriority))
+                filtered = filtered.Where(r => r.Priority == parsedPriority);
+
+            // Conteos para la sidebar
+            var baseList = User.IsInRole("User") ? requests.Where(r => r.RequesterId == userId) :
+                           User.IsInRole("Agent") ? requests.Where(r => r.AssigneeId == userId) :
+                           requests;
+
+            ViewBag.CountAll = baseList.Count();
+            ViewBag.CountPending = baseList.Count(r => r.Status == Status.Open || r.Status == Status.Assigned || r.Status == Status.InProgress || r.Status == Status.OnHold);
+            ViewBag.CountResolved = baseList.Count(r => r.Status == Status.Resolved || r.Status == Status.Closed);
+            ViewBag.CountOpen = baseList.Count(r => r.Status == Status.Open);
+            ViewBag.CountAssigned = baseList.Count(r => r.Status == Status.Assigned);
+            ViewBag.CountInProgress = baseList.Count(r => r.Status == Status.InProgress);
+            ViewBag.CountOnHold = baseList.Count(r => r.Status == Status.OnHold);
+            ViewBag.CountResolved2 = baseList.Count(r => r.Status == Status.Resolved);
+            ViewBag.CountClosed = baseList.Count(r => r.Status == Status.Closed);
+            ViewBag.CountCancelled = baseList.Count(r => r.Status == Status.Cancelled);
+            ViewBag.CountLow = baseList.Count(r => r.Priority == Priority.Low);
+            ViewBag.CountMedium = baseList.Count(r => r.Priority == Priority.Medium);
+            ViewBag.CountHigh = baseList.Count(r => r.Priority == Priority.High);
+            ViewBag.CountUrgent = baseList.Count(r => r.Priority == Priority.Urgent);
+
+            ViewBag.CurrentStatus = status;
+            ViewBag.CurrentPriority = priority;
+            ViewBag.CurrentFilter = filter;
+
+            var vm = filtered.Select(r => new RequestListViewModel
+            {
+                Id = r.Id,
+                Title = r.Title,
+                CategoryName = r.Category.Name,
+                RequesterName = r.Requester.FirstName + " " + r.Requester.PaternalSurname,
+                AssigneeName = r.Assignee != null ? r.Assignee.FirstName + " " + r.Assignee.PaternalSurname : "Sin asignar",
+                Status = r.Status,
+                Priority = r.Priority,
+                Creation = r.Creation
+            }).ToList();
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Agent")]
+        public async Task<IActionResult> ChangeStatus(int id, Status newStatus)
+        {
+            var request = await requestRepo.GetById(id);
+            if (request == null) return NotFound();
+
+            request.Status = newStatus;
+            request.LastUpdated = DateTime.Now;
+
+            var statusMessage = newStatus switch
+            {
+                Status.InProgress => "Atención iniciada.",
+                Status.OnHold => "Solicitud puesta en espera.",
+                Status.Resolved => "Solicitud marcada como resuelta.",
+                _ => $"Estado actualizado a {newStatus}."
+            };
+
+            await requestRepo.Update(request);
+            await LogStatusChange(id, statusMessage);
+
+            return RedirectToAction("Detail", new { id });
         }
     }
 }

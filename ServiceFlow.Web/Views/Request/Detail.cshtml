@@ -401,6 +401,44 @@
                     <p class="ticket-section-value mb-0">@Model.Creation.ToString("dd/MM/yyyy HH:mm")</p>
                 </div>
             </div>
+
+            @if (User.IsInRole("Agent"))
+            {
+                <div class="mt-3">
+                    @if (Model.Status == ServiceFlow.Class.Models.Status.Open ||
+                                    Model.Status == ServiceFlow.Class.Models.Status.Assigned)
+                    {
+                        <form asp-action="ChangeStatus" method="post">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="hidden" name="newStatus" value="@ServiceFlow.Class.Models.Status.InProgress" />
+                            <button type="submit" class="btn btn-outline-primary w-100">Iniciar atención</button>
+                        </form>
+                    }
+                    else if (Model.Status == ServiceFlow.Class.Models.Status.InProgress)
+                    {
+                        <div class="d-flex gap-2">
+                            <form asp-action="ChangeStatus" method="post" class="w-50">
+                                <input type="hidden" name="id" value="@Model.Id" />
+                                <input type="hidden" name="newStatus" value="@ServiceFlow.Class.Models.Status.OnHold" />
+                                <button type="submit" class="btn btn-outline-secondary w-100">Poner solicitud en espera</button>
+                            </form>
+                            <form asp-action="ChangeStatus" method="post" class="w-50">
+                                <input type="hidden" name="id" value="@Model.Id" />
+                                <input type="hidden" name="newStatus" value="@ServiceFlow.Class.Models.Status.Resolved" />
+                                <button type="submit" class="btn btn-outline-success w-100">Marcar como resuelto</button>
+                            </form>
+                        </div>
+                    }
+                    else if (Model.Status == ServiceFlow.Class.Models.Status.OnHold)
+                    {
+                        <form asp-action="ChangeStatus" method="post">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="hidden" name="newStatus" value="@ServiceFlow.Class.Models.Status.InProgress" />
+                            <button type="submit" class="btn btn-outline-secondary w-100">Reanudar atención</button>
+                        </form>
+                    }
+                </div>
+            }
         </div>
 
     </div>
