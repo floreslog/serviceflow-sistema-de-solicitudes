@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ServiceFlow.Web.ViewModels.RequestListViewModel>
 @{
-    ViewData["Title"] = "Solicitudes";
+    ViewData["Title"] = "Mi trabajo";
     var currentStatus = ViewBag.CurrentStatus as string;
     var currentPriority = ViewBag.CurrentPriority as string;
     var currentFilter = ViewBag.CurrentFilter as string;
@@ -240,14 +240,7 @@
         <div class="requests-header">
             <div>
                 <h2 class="requests-title">
-                    @if (User.IsInRole("Agent"))
-                    {
-                        <span>Mi Trabajo</span>
-                    }
-                    else
-                    {
-                        <span>Solicitudes</span>
-                    }
+                    <span>Mi Trabajo</span>
                 </h2>
                 <p class="requests-subtitle">@Model.Count() solicitudes encontradas</p>
             </div>

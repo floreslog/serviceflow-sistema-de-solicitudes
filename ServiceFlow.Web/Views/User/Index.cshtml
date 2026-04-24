@@ -1,0 +1,231 @@
+﻿@model IEnumerable<ServiceFlow.Web.ViewModels.UserListViewModel>
+@{
+    ViewData["Title"] = "Gestión de usuarios";
+    var currentFilter = ViewBag.CurrentFilter as string;
+}
+
+<style>
+    .requests-layout {
+        display: flex;
+        gap: 0;
+        margin: -32px;
+        min-height: calc(100vh - 60px);
+    }
+
+    .requests-sidebar {
+        width: 220px;
+        min-width: 220px;
+        background-color: #eaeef0;
+        border-right: 1px solid #d8dee2;
+        padding: 24px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+        .requests-sidebar .sidebar-section-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #9aa0a6;
+            padding: 0 8px;
+            margin-bottom: 4px;
+        }
+
+        .requests-sidebar .filter-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #495057;
+            text-decoration: none;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+            .requests-sidebar .filter-link:hover {
+                background-color: #d8dee2;
+                color: #25262a;
+            }
+
+            .requests-sidebar .filter-link.active {
+                background-color: #25262a;
+                color: #ffffff;
+            }
+
+                .requests-sidebar .filter-link.active .filter-count {
+                    background-color: rgba(255,255,255,0.2);
+                    color: #ffffff;
+                }
+
+    .filter-count {
+        font-size: 0.75rem;
+        background-color: #d8dee2;
+        color: #495057;
+        border-radius: 20px;
+        padding: 1px 8px;
+        font-weight: 600;
+    }
+
+    .requests-main {
+        flex: 1;
+        padding: 28px 32px;
+        overflow: auto;
+    }
+
+    .requests-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .requests-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .requests-subtitle {
+        font-size: 0.8rem;
+        color: #9aa0a6;
+        margin: 2px 0 0 0;
+    }
+
+    .table thead th {
+        background-color: #f8f9fa;
+        color: #6c757d;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid #e9ecef;
+        padding: 12px 16px;
+    }
+
+    .table tbody td {
+        padding: 14px 16px;
+        vertical-align: middle;
+        font-size: 0.875rem;
+        border-bottom: 1px solid #f0f0f0;
+        color: #25262a;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+</style>
+
+<div class="requests-layout">
+
+    <!-- SIDEBAR FILTROS -->
+    <aside class="requests-sidebar">
+        <div>
+            <p class="sidebar-section-title">Roles</p>
+
+            <a href="@Url.Action("Index", "User")"
+               class="filter-link @(currentFilter == null ? "active" : "")">
+                <span><i class="bi bi-people me-2"></i>Todos</span>
+                <span class="filter-count">@ViewBag.CountAll</span>
+            </a>
+
+            <a href="@Url.Action("Index", "User", new { filter = "Admin" })"
+               class="filter-link @(currentFilter == "Admin" ? "active" : "")">
+                <span><i class="bi bi-shield me-2"></i>Admin</span>
+                <span class="filter-count">@ViewBag.CountAdmin</span>
+            </a>
+
+            <a href="@Url.Action("Index", "User", new { filter = "Agent" })"
+               class="filter-link @(currentFilter == "Agent" ? "active" : "")">
+                <span><i class="bi bi-headset me-2"></i>Agente</span>
+                <span class="filter-count">@ViewBag.CountAgent</span>
+            </a>
+
+            <a href="@Url.Action("Index", "User", new { filter = "User" })"
+               class="filter-link @(currentFilter == "User" ? "active" : "")">
+                <span><i class="bi bi-person me-2"></i>Usuario</span>
+                <span class="filter-count">@ViewBag.CountUser</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="requests-main">
+
+        <div class="requests-header">
+            <div>
+                <h2 class="requests-title">Gestión de Usuarios</h2>
+                <p class="requests-subtitle">@Model.Count() usuarios encontrados</p>
+            </div>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="text-center py-5">
+                <i class="bi bi-people fs-1 text-muted"></i>
+                <p class="text-muted mt-3">No hay usuarios para mostrar.</p>
+            </div>
+        }
+        else
+        {
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="px-4">Nombre completo</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    <tr>
+                                        <td class="px-4 fw-semibold">@user.FullName</td>
+                                        <td class="text-muted">@user.Email</td>
+                                        <td>
+                                            @{
+                                                var roleBadge = user.Role switch
+                                                {
+                                                    "Admin" => "bg-dark",
+                                                    "Agent" => "bg-info text-dark",
+                                                    "User" => "bg-secondary",
+                                                    _ => "bg-light text-dark"
+                                                };
+                                                var roleText = user.Role switch
+                                                {
+                                                    "Admin" => "Admin",
+                                                    "Agent" => "Agente",
+                                                    "User" => "Usuario",
+                                                    _ => "Sin rol"
+                                                };
+                                            }
+                                            <span class="badge @roleBadge">@roleText</span>
+                                        </td>
+                                        <td>
+                                            <a asp-controller="User" asp-action="Detail" asp-route-id="@user.Id"
+                                               class="btn btn-sm btn-outline-secondary me-1">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id"
+                                               class="btn btn-sm btn-outline-secondary me-1">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
