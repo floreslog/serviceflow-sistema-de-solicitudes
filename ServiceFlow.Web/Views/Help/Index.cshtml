@@ -1,0 +1,256 @@
+﻿@{
+    ViewData["Title"] = "Ayuda";
+}
+
+<style>
+    .help-wrapper {
+        max-width: 760px;
+        margin: 0 auto;
+    }
+
+    .help-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .help-subtitle {
+        font-size: 0.85rem;
+        color: #9aa0a6;
+        margin: 4px 0 0 0;
+    }
+
+    .help-card {
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+        padding: 28px;
+        margin-bottom: 20px;
+    }
+
+    .help-section-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9aa0a6;
+        margin-bottom: 16px;
+    }
+
+    .faq-item {
+        padding: 14px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+    .faq-question {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #25262a;
+        margin-bottom: 6px;
+    }
+
+    .faq-answer {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .status-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 0.85rem;
+    }
+
+        .status-row:last-child {
+            border-bottom: none;
+        }
+
+    .status-desc {
+        color: #6c757d;
+        margin: 0;
+    }
+
+    .dev-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 0;
+        border-bottom: 1px solid #f0f0f0;
+        text-decoration: none;
+        transition: background-color 0.15s ease;
+    }
+
+        .dev-card:last-of-type {
+            border-bottom: none;
+        }
+
+    .dev-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 2px solid #e9ecef;
+        transition: border-color 0.2s ease;
+    }
+
+    .dev-card:hover .dev-avatar {
+        border-color: #25262a;
+    }
+
+    .dev-name {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .dev-username {
+        font-size: 0.78rem;
+        color: #9aa0a6;
+        margin: 2px 0 0 0;
+    }
+
+    .repo-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 16px;
+        border-radius: 10px;
+        border: 1px solid #e9ecef;
+        text-decoration: none;
+        transition: border-color 0.2s ease, background-color 0.2s ease;
+        margin-top: 16px;
+    }
+
+        .repo-link:hover {
+            border-color: #25262a;
+            background-color: #fafafa;
+        }
+
+    .repo-link-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .repo-link-sub {
+        font-size: 0.78rem;
+        color: #9aa0a6;
+        margin: 2px 0 0 0;
+    }
+</style>
+
+<div class="help-wrapper">
+
+    <div class="mb-4">
+        <h1 class="help-title">Ayuda</h1>
+        <p class="help-subtitle">Guía de uso y recursos del sistema</p>
+    </div>
+
+    <!-- PREGUNTAS FRECUENTES -->
+    <div class="help-card">
+        <p class="help-section-label">Preguntas frecuentes</p>
+
+        <div class="faq-item">
+            <p class="faq-question">¿Cómo creo una nueva solicitud?</p>
+            <p class="faq-answer">Dirígete a la sección Solicitudes en el menú lateral y haz click en Nueva Solicitud. Completa el título, descripción, ubicación, categoría y prioridad sugerida. Una vez enviada, quedará registrada con estado Abierta.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">¿Puedo editar una solicitud después de crearla?</p>
+            <p class="faq-answer">Sí, puedes editar tus solicitudes mientras no hayan sido cerradas o canceladas. Entra al detalle de la solicitud y usa el botón Editar.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">¿Qué significa cada estado?</p>
+            <p class="faq-answer">Cada estado refleja en qué punto del proceso se encuentra tu solicitud. Consulta la tabla de estados más abajo para más detalle.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">¿Puedo agregar comentarios a una solicitud?</p>
+            <p class="faq-answer">Sí. Dentro del detalle de cualquier solicitud encontrarás la sección de comentarios donde puedes dejar notas o hacer seguimiento.</p>
+        </div>
+
+        <div class="faq-item">
+            <p class="faq-question">¿Cómo cambio mi contraseña?</p>
+            <p class="faq-answer">Ve a Mi Perfil en la parte inferior del menú lateral. Ahí encontrarás el botón Cambiar contraseña en la sección de Seguridad.</p>
+        </div>
+    </div>
+
+    <!-- ESTADOS -->
+    <div class="help-card">
+        <p class="help-section-label">Estados de una solicitud</p>
+
+        <div class="status-row">
+            <span class="badge bg-primary">Abierta</span>
+            <p class="status-desc">La solicitud fue registrada y está esperando ser atendida.</p>
+        </div>
+        <div class="status-row">
+            <span class="badge bg-info text-dark">Asignada</span>
+            <p class="status-desc">Un agente fue asignado y está por comenzar a atenderla.</p>
+        </div>
+        <div class="status-row">
+            <span class="badge bg-warning text-dark">En Proceso</span>
+            <p class="status-desc">El agente está trabajando activamente en la solicitud.</p>
+        </div>
+        <div class="status-row">
+            <span class="badge bg-secondary">En Espera</span>
+            <p class="status-desc">La atención fue pausada temporalmente, se retomará pronto.</p>
+        </div>
+        <div class="status-row">
+            <span class="badge bg-success">Resuelta</span>
+            <p class="status-desc">El problema fue atendido y resuelto satisfactoriamente.</p>
+        </div>
+        <div class="status-row">
+            <span class="badge bg-dark">Cerrada</span>
+            <p class="status-desc">La solicitud fue cerrada formalmente por el administrador.</p>
+        </div>
+        <div class="status-row">
+            <span class="badge bg-danger">Cancelada</span>
+            <p class="status-desc">La solicitud fue cancelada y no será atendida.</p>
+        </div>
+    </div>
+
+    <!-- EQUIPO -->
+    <div class="help-card">
+        <p class="help-section-label">Equipo de desarrollo</p>
+
+        <a href="https://github.com/floreslog" target="_blank" class="dev-card">
+            <img src="https://github.com/floreslog.png" class="dev-avatar" />
+            <div>
+                <p class="dev-name">floreslog</p>
+                <p class="dev-username">github.com/floreslog</p>
+            </div>
+            <i class="bi bi-box-arrow-up-right ms-auto text-muted" style="font-size:0.8rem;"></i>
+        </a>
+
+        <a href="https://github.com/nicolasdluna01" target="_blank" class="dev-card">
+            <img src="https://github.com/nicolasdluna01.png" class="dev-avatar" />
+            <div>
+                <p class="dev-name">nicolasdluna01</p>
+                <p class="dev-username">github.com/nicolasdluna01</p>
+            </div>
+            <i class="bi bi-box-arrow-up-right ms-auto text-muted" style="font-size:0.8rem;"></i>
+        </a>
+
+        <a href="https://github.com/floreslog/serviceflow-sistema-de-solicitudes" target="_blank" class="repo-link">
+            <i class="bi bi-git" style="font-size:1.1rem; color:#25262a;"></i>
+            <div>
+                <p class="repo-link-title">serviceflow-sistema-de-solicitudes</p>
+                <p class="repo-link-sub">Ver repositorio y contribuir en GitHub</p>
+            </div>
+            <i class="bi bi-box-arrow-up-right ms-auto text-muted" style="font-size:0.8rem;"></i>
+        </a>
+    </div>
+
+</div>

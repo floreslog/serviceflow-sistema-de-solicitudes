@@ -1,0 +1,294 @@
+﻿@model ServiceFlow.Web.ViewModels.ProfileViewModel
+@{
+    ViewData["Title"] = "Mi Perfil";
+    var roleText = Model.Role switch
+    {
+        "Admin" => "Administrador",
+        "Agent" => "Agente",
+        "User" => "Usuario",
+        _ => Model.Role ?? "Sin rol"
+    };
+}
+
+<style>
+    .edit-actions-hidden {
+        display: none !important;
+    }
+
+    .profile-wrapper {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    .profile-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .profile-subtitle {
+        font-size: 0.85rem;
+        color: #9aa0a6;
+        margin: 4px 0 0 0;
+    }
+
+    .profile-card {
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+        padding: 28px;
+        margin-bottom: 20px;
+    }
+
+    .profile-avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background-color: #e8e8e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #6c757d;
+        margin-bottom: 16px;
+    }
+
+    .profile-section-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9aa0a6;
+        margin-bottom: 16px;
+    }
+
+    .form-control:disabled {
+        background-color: #f8f9fa;
+        color: #25262a;
+        border-color: #e9ecef;
+    }
+
+    .btn-save {
+        background-color: #25262a;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 24px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: background-color 0.2s ease;
+    }
+
+        .btn-save:hover {
+            background-color: #3a3b40;
+            color: white;
+        }
+
+    .btn-edit {
+        background: none;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 6px 16px;
+        font-size: 0.82rem;
+        color: #6c757d;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+
+        .btn-edit:hover {
+            border-color: #25262a;
+            color: #25262a;
+        }
+</style>
+
+<div class="profile-wrapper">
+
+    <div class="mb-4">
+        <h1 class="profile-title">Mi Perfil</h1>
+        <p class="profile-subtitle">Información de tu cuenta</p>
+    </div>
+
+    <!-- CARD PERFIL -->
+    <div class="profile-card">
+
+        <!-- AVATAR + NOMBRE -->
+        <div class="d-flex align-items-center gap-4 mb-4">
+            @{
+                var initials = Model.FirstName[0].ToString().ToUpper() + Model.PaternalSurname[0].ToString().ToUpper();
+            }
+            <div class="profile-avatar">@initials</div>
+            <div>
+                <p style="font-size:1rem; font-weight:700; color:#25262a; margin:0;">
+                    @Model.FirstName @Model.PaternalSurname @Model.MaternalSurname
+                </p>
+                <p style="font-size:0.8rem; color:#9aa0a6; margin:4px 0 0 0;">@Model.Email</p>
+                <span class="badge bg-secondary mt-1" style="font-size:0.7rem;">@roleText</span>
+            </div>
+        </div>
+
+        <hr style="border-color: #f0f0f0;" />
+
+        <!-- FORMULARIO -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <p class="profile-section-label mb-0">Datos personales</p>
+            <button class="btn-edit" onclick="toggleEdit()">
+                <i class="bi bi-pencil me-1"></i>Editar
+            </button>
+        </div>
+
+        <form asp-controller="Profile" asp-action="Edit" method="post" id="editForm">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold" style="font-size:0.82rem;">Nombre</label>
+                    <input name="FirstName" value="@Model.FirstName" class="form-control form-control-sm" disabled />
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold" style="font-size:0.82rem;">Apellido paterno</label>
+                    <input name="PaternalSurname" value="@Model.PaternalSurname" class="form-control form-control-sm" disabled />
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold" style="font-size:0.82rem;">Apellido materno</label>
+                    <input name="MaternalSurname" value="@Model.MaternalSurname" class="form-control form-control-sm" disabled />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold" style="font-size:0.82rem;">Correo electrónico</label>
+                    <input value="@Model.Email" class="form-control form-control-sm" disabled />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold" style="font-size:0.82rem;">Teléfono</label>
+                    <input name="PhoneNumber" value="@Model.PhoneNumber" class="form-control form-control-sm" disabled />
+                </div>
+            </div>
+
+            <div id="editActions" class="mt-3 d-flex gap-2 edit-actions-hidden">
+                <button type="submit" class="btn-save">Guardar cambios</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleEdit()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- CARD CAMBIAR CONTRASEÑA -->
+    <div class="profile-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <p class="profile-section-label mb-0">Seguridad</p>
+            <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                Cambiar contraseña
+            </button>
+        </div>
+        <p style="font-size:0.85rem; color:#9aa0a6; margin:0;">
+            Última actualización de contraseña gestionada por el sistema.
+        </p>
+    </div>
+
+</div>
+
+<!-- MODAL CAMBIAR CONTRASEÑA -->
+<div class="modal fade" id="passwordModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold" style="color:#25262a;">
+                    <i class="bi bi-shield-lock me-2"></i>Cambiar contraseña
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form asp-controller="Profile" asp-action="ChangePassword" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size:0.82rem;">Contraseña actual</label>
+                        <div class="input-group">
+                            <input name="CurrentPassword" type="password" id="currentPwd" class="form-control border-end-0" />
+                            <button type="button" class="btn border-start-0" style="border-color:#ced4da;" onclick="togglePassword('currentPwd', this)">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size:0.82rem;">Nueva contraseña</label>
+                        <div class="input-group">
+                            <input name="NewPassword" type="password" id="newPwd" class="form-control border-end-0" />
+                            <button type="button" class="btn border-start-0" style="border-color:#ced4da;" onclick="togglePassword('newPwd', this)">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" style="font-size:0.82rem;">Confirmar nueva contraseña</label>
+                        <div class="input-group">
+                            <input name="ConfirmNewPassword" type="password" id="confirmPwd" class="form-control border-end-0" />
+                            <button type="button" class="btn border-start-0" style="border-color:#ced4da;" onclick="togglePassword('confirmPwd', this)">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <hr />
+                    <p class="small fw-semibold mb-2">
+                        Escribe <span class="text-danger fw-bold">CONFIRMAR</span> para continuar:
+                    </p>
+                    <input type="text" id="confirmInput" class="form-control" placeholder="CONFIRMAR" autocomplete="off" />
+                    <p id="confirmError" class="text-danger small mt-1 d-none">Debes escribir CONFIRMAR exactamente.</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="passwordBtn" class="btn btn-danger" disabled>
+                        Cambiar contraseña
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+        function toggleEdit() {
+        const inputs = document.querySelectorAll('#editForm input[name]');
+        const actions = document.getElementById('editActions');
+        const isEditing = !actions.classList.contains('edit-actions-hidden');
+
+        inputs.forEach(input => {
+            if (input.name !== 'Email')
+                input.disabled = isEditing;
+        });
+
+        if (isEditing) {
+            actions.classList.add('edit-actions-hidden');
+        } else {
+            actions.classList.remove('edit-actions-hidden');
+        }
+    }
+
+    function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const icon = btn.querySelector('i');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.replace('bi-eye', 'bi-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.replace('bi-eye-slash', 'bi-eye');
+        }
+    }
+
+    document.getElementById('confirmInput').addEventListener('input', function () {
+        const val = this.value;
+        const btn = document.getElementById('passwordBtn');
+        const error = document.getElementById('confirmError');
+        if (val === 'CONFIRMAR') {
+            btn.disabled = false;
+            error.classList.add('d-none');
+        } else {
+            btn.disabled = true;
+            if (val.length > 0) error.classList.remove('d-none');
+            else error.classList.add('d-none');
+        }
+    });
+
+    // Limpiar el modal cuando cerremoas
+    document.getElementById('passwordModal').addEventListener('hidden.bs.modal', function () {
+        document.getElementById('confirmInput').value = '';
+        document.getElementById('passwordBtn').disabled = true;
+        document.getElementById('confirmError').classList.add('d-none');
+    });
+</script>

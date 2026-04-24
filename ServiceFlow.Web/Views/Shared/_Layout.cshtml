@@ -95,7 +95,7 @@
 
             .sidebar-footer .btn-logout {
                 width: 52px;
-                color: #dc3545;
+                color: #6c757d;
                 border-radius: 8px;
                 padding: 10px 0;
                 font-size: 0.6rem;
@@ -152,6 +152,15 @@
             .footer-contribute:hover {
                 color: #25262a;
             }
+
+        .sidebar-footer .btn-logout.active {
+            background-color: #2a2a32;
+            color: #ffffff !important;
+        }
+
+        .sidebar-footer .btn-logout.logout-btn {
+            color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -213,8 +222,23 @@
 
             <!-- FOOTER -->
             <div class="sidebar-footer">
+                <a asp-controller="Profile" asp-action="Index"
+                   class="btn-logout @(ViewContext.RouteData.Values["controller"]?.ToString() == "Profile" ? "active" : "")"
+                   style="text-decoration: none;">
+                    <i class="bi bi-person"></i>
+                    <span>Mi Perfil</span>
+                </a>
+
+                <a asp-controller="Help" asp-action="Index"
+               class="btn-logout @(ViewContext.RouteData.Values["controller"]?.ToString() == "Help" ? "active" : "")"
+               style="text-decoration: none;">
+                <i class="bi bi-question-circle"></i>
+                <span>Ayuda</span>
+                </a>
+
+
                 <form asp-controller="Account" asp-action="Logout" method="post">
-                    <button type="submit" class="btn-logout">
+                    <button type="submit" class="btn-logout logout-btn">
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Salir</span>
                     </button>
@@ -227,23 +251,6 @@
         <div class="main-content">
             @RenderBody()
         </div>
-
-        <footer class="border-top text-muted">
-            <div class="px-4 py-3 d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center gap-3">
-                    <small class="text-muted">Equipo de Desarrollo</small>
-                    <a href="https://github.com/floreslog" target="_blank" class="footer-dev">
-                        <img src="https://github.com/floreslog.png" width="28" height="28" class="footer-avatar" />
-                    </a>
-                    <a href="https://github.com/nicolasdluna01" target="_blank" class="footer-dev">
-                        <img src="https://github.com/nicolasdluna01.png" width="28" height="28" class="footer-avatar" />
-                    </a>
-                </div>
-                <a href="https://github.com/floreslog/serviceflow-sistema-de-solicitudes" target="_blank" class="footer-contribute">
-                    <i class="bi bi-git me-1"></i> Contribuir
-                </a>
-            </div>
-        </footer>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
