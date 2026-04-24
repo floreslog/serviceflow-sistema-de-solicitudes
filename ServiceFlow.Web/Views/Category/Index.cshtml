@@ -1,0 +1,231 @@
+﻿@model IEnumerable<ServiceFlow.Web.ViewModels.CategoryViewModel>
+@{
+    ViewData["Title"] = "Categorías";
+}
+
+<style>
+    .category-wrapper {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    .category-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .category-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .category-subtitle {
+        font-size: 0.85rem;
+        color: #9aa0a6;
+        margin: 4px 0 0 0;
+    }
+
+    .category-card {
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+    }
+
+    .category-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px;
+        border-bottom: 1px solid #f0f0f0;
+        gap: 16px;
+    }
+
+        .category-row:last-child {
+            border-bottom: none;
+        }
+
+    .category-name {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .category-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+    }
+
+    .new-category-card {
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .new-category-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9aa0a6;
+        margin-bottom: 10px;
+    }
+
+    .btn-confirm {
+        background-color: #25262a;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: background-color 0.2s ease;
+    }
+
+        .btn-confirm:hover {
+            background-color: #3a3b40;
+            color: white;
+        }
+</style>
+
+<div class="category-wrapper">
+
+    <div class="category-header">
+        <div>
+            <h1 class="category-title">Categorías</h1>
+            <p class="category-subtitle">@Model.Count() categorías registradas</p>
+        </div>
+    </div>
+
+    <!-- NUEVA CATEGORÍA -->
+    <div class="new-category-card">
+        <p class="new-category-label">Nueva categoría</p>
+        <form asp-controller="Category" asp-action="Create" method="post">
+            <div class="d-flex gap-2">
+                <input name="Name" class="form-control" placeholder="Ej. Mantenimiento, Red, Equipos..." />
+                <button type="submit" class="btn-confirm">Agregar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- LISTADO -->
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="bi bi-tag fs-1 text-muted"></i>
+            <p class="text-muted mt-3">No hay categorías registradas.</p>
+        </div>
+    }
+    else
+    {
+        <div class="category-card">
+            @foreach (var cat in Model)
+            {
+                <div class="category-row">
+                    <p class="category-name" id="name-@cat.Id">@cat.Name</p>
+                    <div class="category-actions">
+                        <button class="btn btn-sm btn-outline-secondary"
+                                onclick="toggleEdit(@cat.Id)">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deleteModal"
+                                onclick="prepareDelete(@cat.Id, '@cat.Name')">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FILA DE EDICIÓN (oculta por defecto) -->
+                <div id="edit-@cat.Id" class="px-4 pb-3 pt-1" style="display:none; border-bottom: 1px solid #f0f0f0;">
+                    <form asp-controller="Category" asp-action="Edit" method="post">
+                        <input type="hidden" name="Id" value="@cat.Id" />
+                        <div class="d-flex gap-2">
+                            <input name="Name" class="form-control form-control-sm"
+                                   value="@cat.Name" />
+                            <button type="submit" class="btn-confirm" style="padding: 6px 16px; font-size: 0.8rem;">
+                                Guardar
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                    onclick="toggleEdit(@cat.Id)">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<!-- MODAL ELIMINAR -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold text-danger">
+                    <i class="bi bi-exclamation-triangle me-2"></i>Eliminar Categoría
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">
+                    Esta acción es <strong>irreversible</strong>. Se eliminará permanentemente la categoría
+                    <strong id="deleteTargetName"></strong>.
+                </p>
+                <hr />
+                <p class="small fw-semibold mb-2">
+                    Escribe <span class="text-danger fw-bold">CONFIRMAR</span> para continuar:
+                </p>
+                <input type="text" id="confirmInput" class="form-control" placeholder="CONFIRMAR" autocomplete="off" />
+                <p id="confirmError" class="text-danger small mt-1 d-none">Debes escribir CONFIRMAR exactamente.</p>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <form asp-controller="Category" asp-action="Delete" method="post" id="deleteForm">
+                    <input type="hidden" name="id" id="deleteTargetId" />
+                    <button type="submit" id="deleteBtn" class="btn btn-danger" disabled>
+                        <i class="bi bi-trash me-1"></i>Eliminar definitivamente
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleEdit(id) {
+        const row = document.getElementById('edit-' + id);
+        row.style.display = row.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function prepareDelete(id, name) {
+        document.getElementById('deleteTargetId').value = id;
+        document.getElementById('deleteTargetName').textContent = name;
+        document.getElementById('confirmInput').value = '';
+        document.getElementById('deleteBtn').disabled = true;
+        document.getElementById('confirmError').classList.add('d-none');
+    }
+
+    document.getElementById('confirmInput').addEventListener('input', function () {
+        const val = this.value;
+        const btn = document.getElementById('deleteBtn');
+        const error = document.getElementById('confirmError');
+        if (val === 'CONFIRMAR') {
+            btn.disabled = false;
+            error.classList.add('d-none');
+        } else {
+            btn.disabled = true;
+            if (val.length > 0) error.classList.remove('d-none');
+            else error.classList.add('d-none');
+        }
+    });
+</script>

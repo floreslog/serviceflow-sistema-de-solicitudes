@@ -203,6 +203,11 @@
                         <i class="bi bi-people"></i>
                         <span>Usuarios</span>
                     </a>
+                    <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Category" ? "active" : "")"
+                       asp-controller="Category" asp-action="Index">
+                        <i class="bi bi-tag"></i>
+                        <span>Categorías</span>
+                    </a>
                 }
             </nav>
 

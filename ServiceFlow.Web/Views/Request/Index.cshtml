@@ -232,6 +232,21 @@
             </a>
         </div>
 
+        <hr class="sidebar-divider" />
+
+        <div>
+            <p class="sidebar-section-title">Por categoría</p>
+
+            @foreach (var cat in ViewBag.CategoryCounts)
+            {
+                <a href="@Url.Action("Index", "Request", new { category = cat.Id })"
+                   class="filter-link @(ViewBag.CurrentCategory == cat.Id.ToString() ? "active" : "")">
+                    <span>@cat.Name</span>
+                    <span class="filter-count">@cat.Count</span>
+                </a>
+            }
+        </div>
+
     </aside>
 
     <!-- CONTENIDO PRINCIPAL -->

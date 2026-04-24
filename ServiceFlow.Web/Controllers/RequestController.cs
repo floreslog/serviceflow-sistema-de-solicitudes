@@ -23,7 +23,7 @@ namespace ServiceFlow.Web.Controllers
             this.categoryRepo = categoryRepo;
             this.userManager = userManager;
         }
-        public async Task<IActionResult> Index(string? status, string? priority, string? filter)
+        public async Task<IActionResult> Index(string? status, string? priority, string? filter, string? category)
         {
             var requests = await requestRepo.GetAll();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -36,21 +36,25 @@ namespace ServiceFlow.Web.Controllers
             else
                 filtered = requests;
 
-            // Filtro rápido (sin atender / atendidas)
+            // sin atender y atendidas
             if (filter == "pending")
                 filtered = filtered.Where(r => r.Status == Status.Open || r.Status == Status.Assigned || r.Status == Status.InProgress || r.Status == Status.OnHold);
             else if (filter == "resolved")
                 filtered = filtered.Where(r => r.Status == Status.Resolved || r.Status == Status.Closed);
 
-            // Filtro por estado
+            //  por estado
             if (!string.IsNullOrEmpty(status) && Enum.TryParse<Status>(status, out var parsedStatus))
                 filtered = filtered.Where(r => r.Status == parsedStatus);
 
-            // Filtro por prioridad
+            //  por prioridad
             if (!string.IsNullOrEmpty(priority) && Enum.TryParse<Priority>(priority, out var parsedPriority))
                 filtered = filtered.Where(r => r.Priority == parsedPriority);
 
-            // Conteos para la sidebar
+            //  porr categoria
+            if (!string.IsNullOrEmpty(category) && int.TryParse(category, out var parsedCategory))
+                filtered = filtered.Where(r => r.CategoryId == parsedCategory);
+
+            // Conteos
             var baseList = User.IsInRole("User") ? requests.Where(r => r.RequesterId == userId) :
                            User.IsInRole("Agent") ? requests.Where(r => r.AssigneeId == userId) :
                            requests;
@@ -85,6 +89,17 @@ namespace ServiceFlow.Web.Controllers
                 Priority = r.Priority,
                 Creation = r.Creation
             }).ToList();
+
+            var categories = await categoryRepo.GetAll();
+            ViewBag.CategoryCounts = categories.Select(c => new
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Count = baseList.Count(r => r.CategoryId == c.Id)
+            }).ToList();
+
+            ViewBag.CurrentCategory = Request.Query["category"].ToString();
+
 
             return View(vm);
         }
