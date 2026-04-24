@@ -279,6 +279,34 @@
             }, 2500);
         </script>
     }
+    @if (TempData["Error"] != null)
+    {
+        <div id="toast-error" style="
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background-color: #dc3545;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.6s ease;
+        ">
+            <i class="bi bi-x-circle me-2"></i>@TempData["Error"]
+        </div>
+
+        <script>
+            setTimeout(() => {
+                const toast = document.getElementById('toast-error');
+                if (toast) toast.style.opacity = '0';
+                setTimeout(() => toast?.remove(), 600);
+            }, 3500);
+        </script>
+    }
 
 
 </body>

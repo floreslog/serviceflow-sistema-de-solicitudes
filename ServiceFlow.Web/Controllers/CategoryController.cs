@@ -10,10 +10,12 @@ namespace ServiceFlow.Web.Controllers
     public class CategoryController : Controller
     {
         private readonly IRepository<CategoryModel> categoryRepo;
+        private readonly IRepository<RequestModel> requestRepo;
 
-        public CategoryController(IRepository<CategoryModel> categoryRepo)
+        public CategoryController(IRepository<CategoryModel> categoryRepo, IRepository<RequestModel> requestRepo)
         {
             this.categoryRepo = categoryRepo;
+            this.requestRepo = requestRepo;
         }
 
         public async Task<IActionResult> Index()
@@ -30,8 +32,11 @@ namespace ServiceFlow.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CategoryViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || string.IsNullOrWhiteSpace(model.Name))
+            {
+                TempData["Error"] = "El nombre de la categoría no puede estar vacío.";
                 return RedirectToAction("Index");
+            }
 
             var category = new CategoryModel { Name = model.Name };
             await categoryRepo.Create(category);
@@ -57,6 +62,15 @@ namespace ServiceFlow.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
+            var requests = await requestRepo.GetAll();
+            var hasRequests = requests.Any(r => r.CategoryId == id);
+
+            if (hasRequests)
+            {
+                TempData["Error"] = "No puedes eliminar esta categoría porque tiene solicitudes asignadas.";
+                return RedirectToAction("Index");
+            }
+
             await categoryRepo.Delete(id);
             TempData["Success"] = "Categoría eliminada.";
             return RedirectToAction("Index");
