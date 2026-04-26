@@ -28,18 +28,30 @@ namespace ServiceFlow.Web.Controllers
                 vm.OpenRequests = requests.Count(r => r.Status == Status.Open);
                 vm.ResolvedRequests = requests.Count(r => r.Status == Status.Resolved);
                 vm.UrgentRequests = requests.Count(r => r.Priority == Priority.Urgent);
+
+                vm.ResolutionRate = vm.TotalRequests > 0
+                ? (int)Math.Round((double)vm.ResolvedRequests / vm.TotalRequests * 100)
+                : 0;
             }
             else if (User.IsInRole("Agent"))
             {
                 vm.TotalAssignedRequests = requests.Count(r => r.AssigneeId == userId);
                 vm.InProgressRequests = requests.Count(r => r.AssigneeId == userId && r.Status == Status.InProgress);
                 vm.PendingRequests = requests.Count(r => r.AssigneeId == userId && r.Status == Status.OnHold);
+
+                vm.AssignedRate = vm.TotalAssignedRequests > 0
+                ? (int)Math.Round((double)vm.InProgressRequests / vm.TotalAssignedRequests * 100)
+                : 0;
             }
             else
             {
                 vm.TotalRequests = requests.Count(r => r.RequesterId == userId);
                 vm.OpenRequests = requests.Count(r => r.RequesterId == userId && r.Status == Status.Open);
                 vm.ResolvedRequests = requests.Count(r => r.RequesterId == userId && r.Status == Status.Resolved);
+
+                vm.ResolutionRate = vm.TotalRequests > 0
+                ? (int)Math.Round((double)vm.ResolvedRequests / vm.TotalRequests * 100)
+                : 0;
             }
             return View(vm);
         }

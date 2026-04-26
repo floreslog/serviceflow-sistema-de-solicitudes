@@ -9,5 +9,9 @@
         public int InProgressRequests { get; set; }       // (Agent)
         public int PendingRequests { get; set; }          // (Agent)
         public int UrgentRequests { get; set; }           // (Admin)
+
+
+        public int ResolutionRate { get; set; }        // (Admin, User)
+        public int AssignedRate { get; set; }          // (Agent) % asignadas en proceso
     }
 }

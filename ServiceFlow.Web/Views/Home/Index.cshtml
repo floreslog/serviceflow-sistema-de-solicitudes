@@ -3,155 +3,289 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<div class="container py-4">
+<style>
+    .dashboard-wrapper {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .dashboard-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .dashboard-subtitle {
+        font-size: 0.85rem;
+        color: #9aa0a6;
+        margin: 4px 0 0 0;
+    }
+
+    .stat-card {
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+        padding: 24px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        height: 100%;
+    }
+
+    .stat-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9aa0a6;
+        margin: 0;
+    }
+
+    .stat-number {
+        font-size: 2.6rem;
+        font-weight: 700;
+        color: #25262a;
+        line-height: 1;
+        margin: 4px 0;
+    }
+
+    .stat-indicator {
+        font-size: 0.78rem;
+        font-weight: 600;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .indicator-up {
+        color: #4CAF50;
+    }
+
+    .indicator-down {
+        color: #F44336;
+    }
+
+    .indicator-neutral {
+        color: #9aa0a6;
+    }
+
+    .recent-card {
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+        margin-top: 24px;
+    }
+
+    .recent-header {
+        padding: 20px 24px 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .recent-title {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .recent-link {
+        font-size: 0.78rem;
+        color: #9aa0a6;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+        .recent-link:hover {
+            color: #25262a;
+        }
+
+    .recent-row {
+        display: flex;
+        align-items: center;
+        padding: 14px 24px;
+        border-bottom: 1px solid #f8f8f8;
+        gap: 16px;
+        text-decoration: none;
+        transition: background-color 0.15s ease;
+    }
+
+        .recent-row:last-child {
+            border-bottom: none;
+        }
+
+        .recent-row:hover {
+            background-color: #fafafa;
+        }
+
+    .recent-id {
+        font-size: 0.75rem;
+        color: #9aa0a6;
+        min-width: 36px;
+    }
+
+    .recent-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .recent-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .recent-row-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #25262a;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+    }
+
+    .recent-row-meta {
+        font-size: 0.75rem;
+        color: #9aa0a6;
+        margin: 2px 0 0 0;
+    }
+
+    .recent-badge {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .recent-date {
+        font-size: 0.75rem;
+        color: #9aa0a6;
+        white-space: nowrap;
+    }
+</style>
+
+<div class="dashboard-wrapper">
+
     <div class="mb-4">
-        <h2 class="fw-bold" style="color: #25262a;">Panel de Control</h2>
-        <p class="text-muted">Resumen del estado actual del sistema</p>
+        <h1 class="dashboard-title">Panel de Control</h1>
+        <p class="dashboard-subtitle">
+            @DateTime.Now.ToString("dddd, dd 'de' MMMM 'de' yyyy", new System.Globalization.CultureInfo("es-MX"))
+        </p>
     </div>
 
     @if (User.IsInRole("Admin"))
     {
-        <div class="row g-4">
+        <div class="row g-3">
             <div class="col-md-3">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body d-flex align-items-center gap-3 p-4">
-                        <div class="rounded-3 p-3" style="background-color: #e8f4fd;">
-                            <i class="bi bi-clipboard-data fs-3" style="color: #2196F3;"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted mb-0 small">Total Solicitudes</p>
-                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.TotalRequests</h3>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <p class="stat-label">Total</p>
+                    <p class="stat-number">@Model.TotalRequests</p>
+                    <p class="stat-indicator indicator-neutral">
+                        solicitudes registradas
+                    </p>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body d-flex align-items-center gap-3 p-4">
-                        <div class="rounded-3 p-3" style="background-color: #fff3e0;">
-                            <i class="bi bi-folder2-open fs-3" style="color: #FF9800;"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted mb-0 small">Abiertas</p>
-                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.OpenRequests</h3>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <p class="stat-label">Abiertas</p>
+                    <p class="stat-number">@Model.OpenRequests</p>
+                    <p class="stat-indicator @(Model.OpenRequests > 0 ? "indicator-down" : "indicator-neutral")">
+                        @(Model.OpenRequests > 0 ? "↑" : "—") sin atender
+                    </p>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body d-flex align-items-center gap-3 p-4">
-                        <div class="rounded-3 p-3" style="background-color: #e8f5e9;">
-                            <i class="bi bi-check-circle fs-3" style="color: #4CAF50;"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted mb-0 small">Resueltas</p>
-                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.ResolvedRequests</h3>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <p class="stat-label">Resueltas</p>
+                    <p class="stat-number">@Model.ResolvedRequests</p>
+                    <p class="stat-indicator @(Model.ResolutionRate >= 50 ? "indicator-up" : "indicator-down")">
+                        @(Model.ResolutionRate >= 50 ? "↑" : "↓") @Model.ResolutionRate% del total
+                    </p>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body d-flex align-items-center gap-3 p-4">
-                        <div class="rounded-3 p-3" style="background-color: #fce4ec;">
-                            <i class="bi bi-exclamation-triangle fs-3" style="color: #E91E63;"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted mb-0 small">Urgentes</p>
-                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.UrgentRequests</h3>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <p class="stat-label">Urgentes</p>
+                    <p class="stat-number" style="color: @(Model.UrgentRequests > 0 ? "#F44336" : "#25262a");">
+                        @Model.UrgentRequests
+                    </p>
+                    <p class="stat-indicator @(Model.UrgentRequests > 0 ? "indicator-down" : "indicator-up")">
+                        @(Model.UrgentRequests > 0 ? "↑ requieren atención" : "↑ sin urgentes")
+                    </p>
                 </div>
             </div>
         </div>
     }
     else if (User.IsInRole("Agent"))
     {
-        <div class="row g-4">
+        <div class="row g-3">
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body d-flex align-items-center gap-3 p-4">
-                        <div class="rounded-3 p-3" style="background-color: #e8f4fd;">
-                            <i class="bi bi-person-check fs-3" style="color: #2196F3;"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted mb-0 small">Asignadas a mí</p>
-                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.TotalAssignedRequests</h3>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <p class="stat-label">Asignadas</p>
+                    <p class="stat-number">@Model.TotalAssignedRequests</p>
+                    <p class="stat-indicator indicator-neutral">
+                        en total
+                    </p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body d-flex align-items-center gap-3 p-4">
-                        <div class="rounded-3 p-3" style="background-color: #fff3e0;">
-                            <i class="bi bi-arrow-repeat fs-3" style="color: #FF9800;"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted mb-0 small">En Proceso</p>
-                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.InProgressRequests</h3>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <p class="stat-label">En Proceso</p>
+                    <p class="stat-number" style="color: #FF9800;">@Model.InProgressRequests</p>
+                    <p class="stat-indicator @(Model.AssignedRate >= 50 ? "indicator-up" : "indicator-down")">
+                        @(Model.AssignedRate >= 50 ? "↑" : "↓") @Model.AssignedRate% del total
+                    </p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body d-flex align-items-center gap-3 p-4">
-                        <div class="rounded-3 p-3" style="background-color: #f3e5f5;">
-                            <i class="bi bi-pause-circle fs-3" style="color: #9C27B0;"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted mb-0 small">En Espera</p>
-                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.PendingRequests</h3>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <p class="stat-label">En Espera</p>
+                    <p class="stat-number" style="color: #9aa0a6;">@Model.PendingRequests</p>
+                    <p class="stat-indicator @(Model.PendingRequests > 0 ? "indicator-down" : "indicator-neutral")">
+                        @(Model.PendingRequests > 0 ? "↓ pausadas" : "— ninguna en espera")
+                    </p>
                 </div>
             </div>
         </div>
     }
-    else if (User.IsInRole("User"))
+    else
     {
-        <div class="row g-4">
+        <div class="row g-3">
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body d-flex align-items-center gap-3 p-4">
-                        <div class="rounded-3 p-3" style="background-color: #e8f4fd;">
-                            <i class="bi bi-clipboard fs-3" style="color: #2196F3;"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted mb-0 small">Mis Solicitudes</p>
-                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.TotalRequests</h3>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <p class="stat-label">Mis Solicitudes</p>
+                    <p class="stat-number">@Model.TotalRequests</p>
+                    <p class="stat-indicator indicator-neutral">
+                        registradas en total
+                    </p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body d-flex align-items-center gap-3 p-4">
-                        <div class="rounded-3 p-3" style="background-color: #fff3e0;">
-                            <i class="bi bi-folder2-open fs-3" style="color: #FF9800;"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted mb-0 small">Abiertas</p>
-                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.OpenRequests</h3>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <p class="stat-label">Abiertas</p>
+                    <p class="stat-number" style="color: #2196F3;">@Model.OpenRequests</p>
+                    <p class="stat-indicator @(Model.OpenRequests > 0 ? "indicator-down" : "indicator-up")">
+                        @(Model.OpenRequests > 0 ? "↑ pendientes" : "— ninguna abierta")
+                    </p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body d-flex align-items-center gap-3 p-4">
-                        <div class="rounded-3 p-3" style="background-color: #e8f5e9;">
-                            <i class="bi bi-check-circle fs-3" style="color: #4CAF50;"></i>
-                        </div>
-                        <div>
-                            <p class="text-muted mb-0 small">Resueltas</p>
-                            <h3 class="fw-bold mb-0" style="color: #25262a;">@Model.ResolvedRequests</h3>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <p class="stat-label">Resueltas</p>
+                    <p class="stat-number" style="color: #4CAF50;">@Model.ResolvedRequests</p>
+                    <p class="stat-indicator @(Model.ResolutionRate >= 50 ? "indicator-up" : "indicator-down")">
+                        @(Model.ResolutionRate >= 50 ? "↑" : "↓") @Model.ResolutionRate% del total
+                    </p>
                 </div>
             </div>
         </div>
     }
+
 </div>
