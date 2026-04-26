@@ -55,4 +55,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Login}/{id?}");
 
+//error 404
+app.UseStatusCodePagesWithReExecute("/Error/NotFound");
+
 app.Run();
