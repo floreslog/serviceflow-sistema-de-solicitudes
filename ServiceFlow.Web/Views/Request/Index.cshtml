@@ -136,7 +136,7 @@
             <p class="sidebar-section-title">Solicitudes</p>
 
             <a href="@Url.Action("Index", "Request")"
-               class="filter-link @(currentFilter == null && currentStatus == null && currentPriority == null ? "active" : "")">
+               class="filter-link @(currentFilter == null && currentStatus == null && currentPriority == null && ViewBag.CurrentCategory == null ? "active" : "")">
                 <span><i class="bi bi-list-ul me-2"></i>Todas</span>
                 <span class="filter-count">@ViewBag.CountAll</span>
             </a>
