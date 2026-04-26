@@ -304,7 +304,7 @@ namespace ServiceFlow.Web.Controllers
         }
 
         [Authorize(Roles = "Agent")]
-        public async Task<IActionResult> MyWork(string? status, string? priority, string? filter)
+        public async Task<IActionResult> MyWork(string? status, string? priority, string? filter, string? category)
         {
             var requests = await requestRepo.GetAll();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -325,6 +325,10 @@ namespace ServiceFlow.Web.Controllers
             // Filtro por prioridad
             if (!string.IsNullOrEmpty(priority) && Enum.TryParse<Priority>(priority, out var parsedPriority))
                 filtered = filtered.Where(r => r.Priority == parsedPriority);
+
+            //categoria
+            if (!string.IsNullOrEmpty(category) && int.TryParse(category, out var parsedCategory))
+                filtered = filtered.Where(r => r.CategoryId == parsedCategory);
 
             // Conteos para la sidebar
             var baseList = User.IsInRole("User") ? requests.Where(r => r.RequesterId == userId) :
@@ -361,6 +365,16 @@ namespace ServiceFlow.Web.Controllers
                 Priority = r.Priority,
                 Creation = r.Creation
             }).ToList();
+
+            var categories = await categoryRepo.GetAll();
+            ViewBag.CategoryCounts = categories.Select(c => new
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Count = baseList.Count(r => r.CategoryId == c.Id)
+            }).ToList();
+
+            ViewBag.CurrentCategory = Request.Query["category"].ToString();
 
             return View(vm);
         }
