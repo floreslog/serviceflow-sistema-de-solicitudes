@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ServiceFlow.Class.Models;
+using ServiceFlow.Class.Repositories;
 using ServiceFlow.Web.ViewModels;
 
 namespace ServiceFlow.Web.Controllers
@@ -12,11 +13,13 @@ namespace ServiceFlow.Web.Controllers
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IRepository<RequestModel> requestRepo;
 
-        public UserController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UserController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IRepository<RequestModel> requestRepo)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
+            this.requestRepo = requestRepo;
         }
 
         public async Task<IActionResult> Index(string? filter, string? search)
@@ -118,7 +121,17 @@ namespace ServiceFlow.Web.Controllers
             var user = await userManager.FindByIdAsync(id);
             if (user == null) return NotFound();
 
+            var requests = await requestRepo.GetAll();
+            var hasRequests = requests.Any(r => r.RequesterId == id || r.AssigneeId == id);
+
+            if (hasRequests)
+            {
+                TempData["Error"] = "No puedes eliminar este usuario porque tiene solicitudes relacionadas.";
+                return RedirectToAction("Index");
+            }
+
             await userManager.DeleteAsync(user);
+            TempData["Success"] = "Usuario eliminado correctamente.";
             return RedirectToAction("Index");
         }
     }
