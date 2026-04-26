@@ -19,9 +19,20 @@ namespace ServiceFlow.Web.Controllers
             this.roleManager = roleManager;
         }
 
-        public async Task<IActionResult> Index(string? filter)
+        public async Task<IActionResult> Index(string? filter, string? search)
         {
             var users = userManager.Users.ToList();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                var s = search.ToLower();
+                users = users.Where(u =>
+                    (u.FirstName + " " + u.PaternalSurname + " " + u.MaternalSurname).ToLower().Contains(s) ||
+                    u.Email!.ToLower().Contains(s)
+                ).ToList();
+            }
+
+            ViewBag.CurrentSearch = search;
 
             var vm = new List<UserListViewModel>();
             foreach (var user in users)

@@ -160,6 +160,27 @@
                 <h2 class="requests-title">Gestión de Usuarios</h2>
                 <p class="requests-subtitle">@Model.Count() usuarios encontrados</p>
             </div>
+            <form method="get" asp-controller="User" asp-action="Index" class="d-flex gap-2">
+                @if (ViewBag.CurrentFilter != null)
+                {
+                    <input type="hidden" name="filter" value="@ViewBag.CurrentFilter" />
+                }
+                <input type="text" name="search" value="@ViewBag.CurrentSearch"
+                       class="form-control form-control-sm"
+                       placeholder="Buscar por nombre o correo..."
+                       style="width: 260px;" />
+                <button type="submit" class="btn btn-sm"
+                        style="background-color: #25262a; color: white;">
+                    <i class="bi bi-search"></i>
+                </button>
+                @if (!string.IsNullOrEmpty(ViewBag.CurrentSearch as string))
+                {
+                    <a href="@Url.Action("Index", "User", new { filter = ViewBag.CurrentFilter })"
+                       class="btn btn-sm btn-outline-secondary">
+                        <i class="bi bi-x"></i>
+                    </a>
+                }
+            </form>
         </div>
 
         @if (!Model.Any())
