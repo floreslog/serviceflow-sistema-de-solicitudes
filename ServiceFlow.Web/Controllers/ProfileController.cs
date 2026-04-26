@@ -67,11 +67,17 @@ namespace ServiceFlow.Web.Controllers
             var user = await userManager.GetUserAsync(User);
             if (user == null) return NotFound();
 
+            if (model.CurrentPassword == model.NewPassword)
+            {
+                TempData["Error"] = "¡Ups! La nueva contraseña no puede ser igual a la actual.";
+                return RedirectToAction("Index");
+            }
+
             var result = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
 
             if (!result.Succeeded)
             {
-                TempData["Error"] = "La contraseña actual no es correcta.";
+                TempData["Error"] = "¡Ups! La contraseña actual no es correcta.";
                 return RedirectToAction("Index");
             }
 
