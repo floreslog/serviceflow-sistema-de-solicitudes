@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ServiceFlow.Class.Models;
 using ServiceFlow.Web.ViewModels;
+using System.Security.Claims;
 
 namespace ServiceFlow.Web.Controllers
 {
@@ -91,6 +93,61 @@ namespace ServiceFlow.Web.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Login");
+        }
+
+        // google access functions
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult GoogleLogin()
+        {
+            var redirectUrl = Url.Action("GoogleCallback", "Account");
+            var properties = signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+            return Challenge(properties, "Google");
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> GoogleCallback()
+        {
+            var info = await signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+                return RedirectToAction("Login");
+
+            var result = await signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
+
+            if (result.Succeeded)
+                return RedirectToAction("Index", "Home");
+
+            // si el usuario cancela o no llega email
+            var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+            if (email == null)
+            {
+                TempData["Error"] = "No se pudo obtener el correo de Google.";
+                return RedirectToAction("Login");
+            }
+
+            var user = await userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                var firstName = info.Principal.FindFirstValue(ClaimTypes.GivenName) ?? email.Split('@')[0];
+                var lastName = info.Principal.FindFirstValue(ClaimTypes.Surname) ?? "";
+
+                user = new ApplicationUser
+                {
+                    UserName = email,
+                    Email = email,
+                    FirstName = firstName,
+                    PaternalSurname = lastName,
+                    MaternalSurname = "",
+                    EmailConfirmed = true
+                };
+
+                await userManager.CreateAsync(user);
+                await userManager.AddToRoleAsync(user, "User");
+            }
+
+            await userManager.AddLoginAsync(user, info);
+            await signInManager.SignInAsync(user, isPersistent: false);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
