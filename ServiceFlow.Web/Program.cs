@@ -4,6 +4,7 @@ using ServiceFlow.Class.Data;
 using ServiceFlow.Class.Models;
 using ServiceFlow.Class.Repositories;
 using ServiceFlow.Web.Helpers;
+using ServiceFlow.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,16 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddScoped<IRepository<RequestModel>, RequestRepository>();
 
+// mailtrap service
+builder.Services.AddScoped<EmailService>();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -55,6 +66,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();

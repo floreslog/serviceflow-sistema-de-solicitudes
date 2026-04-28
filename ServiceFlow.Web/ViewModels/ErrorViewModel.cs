@@ -1,4 +1,4 @@
-namespace ServiceFlow.Web.Models
+namespace ServiceFlow.Web.ViewModels
 {
     public class ErrorViewModel
     {

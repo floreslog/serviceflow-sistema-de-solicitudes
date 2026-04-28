@@ -1,0 +1,38 @@
+﻿@model ServiceFlow.Web.ViewModels.VerifyEmailViewModel
+@{
+    ViewData["Title"] = "Verificar correo";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center w-100">
+        <div class="col-md-5">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <h3 class="card-title text-center mb-2">Verifica tu correo</h3>
+                    <p class="text-muted text-center small mb-4">
+                        Te enviamos un código de 6 dígitos. Revisa tu bandeja de entrada.
+                    </p>
+                    <form asp-action="VerifyEmail" asp-controller="Account" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Code" class="form-label"></label>
+                            <input asp-for="Code" class="form-control text-center"
+                                   style="font-size: 1.4rem; letter-spacing: 8px; font-weight: 700;"
+                                   placeholder="000000" maxlength="6" autocomplete="off" />
+                            <span asp-validation-for="Code" class="text-danger small"></span>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3 small"></div>
+                        <div class="text-center">
+                            <button type="submit" class="btn px-5" style="background-color: #25262a; color: white;">
+                                Verificar
+                            </button>
+                        </div>
+                    </form>
+                    <hr />
+                    <p class="text-center mb-0 small">
+                        ¿Correo incorrecto? <a asp-action="Register" asp-controller="Account">Vuelve al registro</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
