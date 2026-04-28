@@ -44,6 +44,31 @@
                             </div>
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
+
+                        <div id="password-requirements" class="mt-2 mb-1">
+                            <p id="req-length" class="req-item">
+                                <i class="bi bi-x-circle-fill req-icon text-danger"></i>
+                                <span>Mínimo 8 caracteres</span>
+                            </p>
+                            <p id="req-upper" class="req-item">
+                                <i class="bi bi-x-circle-fill req-icon text-danger"></i>
+                                <span>Al menos una mayúscula</span>
+                            </p>
+                            <p id="req-lower" class="req-item">
+                                <i class="bi bi-x-circle-fill req-icon text-danger"></i>
+                                <span>Al menos una minúscula</span>
+                            </p>
+                            <p id="req-number" class="req-item">
+                                <i class="bi bi-x-circle-fill req-icon text-danger"></i>
+                                <span>Al menos un número</span>
+                            </p>
+                            <p id="req-special" class="req-item">
+                                <i class="bi bi-x-circle-fill req-icon text-danger"></i>
+                                <span>Al menos un carácter especial (@@, #, !, etc.)</span>
+                            </p>
+                        </div>
+
+
                         <div class="mb-3">
                             <label asp-for="ConfirmPassword" class="form-label"></label>
                             <div class="input-group">
@@ -69,6 +94,43 @@
     </div>
 </div>
 
+<style>
+    .req-item {
+        font-size: 0.78rem;
+        color: #6c757d;
+        margin: 3px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .req-icon {
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+    }
+
+    .req-ok .req-icon {
+        color: #4CAF50 !important;
+    }
+
+    .req-ok {
+        color: #4CAF50;
+    }
+
+    #password-requirements
+    {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    #password-requirements.show {
+        opacity: 1;
+        max-height: 200px;
+    }
+</style>
+
 <script>
     function togglePassword(inputId, btn) {
         const input = document.getElementById(inputId);
@@ -83,4 +145,41 @@
             icon.classList.add('bi-eye');
         }
     }
+
+     document.getElementById('Password').addEventListener('input', function () {
+        const val = this.value;
+
+        checkReq('req-length',  val.length >= 8);
+        checkReq('req-upper',   /[A-Z]/.test(val));
+        checkReq('req-lower',   /[a-z]/.test(val));
+        checkReq('req-number',  /[0-9]/.test(val));
+        checkReq('req-special', /[@@#!$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(val));
+    });
+
+    function checkReq(id, valid) {
+        const el = document.getElementById(id);
+        const icon = el.querySelector('.req-icon');
+        if (valid) {
+            el.classList.add('req-ok');
+            icon.classList.remove('bi-x-circle-fill');
+            icon.classList.add('bi-check-circle-fill');
+        } else {
+            el.classList.remove('req-ok');
+            icon.classList.remove('bi-check-circle-fill');
+            icon.classList.add('bi-x-circle-fill');
+        }
+    }
+
+    const passwordInput = document.getElementById('Password');
+    const requirements = document.getElementById('password-requirements');
+        passwordInput.addEventListener('focus', () => {
+        requirements.classList.add('show');
+    });
+
+    passwordInput.addEventListener('blur', () => {
+        if (passwordInput.value.length === 0) {
+            requirements.classList.remove('show');
+        }
+    });
+
 </script>
