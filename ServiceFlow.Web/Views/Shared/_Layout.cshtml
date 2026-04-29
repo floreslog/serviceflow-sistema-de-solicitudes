@@ -196,7 +196,7 @@
                 @if (User.IsInRole("Agent"))
                 {
                     <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Request" ? "active" : "")"
-                       asp-controller="Request" asp-action="MyWork">
+                       asp-controller="Request" asp-action="Index">
                         <i class="bi bi-clipboard-check"></i>
                         <span>Mi Trabajo</span>
                     </a>
@@ -317,7 +317,7 @@
     }
 
 
-    <!-- galletas-->
+    <!-- Galletas -->
     <div id="cookie-banner" style="
     display: none;
     position: fixed;
