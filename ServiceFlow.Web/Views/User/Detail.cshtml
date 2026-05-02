@@ -1,0 +1,295 @@
+﻿@model ServiceFlow.Web.ViewModels.UserDetailViewModel
+@{
+    ViewData["Title"] = "Detalle de Usuario";
+    var initials = Model.FirstName[0].ToString().ToUpper() + Model.PaternalSurname[0].ToString().ToUpper();
+    var roleBadgeClass = Model.Role switch
+    {
+        "Admin" => "bg-dark",
+        "Agent" => "bg-info text-dark",
+        "User" => "bg-secondary",
+        _ => "bg-light text-dark"
+    };
+    var roleText = Model.Role switch
+    {
+        "Admin" => "Admin",
+        "Agent" => "Agente",
+        "User" => "Usuario",
+        _ => "Sin rol"
+    };
+}
+
+<style>
+    .profile-wrapper {
+        max-width: 860px;
+        margin: 0 auto;
+    }
+
+    .profile-card {
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+        padding: 28px;
+        margin-bottom: 20px;
+    }
+
+    .profile-avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background-color: #e8e8e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #6c757d;
+    }
+
+    .profile-section-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9aa0a6;
+        margin-bottom: 16px;
+    }
+
+    .detail-label {
+        font-size: 0.75rem;
+        color: #9aa0a6;
+        margin-bottom: 2px;
+    }
+
+    .detail-value {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #25262a;
+        margin: 0;
+    }
+
+    .metric-card {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .metric-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #25262a;
+    }
+
+    .metric-label {
+        font-size: 0.8rem;
+        color: #9aa0a6;
+        margin: 0;
+    }
+
+    .table thead th {
+        background-color: #f8f9fa;
+        color: #6c757d;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid #e9ecef;
+        padding: 12px 16px;
+    }
+
+    .table tbody td {
+        padding: 14px 16px;
+        vertical-align: middle;
+        font-size: 0.875rem;
+        border-bottom: 1px solid #f0f0f0;
+        color: #25262a;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+</style>
+
+<div class="profile-wrapper">
+
+    <div class="mb-4 d-flex justify-content-between align-items-center">
+        <div>
+            <a asp-controller="User" asp-action="Index" class="text-muted small text-decoration-none">
+                <i class="bi bi-arrow-left me-1"></i>Volver a usuarios
+            </a>
+            <h1 class="profile-title mt-1" style="font-size:1.3rem; font-weight:700; color:#25262a;">
+                Detalle de Usuario
+            </h1>
+        </div>
+        <a asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id"
+           class="btn btn-sm px-4" style="background-color: #25262a; color: white;">
+            <i class="bi bi-pencil me-1"></i>Editar
+        </a>
+    </div>
+
+    <!-- DATOS GENERALES -->
+    <div class="profile-card">
+        <div class="d-flex align-items-center gap-4 mb-4">
+            <div class="profile-avatar">@initials</div>
+            <div>
+                <p style="font-size:1rem; font-weight:700; color:#25262a; margin:0;">
+                    @Model.FirstName @Model.PaternalSurname @Model.MaternalSurname
+                </p>
+                <p style="font-size:0.8rem; color:#9aa0a6; margin:4px 0;">@Model.Email</p>
+                <span class="badge @roleBadgeClass" style="font-size:0.7rem;">@roleText</span>
+            </div>
+        </div>
+
+        <hr style="border-color: #f0f0f0;" />
+
+        <p class="profile-section-label">Datos generales</p>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <p class="detail-label">ID de usuario</p>
+                <p class="detail-value" style="font-size:0.75rem; word-break:break-all;">@Model.Id</p>
+            </div>
+            <div class="col-md-4">
+                <p class="detail-label">Correo electrónico</p>
+                <p class="detail-value">@Model.Email</p>
+            </div>
+            <div class="col-md-4">
+                <p class="detail-label">Teléfono</p>
+                <p class="detail-value">@(Model.PhoneNumber ?? "—")</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DENTRO DEL SISTEMA -->
+    <div class="profile-card">
+        <p class="profile-section-label">Dentro del sistema</p>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <p class="detail-label">Rol</p>
+                <p class="detail-value">@roleText</p>
+            </div>
+            <div class="col-md-4">
+                <p class="detail-label">Intentos fallidos de login</p>
+                <p class="detail-value">@Model.AccessFailedCount</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÉTRICAS (solo User y Agent) -->
+    @if (Model.Role == "User" || Model.Role == "Agent")
+    {
+        <div class="profile-card">
+            <p class="profile-section-label">Métricas</p>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="metric-card">
+                        <p class="metric-number">@Model.TotalRequests</p>
+                        <p class="metric-label">
+                            @(Model.Role == "User" ? "Solicitudes creadas" : "Solicitudes asignadas")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLA HISTORIAL -->
+        <div class="profile-card">
+            <p class="profile-section-label">
+                @(Model.Role == "User" ? "Historial de solicitudes" : "Historial de solicitudes asignadas")
+            </p>
+
+            @if (!Model.Requests.Any())
+            {
+                <div class="text-center py-4">
+                    <i class="bi bi-clipboard-x fs-1 text-muted"></i>
+                    <p class="text-muted mt-2">No hay solicitudes para mostrar.</p>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th class="px-4">#</th>
+                                <th>Título</th>
+                                <th>Categoría</th>
+                                <th>Estado</th>
+                                <th>Prioridad</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var r in Model.Requests)
+                            {
+                                <tr>
+                                    <td class="px-4 text-muted">#@r.Id</td>
+                                    <td class="fw-semibold">@r.Title</td>
+                                    <td class="text-muted">@r.CategoryName</td>
+                                    <td>
+                                        @{
+                                            var statusClass = r.Status switch
+                                            {
+                                                ServiceFlow.Class.Models.Status.Open => "bg-primary",
+                                                ServiceFlow.Class.Models.Status.Assigned => "bg-info text-dark",
+                                                ServiceFlow.Class.Models.Status.InProgress => "bg-warning text-dark",
+                                                ServiceFlow.Class.Models.Status.OnHold => "bg-secondary",
+                                                ServiceFlow.Class.Models.Status.Resolved => "bg-success",
+                                                ServiceFlow.Class.Models.Status.Closed => "bg-dark",
+                                                ServiceFlow.Class.Models.Status.Cancelled => "bg-danger",
+                                                _ => "bg-secondary"
+                                            };
+                                            var statusText = r.Status switch
+                                            {
+                                                ServiceFlow.Class.Models.Status.Open => "Abierta",
+                                                ServiceFlow.Class.Models.Status.Assigned => "Asignada",
+                                                ServiceFlow.Class.Models.Status.InProgress => "En Proceso",
+                                                ServiceFlow.Class.Models.Status.OnHold => "En Espera",
+                                                ServiceFlow.Class.Models.Status.Resolved => "Resuelta",
+                                                ServiceFlow.Class.Models.Status.Closed => "Cerrada",
+                                                ServiceFlow.Class.Models.Status.Cancelled => "Cancelada",
+                                                _ => "Desconocido"
+                                            };
+                                        }
+                                        <span class="badge @statusClass">@statusText</span>
+                                    </td>
+                                    <td>
+                                        @{
+                                            var priorityDot = r.Priority switch
+                                            {
+                                                ServiceFlow.Class.Models.Priority.Low => "#4CAF50",
+                                                ServiceFlow.Class.Models.Priority.Medium => "#FFC107",
+                                                ServiceFlow.Class.Models.Priority.High => "#FF9800",
+                                                ServiceFlow.Class.Models.Priority.Urgent => "#F44336",
+                                                _ => "#adb5bd"
+                                            };
+                                            var priorityText = r.Priority switch
+                                            {
+                                                ServiceFlow.Class.Models.Priority.Low => "Baja",
+                                                ServiceFlow.Class.Models.Priority.Medium => "Media",
+                                                ServiceFlow.Class.Models.Priority.High => "Alta",
+                                                ServiceFlow.Class.Models.Priority.Urgent => "Urgente",
+                                                _ => "Desconocida"
+                                            };
+                                        }
+                                        <span class="d-flex align-items-center gap-2">
+                                            <span style="width:8px;height:8px;border-radius:50%;background-color:@priorityDot;display:inline-block;"></span>
+                                            @priorityText
+                                        </span>
+                                    </td>
+                                    <td class="text-muted">@r.Creation.ToString("dd/MM/yyyy")</td>
+                                    <td>
+                                        <a asp-controller="Request" asp-action="Detail" asp-route-id="@r.Id"
+                                           class="btn btn-sm btn-outline-secondary">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    }
+</div>

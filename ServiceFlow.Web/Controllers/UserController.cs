@@ -14,12 +14,14 @@ namespace ServiceFlow.Web.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IRepository<RequestModel> requestRepo;
+        private readonly IRepository<CategoryModel> categoryRepo;
 
-        public UserController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IRepository<RequestModel> requestRepo)
+        public UserController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IRepository<RequestModel> requestRepo, IRepository<CategoryModel> categoryRepo)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.requestRepo = requestRepo;
+            this.categoryRepo = categoryRepo;
         }
 
         public async Task<IActionResult> Index(string? filter, string? search)
@@ -60,6 +62,74 @@ namespace ServiceFlow.Web.Controllers
             ViewBag.CountAdmin = (await userManager.GetUsersInRoleAsync("Admin")).Count;
             ViewBag.CountAgent = (await userManager.GetUsersInRoleAsync("Agent")).Count;
             ViewBag.CountUser = (await userManager.GetUsersInRoleAsync("User")).Count;
+
+            return View(vm);
+        }
+
+        public async Task<IActionResult> Detail(string id)
+        {
+            var user = await userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
+
+            var roles = await userManager.GetRolesAsync(user);
+            var role = roles.FirstOrDefault() ?? "Sin rol";
+
+            var allRequests = await requestRepo.GetAll();
+
+            List<RequestListViewModel> requests = new();
+
+            if (role == "User")
+            {
+                var userRequests = allRequests.Where(r => r.RequesterId == user.Id).ToList();
+                foreach (var r in userRequests)
+                {
+                    var category = await categoryRepo.GetById(r.CategoryId);
+                    requests.Add(new RequestListViewModel
+                    {
+                        Id = r.Id,
+                        Title = r.Title,
+                        CategoryName = category.Name,
+                        RequesterName = user.FirstName + " " + user.PaternalSurname,
+                        Status = r.Status,
+                        Priority = r.Priority,
+                        Creation = r.Creation
+                    });
+                }
+            }
+            else if (role == "Agent")
+            {
+                var agentRequests = allRequests.Where(r => r.AssigneeId == user.Id).ToList();
+                foreach (var r in agentRequests)
+                {
+                    var category = await categoryRepo.GetById(r.CategoryId);
+                    var requester = await userManager.FindByIdAsync(r.RequesterId);
+                    requests.Add(new RequestListViewModel
+                    {
+                        Id = r.Id,
+                        Title = r.Title,
+                        CategoryName = category.Name,
+                        RequesterName = requester.FirstName + " " + requester.PaternalSurname,
+                        AssigneeName = user.FirstName + " " + user.PaternalSurname,
+                        Status = r.Status,
+                        Priority = r.Priority,
+                        Creation = r.Creation
+                    });
+                }
+            }
+
+            var vm = new UserDetailViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                PaternalSurname = user.PaternalSurname,
+                MaternalSurname = user.MaternalSurname,
+                Email = user.Email!,
+                PhoneNumber = user.PhoneNumber,
+                Role = role,
+                AccessFailedCount = user.AccessFailedCount,
+                TotalRequests = requests.Count,
+                Requests = requests
+            };
 
             return View(vm);
         }
