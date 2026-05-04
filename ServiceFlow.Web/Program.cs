@@ -8,17 +8,13 @@ using ServiceFlow.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Agregar los servicios que vaya necesitando
+// Add services as needed
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ServiceFlowDB>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<ServiceFlowDB>()
-    .AddDefaultTokenProviders();
-
-//add google auth service
+// Add google auth service
 builder.Services.AddAuthentication()
     .AddGoogle(options =>
     {
@@ -35,7 +31,17 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddScoped<IRepository<RequestModel>, RequestRepository>();
 
-// mailtrap service
+// Rate limiting
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.Lockout.AllowedForNewUsers = true;
+    options.Lockout.MaxFailedAccessAttempts = 5;       
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+})
+.AddEntityFrameworkStores<ServiceFlowDB>()
+.AddDefaultTokenProviders();
+
+// Mailtrap service
 builder.Services.AddScoped<EmailService>();
 
 builder.Services.AddSession(options =>
@@ -55,7 +61,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// Creacion de los roles en el arranque de la aplicacion
+// Role creation at application startup
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -76,7 +82,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Login}/{id?}");
 
-//error 404
+// Error 404
 app.UseStatusCodePagesWithReExecute("/Error/NotFound");
 
 app.Run();

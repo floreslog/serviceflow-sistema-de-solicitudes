@@ -34,12 +34,33 @@ namespace ServiceFlow.Web.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
-            if (!result.Succeeded)
+            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, true, lockoutOnFailure: true);
+
+            if (result.IsLockedOut)
             {
-                ModelState.AddModelError(string.Empty, "Email o contraseña incorrectos.");
+                var user = await userManager.FindByEmailAsync(model.Email);
+                var lockoutEnd = await userManager.GetLockoutEndDateAsync(user!);
+                var remaining = lockoutEnd!.Value - DateTimeOffset.UtcNow;
+                ModelState.AddModelError(string.Empty, $"Cuenta bloqueada. Intenta de nuevo en {remaining.Minutes}m {remaining.Seconds}s.");
                 return View(model);
             }
+
+            if (!result.Succeeded)
+            {
+                var user = await userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    var attempts = await userManager.GetAccessFailedCountAsync(user);
+                    var remaining = 5 - attempts;
+                    ModelState.AddModelError(string.Empty, $"Email o contraseña incorrectos. Intentos restantes: {remaining}.");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Email o contraseña incorrectos.");
+                }
+                return View(model);
+            }
+
             return RedirectToAction("Index", "Home");
         }
 
