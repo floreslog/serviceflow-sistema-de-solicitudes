@@ -17,18 +17,22 @@ namespace ServiceFlow.Web.Services
         {
             var settings = config.GetSection("EmailSettings");
 
+            var fromName = settings["FromName"] ?? throw new InvalidOperationException("EmailSettings:FromName no configurado.");
+            var fromEmail = settings["FromEmail"] ?? throw new InvalidOperationException("EmailSettings:FromEmail no configurado.");
+            var host = settings["Host"] ?? throw new InvalidOperationException("EmailSettings:Host no configurado.");
+            var port = int.Parse(settings["Port"] ?? throw new InvalidOperationException("EmailSettings:Port no configurado."));
+            var username = settings["Username"] ?? throw new InvalidOperationException("EmailSettings:Username no configurado.");
+            var password = settings["Password"] ?? throw new InvalidOperationException("EmailSettings:Password no configurado.");
+
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(
-                settings["FromName"],
-                settings["FromEmail"]
-            ));
+            message.From.Add(new MailboxAddress(fromName, fromEmail));
             message.To.Add(new MailboxAddress("", toEmail));
             message.Subject = subject;
             message.Body = new TextPart("html") { Text = body };
 
             using var client = new SmtpClient();
-            await client.ConnectAsync(settings["Host"], int.Parse(settings["Port"]!), SecureSocketOptions.StartTls);
-            await client.AuthenticateAsync(settings["Username"], settings["Password"]);
+            await client.ConnectAsync(host, port, SecureSocketOptions.StartTls);
+            await client.AuthenticateAsync(username, password);
             await client.SendAsync(message);
             await client.DisconnectAsync(true);
         }

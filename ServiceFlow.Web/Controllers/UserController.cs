@@ -113,7 +113,7 @@ namespace ServiceFlow.Web.Controllers
                     {
                         Id = r.Id,
                         Title = r.Title,
-                        CategoryName = category.Name,
+                        CategoryName = category?.Name ?? "Sin categoría",
                         RequesterName = user.FirstName + " " + user.PaternalSurname,
                         Status = r.Status,
                         Priority = r.Priority,
@@ -132,8 +132,8 @@ namespace ServiceFlow.Web.Controllers
                     {
                         Id = r.Id,
                         Title = r.Title,
-                        CategoryName = category.Name,
-                        RequesterName = requester.FirstName + " " + requester.PaternalSurname,
+                        CategoryName = category?.Name ?? "Sin categoría",
+                        RequesterName = requester != null ? requester.FirstName + " " + requester.PaternalSurname : "Usuario eliminado",
                         AssigneeName = user.FirstName + " " + user.PaternalSurname,
                         Status = r.Status,
                         Priority = r.Priority,

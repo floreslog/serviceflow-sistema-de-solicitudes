@@ -137,7 +137,7 @@ namespace ServiceFlow.Web.Controllers
                 CategoryId = model.CategoryId,
                 Status = Status.Open,
                 Creation = DateTime.Now,
-                RequesterId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                RequesterId = User.FindFirstValue(ClaimTypes.NameIdentifier)!
             };
 
             await requestRepo.Create(rm);
@@ -149,6 +149,7 @@ namespace ServiceFlow.Web.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             var request = await requestRepo.GetById(id);
+            if (request == null) return NotFound();
             var comments = await commentRepo.GetAll();
 
             var requestdetailvm = new RequestDetailViewModel();
@@ -165,7 +166,9 @@ namespace ServiceFlow.Web.Controllers
             if (request.AssigneeId != null)
             {
                 var assignee = await userManager.FindByIdAsync(request.AssigneeId);
-                requestdetailvm.AssigneeName = assignee.FirstName + " " + assignee.PaternalSurname;
+                requestdetailvm.AssigneeName = assignee != null
+                    ? assignee.FirstName + " " + assignee.PaternalSurname
+                    : "Sin asignar";
             }
 
             var agents = await userManager.GetUsersInRoleAsync("Agent");
@@ -174,7 +177,9 @@ namespace ServiceFlow.Web.Controllers
                 .ToList();
 
             var requester = await userManager.FindByIdAsync(request.RequesterId);
-            requestdetailvm.RequesterName = requester.FirstName + " " + requester.PaternalSurname;
+            requestdetailvm.RequesterName = requester != null
+                ? requester.FirstName + " " + requester.PaternalSurname
+                : "Desconocido";
 
             //llenar lista de comentarios
             var filteredComments = comments.Where(c => c.RequestId == id).ToList();
@@ -185,7 +190,9 @@ namespace ServiceFlow.Web.Controllers
                 {
                     Text = comment.Text,
                     CreatedAt = comment.CreatedAt,
-                    AuthorName = author.FirstName + " " + author.PaternalSurname
+                    AuthorName = author != null
+                        ? author.FirstName + " " + author.PaternalSurname
+                        : "Usuario desconocido"
                 });
             }
 
@@ -281,7 +288,9 @@ namespace ServiceFlow.Web.Controllers
                 {
                     request.Status = Status.Assigned;
                     var agent = await userManager.FindByIdAsync(model.AssigneeId);
-                    var agentName = agent.FirstName + " " + agent.PaternalSurname;
+                    var agentName = agent != null
+                        ? agent.FirstName + " " + agent.PaternalSurname
+                        : "Agente desconocido";
                     await LogStatusChange(model.Id, $"Solicitud asignada a {agentName}.");
                 }
                 else
@@ -319,17 +328,17 @@ namespace ServiceFlow.Web.Controllers
 
             filtered = requests.Where(r => r.AssigneeId == userId);
 
-            // Filtro rápido (sin atender / atendidas)
+            //sin atender y atendidas
             if (filter == "pending")
                 filtered = filtered.Where(r => r.Status == Status.Open || r.Status == Status.Assigned || r.Status == Status.InProgress || r.Status == Status.OnHold);
             else if (filter == "resolved")
                 filtered = filtered.Where(r => r.Status == Status.Resolved || r.Status == Status.Closed);
 
-            // Filtro por estado
+            //por estado
             if (!string.IsNullOrEmpty(status) && Enum.TryParse<Status>(status, out var parsedStatus))
                 filtered = filtered.Where(r => r.Status == parsedStatus);
 
-            // Filtro por prioridad
+            //por prioridad
             if (!string.IsNullOrEmpty(priority) && Enum.TryParse<Priority>(priority, out var parsedPriority))
                 filtered = filtered.Where(r => r.Priority == parsedPriority);
 
@@ -337,7 +346,7 @@ namespace ServiceFlow.Web.Controllers
             if (!string.IsNullOrEmpty(category) && int.TryParse(category, out var parsedCategory))
                 filtered = filtered.Where(r => r.CategoryId == parsedCategory);
 
-            // Conteos para la sidebar
+            // Conteos
             var baseList = User.IsInRole("User") ? requests.Where(r => r.RequesterId == userId) :
                            User.IsInRole("Agent") ? requests.Where(r => r.AssigneeId == userId) :
                            requests;
@@ -376,8 +385,8 @@ namespace ServiceFlow.Web.Controllers
             var categories = await categoryRepo.GetAll();
             ViewBag.CategoryCounts = categories.Select(c => new
             {
-                Id = c.Id,
-                Name = c.Name,
+                c.Id,
+                c.Name,
                 Count = baseList.Count(r => r.CategoryId == c.Id)
             }).ToList();
 
