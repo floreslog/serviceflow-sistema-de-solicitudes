@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ServiceFlow.Class.Models;
@@ -23,7 +22,7 @@ namespace ServiceFlow.Web.Controllers
             this.categoryRepo = categoryRepo;
             this.userManager = userManager;
         }
-        public async Task<IActionResult> Index(string? status, string? priority, string? filter, string? category)
+        public async Task<IActionResult> Index(string? status, string? priority, string? filter, string? category, int page = 1)
         {
             var requests = await requestRepo.GetAll();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -36,25 +35,20 @@ namespace ServiceFlow.Web.Controllers
             else
                 filtered = requests;
 
-            // sin atender y atendidas
             if (filter == "pending")
                 filtered = filtered.Where(r => r.Status == Status.Open || r.Status == Status.Assigned || r.Status == Status.InProgress || r.Status == Status.OnHold);
             else if (filter == "resolved")
                 filtered = filtered.Where(r => r.Status == Status.Resolved || r.Status == Status.Closed);
 
-            //  por estado
             if (!string.IsNullOrEmpty(status) && Enum.TryParse<Status>(status, out var parsedStatus))
                 filtered = filtered.Where(r => r.Status == parsedStatus);
 
-            //  por prioridad
             if (!string.IsNullOrEmpty(priority) && Enum.TryParse<Priority>(priority, out var parsedPriority))
                 filtered = filtered.Where(r => r.Priority == parsedPriority);
 
-            //  porr categoria
             if (!string.IsNullOrEmpty(category) && int.TryParse(category, out var parsedCategory))
                 filtered = filtered.Where(r => r.CategoryId == parsedCategory);
 
-            // Conteos
             var baseList = User.IsInRole("User") ? requests.Where(r => r.RequesterId == userId) :
                            User.IsInRole("Agent") ? requests.Where(r => r.AssigneeId == userId) :
                            requests;
@@ -77,18 +71,7 @@ namespace ServiceFlow.Web.Controllers
             ViewBag.CurrentStatus = status;
             ViewBag.CurrentPriority = priority;
             ViewBag.CurrentFilter = filter;
-
-            var vm = filtered.Select(r => new RequestListViewModel
-            {
-                Id = r.Id,
-                Title = r.Title,
-                CategoryName = r.Category.Name,
-                RequesterName = r.Requester.FirstName + " " + r.Requester.PaternalSurname,
-                AssigneeName = r.Assignee != null ? r.Assignee.FirstName + " " + r.Assignee.PaternalSurname : "Sin asignar",
-                Status = r.Status,
-                Priority = r.Priority,
-                Creation = r.Creation
-            }).ToList();
+            ViewBag.CurrentCategory = Request.Query["category"].ToString();
 
             var categories = await categoryRepo.GetAll();
             ViewBag.CategoryCounts = categories.Select(c => new
@@ -98,8 +81,32 @@ namespace ServiceFlow.Web.Controllers
                 Count = baseList.Count(r => r.CategoryId == c.Id)
             }).ToList();
 
-            ViewBag.CurrentCategory = Request.Query["category"].ToString();
+            const int pageSize = 2;
+            var totalItems = filtered.Count();
+            var items = filtered
+                .OrderByDescending(r => r.Creation)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(r => new RequestListViewModel
+                {
+                    Id = r.Id,
+                    Title = r.Title,
+                    CategoryName = r.Category.Name,
+                    RequesterName = r.Requester.FirstName + " " + r.Requester.PaternalSurname,
+                    AssigneeName = r.Assignee != null ? r.Assignee.FirstName + " " + r.Assignee.PaternalSurname : "Sin asignar",
+                    Status = r.Status,
+                    Priority = r.Priority,
+                    Creation = r.Creation
+                }).ToList();
 
+            var vm = new PagedResult<RequestListViewModel>
+            {
+                Items = items,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling((double)totalItems / pageSize),
+                TotalItems = totalItems,
+                PageSize = pageSize
+            };
 
             return View(vm);
         }

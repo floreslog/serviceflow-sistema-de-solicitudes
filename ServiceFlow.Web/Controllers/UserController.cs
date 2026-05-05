@@ -24,7 +24,7 @@ namespace ServiceFlow.Web.Controllers
             this.categoryRepo = categoryRepo;
         }
 
-        public async Task<IActionResult> Index(string? filter, string? search)
+        public async Task<IActionResult> Index(string? filter, string? search, int page = 1)
         {
             var users = userManager.Users.ToList();
 
@@ -39,29 +39,54 @@ namespace ServiceFlow.Web.Controllers
 
             ViewBag.CurrentSearch = search;
 
-            var vm = new List<UserListViewModel>();
-            foreach (var user in users)
+            var allUsersWithRoles = new List<UserListViewModel>();
+            foreach (var user in userManager.Users.ToList())
             {
                 var roles = await userManager.GetRolesAsync(user);
-                var role = roles.FirstOrDefault() ?? "Sin rol";
-
-                if (filter != null && !role.Equals(filter, StringComparison.OrdinalIgnoreCase))
-                    continue;
-
-                vm.Add(new UserListViewModel
+                allUsersWithRoles.Add(new UserListViewModel
                 {
                     Id = user.Id,
                     FullName = user.FirstName + " " + user.PaternalSurname + " " + user.MaternalSurname,
-                    Role = role,
+                    Role = roles.FirstOrDefault() ?? "Sin rol",
                     Email = user.Email!
                 });
             }
 
+            var filtered = allUsersWithRoles.AsEnumerable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                var s = search.ToLower();
+                filtered = filtered.Where(u =>
+                    u.FullName.ToLower().Contains(s) ||
+                    u.Email.ToLower().Contains(s)
+                );
+            }
+
+            if (filter != null)
+                filtered = filtered.Where(u => u.Role.Equals(filter, StringComparison.OrdinalIgnoreCase));
+
             ViewBag.CurrentFilter = filter;
-            ViewBag.CountAll = userManager.Users.Count();
-            ViewBag.CountAdmin = (await userManager.GetUsersInRoleAsync("Admin")).Count;
-            ViewBag.CountAgent = (await userManager.GetUsersInRoleAsync("Agent")).Count;
-            ViewBag.CountUser = (await userManager.GetUsersInRoleAsync("User")).Count;
+            ViewBag.CountAll = allUsersWithRoles.Count;
+            ViewBag.CountAdmin = allUsersWithRoles.Count(u => u.Role == "Admin");
+            ViewBag.CountAgent = allUsersWithRoles.Count(u => u.Role == "Agent");
+            ViewBag.CountUser = allUsersWithRoles.Count(u => u.Role == "User");
+
+            const int pageSize = 2;
+            var totalItems = filtered.Count();
+            var items = filtered
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var vm = new PagedResult<UserListViewModel>
+            {
+                Items = items,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling((double)totalItems / pageSize),
+                TotalItems = totalItems,
+                PageSize = pageSize
+            };
 
             return View(vm);
         }

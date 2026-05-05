@@ -1,18 +1,18 @@
-﻿@model IEnumerable<ServiceFlow.Web.ViewModels.UserListViewModel>
+﻿@model ServiceFlow.Web.ViewModels.PagedResult<ServiceFlow.Web.ViewModels.UserListViewModel>
 @{
     ViewData["Title"] = "Gestión de usuarios";
     var currentFilter = ViewBag.CurrentFilter as string;
 }
 
 <style>
-    .requests-layout {
+    .users-layout {
         display: flex;
         gap: 0;
         margin: -32px;
         min-height: calc(100vh - 60px);
     }
 
-    .requests-sidebar {
+    .users-sidebar {
         width: 220px;
         min-width: 220px;
         background-color: #eaeef0;
@@ -21,9 +21,14 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        position: fixed;
+        top: 0;
+        left: 72px;
+        height: 100vh;
+        overflow-y: auto;
     }
 
-        .requests-sidebar .sidebar-section-title {
+        .users-sidebar .sidebar-section-title {
             font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -33,7 +38,7 @@
             margin-bottom: 4px;
         }
 
-        .requests-sidebar .filter-link {
+        .users-sidebar .filter-link {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -45,17 +50,17 @@
             transition: background-color 0.15s ease, color 0.15s ease;
         }
 
-            .requests-sidebar .filter-link:hover {
+            .users-sidebar .filter-link:hover {
                 background-color: #d8dee2;
                 color: #25262a;
             }
 
-            .requests-sidebar .filter-link.active {
+            .users-sidebar .filter-link.active {
                 background-color: #25262a;
                 color: #ffffff;
             }
 
-                .requests-sidebar .filter-link.active .filter-count {
+                .users-sidebar .filter-link.active .filter-count {
                     background-color: rgba(255,255,255,0.2);
                     color: #ffffff;
                 }
@@ -69,27 +74,28 @@
         font-weight: 600;
     }
 
-    .requests-main {
+    .users-main {
         flex: 1;
         padding: 28px 32px;
         overflow: auto;
+        margin-left: 220px;
     }
 
-    .requests-header {
+    .users-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 24px;
     }
 
-    .requests-title {
+    .users-title {
         font-size: 1.2rem;
         font-weight: 700;
         color: #25262a;
         margin: 0;
     }
 
-    .requests-subtitle {
+    .users-subtitle {
         font-size: 0.8rem;
         color: #9aa0a6;
         margin: 2px 0 0 0;
@@ -119,33 +125,33 @@
     }
 </style>
 
-<div class="requests-layout">
+<div class="users-layout">
 
     <!-- SIDEBAR FILTROS -->
-    <aside class="requests-sidebar">
+    <aside class="users-sidebar">
         <div>
             <p class="sidebar-section-title">Roles</p>
 
             <a href="@Url.Action("Index", "User")"
-               class="filter-link @(currentFilter == null ? "active" : "")">
+                   class="filter-link @(currentFilter == null ? "active" : "")">
                 <span><i class="bi bi-people me-2"></i>Todos</span>
                 <span class="filter-count">@ViewBag.CountAll</span>
             </a>
 
             <a href="@Url.Action("Index", "User", new { filter = "Admin" })"
-               class="filter-link @(currentFilter == "Admin" ? "active" : "")">
+                   class="filter-link @(currentFilter == "Admin" ? "active" : "")">
                 <span><i class="bi bi-shield me-2"></i>Admin</span>
                 <span class="filter-count">@ViewBag.CountAdmin</span>
             </a>
 
             <a href="@Url.Action("Index", "User", new { filter = "Agent" })"
-               class="filter-link @(currentFilter == "Agent" ? "active" : "")">
+                   class="filter-link @(currentFilter == "Agent" ? "active" : "")">
                 <span><i class="bi bi-headset me-2"></i>Agente</span>
                 <span class="filter-count">@ViewBag.CountAgent</span>
             </a>
 
             <a href="@Url.Action("Index", "User", new { filter = "User" })"
-               class="filter-link @(currentFilter == "User" ? "active" : "")">
+                   class="filter-link @(currentFilter == "User" ? "active" : "")">
                 <span><i class="bi bi-person me-2"></i>Usuario</span>
                 <span class="filter-count">@ViewBag.CountUser</span>
             </a>
@@ -153,12 +159,12 @@
     </aside>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <div class="requests-main">
+    <div class="users-main">
 
-        <div class="requests-header">
+        <div class="users-header">
             <div>
-                <h2 class="requests-title">Gestión de Usuarios</h2>
-                <p class="requests-subtitle">@Model.Count() usuarios encontrados</p>
+                <h2 class="users-title">Gestión de Usuarios</h2>
+                <p class="users-subtitle">@Model.TotalItems usuarios encontrados</p>
             </div>
             <form method="get" asp-controller="User" asp-action="Index" class="d-flex gap-2">
                 @if (ViewBag.CurrentFilter != null)
@@ -176,14 +182,14 @@
                 @if (!string.IsNullOrEmpty(ViewBag.CurrentSearch as string))
                 {
                     <a href="@Url.Action("Index", "User", new { filter = ViewBag.CurrentFilter })"
-                       class="btn btn-sm btn-outline-secondary">
+                           class="btn btn-sm btn-outline-secondary">
                         <i class="bi bi-x"></i>
                     </a>
                 }
             </form>
         </div>
 
-        @if (!Model.Any())
+        @if (!Model.Items.Any())
         {
             <div class="text-center py-5">
                 <i class="bi bi-people fs-1 text-muted"></i>
@@ -205,7 +211,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var user in Model)
+                                @foreach (var user in Model.Items)
                                 {
                                     <tr>
                                         <td class="px-4 fw-semibold">@user.FullName</td>
@@ -231,11 +237,11 @@
                                         </td>
                                         <td>
                                             <a asp-controller="User" asp-action="Detail" asp-route-id="@user.Id"
-                                               class="btn btn-sm btn-outline-secondary me-1">
+                                                   class="btn btn-sm btn-outline-secondary me-1">
                                                 <i class="bi bi-eye"></i>
                                             </a>
                                             <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id"
-                                               class="btn btn-sm btn-outline-secondary me-1">
+                                                   class="btn btn-sm btn-outline-secondary me-1">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
                                         </td>
@@ -247,6 +253,39 @@
                 </div>
             </div>
         }
+
+        @if (Model.TotalPages > 1)
+        {
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <p class="users-subtitle mb-0">
+                    Página @Model.CurrentPage de @Model.TotalPages
+                </p>
+                <div class="d-flex gap-2">
+                    @if (Model.HasPrevious)
+                    {
+                        <a href="@Url.Action("Index", "User", new { page = Model.CurrentPage - 1, filter = ViewBag.CurrentFilter, search = ViewBag.CurrentSearch })"
+                               class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    }
+
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <a href="@Url.Action("Index", "User", new { page = i, filter = ViewBag.CurrentFilter, search = ViewBag.CurrentSearch })"
+                               class="btn btn-sm @(i == Model.CurrentPage ? "btn-dark" : "btn-outline-secondary")">
+                            @i
+                        </a>
+                    }
+
+                    @if (Model.HasNext)
+                    {
+                        <a href="@Url.Action("Index", "User", new { page = Model.CurrentPage + 1, filter = ViewBag.CurrentFilter, search = ViewBag.CurrentSearch })"
+                               class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    }
+                </div>
+            </div>
+        }
     </div>
 </div>
-

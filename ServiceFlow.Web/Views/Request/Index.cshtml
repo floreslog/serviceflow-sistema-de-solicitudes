@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ServiceFlow.Web.ViewModels.RequestListViewModel>
+﻿@model ServiceFlow.Web.ViewModels.PagedResult<ServiceFlow.Web.ViewModels.RequestListViewModel>
 @{
     ViewData["Title"] = "Solicitudes";
     var currentStatus = ViewBag.CurrentStatus as string;
@@ -11,7 +11,7 @@
         display: flex;
         gap: 0;
         margin: -32px;
-        min-height: calc(100vh - 60px);
+        min-height: 100vh;
     }
 
     .requests-sidebar {
@@ -23,6 +23,11 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        position: fixed;
+        top: 0;
+        left: 72px;
+        height: 100vh;
+        overflow-y: auto;
     }
 
         .requests-sidebar .sidebar-section-title {
@@ -75,6 +80,7 @@
         flex: 1;
         padding: 28px 32px;
         overflow: auto;
+        margin-left: 220px;
     }
 
     .requests-header {
@@ -136,7 +142,7 @@
             <p class="sidebar-section-title">Solicitudes</p>
 
             <a href="@Url.Action("Index", "Request")"
-               class="filter-link @(currentFilter == null && currentStatus == null && currentPriority == null && ViewBag.CurrentCategory == null ? "active" : "")">
+                   class="filter-link @(currentFilter == null && currentStatus == null && currentPriority == null && (ViewBag.CurrentCategory == null || ViewBag.CurrentCategory == "") ? "active" : "")">
                 <span><i class="bi bi-list-ul me-2"></i>Todas</span>
                 <span class="filter-count">@ViewBag.CountAll</span>
             </a>
@@ -268,7 +274,7 @@
                         <span>Solicitudes</span>
                     }
                 </h2>
-                <p class="requests-subtitle">@Model.Count() solicitudes encontradas</p>
+                <p class="requests-subtitle">@Model.TotalItems solicitudes encontradas</p>
             </div>
             @if (User.IsInRole("User"))
             {
@@ -278,7 +284,7 @@
             }
         </div>
 
-        @if (!Model.Any())
+        @if (!Model.Items.Any())
         {
             <div class="text-center py-5">
                 <i class="bi bi-clipboard-x fs-1 text-muted"></i>
@@ -305,7 +311,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @foreach (var item in Model.Items)
                                 {
                                     <tr>
                                         <td class="px-4 text-muted">#@item.Id</td>
@@ -383,6 +389,39 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        }
+        @if (Model.TotalPages > 1)
+        {
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <p class="requests-subtitle mb-0">
+                    Página @Model.CurrentPage de @Model.TotalPages
+                </p>
+                <div class="d-flex gap-2">
+                    @if (Model.HasPrevious)
+                    {
+                        <a href="@Url.Action("Index", "Request", new { page = Model.CurrentPage - 1, status = ViewBag.CurrentStatus, priority = ViewBag.CurrentPriority, filter = ViewBag.CurrentFilter, category = ViewBag.CurrentCategory })"
+                               class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    }
+
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <a href="@Url.Action("Index", "Request", new { page = i, status = ViewBag.CurrentStatus, priority = ViewBag.CurrentPriority, filter = ViewBag.CurrentFilter, category = ViewBag.CurrentCategory })"
+                               class="btn btn-sm @(i == Model.CurrentPage ? "btn-dark" : "btn-outline-secondary")">
+                            @i
+                        </a>
+                    }
+
+                    @if (Model.HasNext)
+                    {
+                        <a href="@Url.Action("Index", "Request", new { page = Model.CurrentPage + 1, status = ViewBag.CurrentStatus, priority = ViewBag.CurrentPriority, filter = ViewBag.CurrentFilter, category = ViewBag.CurrentCategory })"
+                               class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    }
                 </div>
             </div>
         }
