@@ -1,5 +1,4 @@
 ![.NET](https://img.shields.io/badge/.NET-8.0-purple)
-![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-finished-success)
 ![License](https://img.shields.io/badge/license-MIT-green)
 # ServiceFlow — Sistema de Gestión de Solicitudes Internas
