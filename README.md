@@ -1,6 +1,7 @@
 ![.NET](https://img.shields.io/badge/.NET-8.0-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-finished-success)
+![License](https://img.shields.io/badge/license-MIT-green)
 # ServiceFlow — Sistema de Gestión de Solicitudes Internas
 
 ServiceFlow es una aplicación web de tipo Help Desk desarrollada con **ASP.NET Core MVC (.NET 8)**, diseñada para gestionar solicitudes internas en organizaciones como empresas, universidades o instituciones públicas. Permite registrar, asignar, dar seguimiento y resolver tickets de soporte de forma estructurada.
@@ -173,3 +174,7 @@ El sistema usa Mailtrap en modo sandbox para desarrollo. Los correos no llegan a
     </td>
   </tr>
 </table>
+
+## Licencia
+
+Distribuido bajo licencia MIT. Consulta `LICENSE` para más información.
