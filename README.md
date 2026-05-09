@@ -31,23 +31,26 @@ ServiceFlow es una aplicación web de tipo Help Desk desarrollada con **ASP.NET 
 | Autenticación | ASP.NET Identity + Google OAuth |
 | Email | MailKit + Mailtrap |
 | Frontend | Bootstrap 5 + Bootstrap Icons |
-| Arquitectura | Patrón Repositorio Genérico |
+| Arquitectura | MVC en capas |
 
 ---
 
 ## Estructura del proyecto
+
+```text
 ServiceFlow/
-├── ServiceFlow.Class/          # Lógica de negocio y acceso a datos
-│   ├── Data/                   # DbContext (ServiceFlowDB)
-│   ├── Models/                 # Entidades: RequestModel, CategoryModel, etc.
-│   └── Repositories/           # IRepository<T>, Repository<T>, RequestRepository
+├── ServiceFlow.Class/                 # Lógica de negocio y acceso a datos
+│   ├── Data/                          # DbContext (ServiceFlowDB)
+│   ├── Models/                        # Entidades: RequestModel, CategoryModel, etc.
+│   └── Repositories/                  # IRepository<T>, Repository<T>, RequestRepository
 │
-└── ServiceFlow.Web/            # Presentación
-├── Controllers/            # AccountController, RequestController, etc.
-├── Services/               # EmailService
-├── ViewModels/             # ViewModels por vista
-├── Views/                  # Vistas Razor por controlador
-└── wwwroot/                # CSS, JS, imágenes
+└── ServiceFlow.Web/                   # Capa de presentación
+    ├── Controllers/                   # AccountController, RequestController, etc.
+    ├── Services/                      # EmailService
+    ├── ViewModels/                    # ViewModels por vista
+    ├── Views/                         # Vistas Razor organizadas por controlador
+    └── wwwroot/                       # CSS, JS, imágenes y archivos estáticos
+```
 ---
 
 ## Requisitos previos
@@ -105,14 +108,6 @@ dotnet ef database update
 
 Esto creará la base de datos y todas las tablas automáticamente, incluyendo los roles `Admin`, `Agent` y `User` que se inicializan al arrancar la aplicación.
 
-### 4. Ejecutar el proyecto
-
-```bash
-dotnet run
-```
-
-O desde Visual Studio presiona `F5`.
-
 ---
 
 ## Roles del sistema
@@ -123,7 +118,16 @@ O desde Visual Studio presiona `F5`.
 | `Agent` | Ver y gestionar solicitudes asignadas, cambiar estado |
 | `User` | Crear y dar seguimiento a sus propias solicitudes |
 
-> El primer usuario debe ser promovido a `Admin` manualmente desde la base de datos o desde otro Admin existente.
+---
+
+## Usuario administrador por defecto
+
+Al iniciar la aplicación por primera vez, se crean automáticamente los roles del sistema y un usuario administrador inicial:
+
+- Email: `admin@serviceflow.com`
+- Password: `Admin123*`
+
+> Se recomienda cambiar estas credenciales al primer inicio.
 
 ---
 
