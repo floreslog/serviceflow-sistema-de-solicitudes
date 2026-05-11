@@ -1,0 +1,255 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Class.Models.Status
+  commentId: T:ServiceFlow.Class.Models.Status
+  id: Status
+  parent: ServiceFlow.Class.Models
+  children:
+  - ServiceFlow.Class.Models.Status.Assigned
+  - ServiceFlow.Class.Models.Status.Cancelled
+  - ServiceFlow.Class.Models.Status.Closed
+  - ServiceFlow.Class.Models.Status.InProgress
+  - ServiceFlow.Class.Models.Status.OnHold
+  - ServiceFlow.Class.Models.Status.Open
+  - ServiceFlow.Class.Models.Status.Resolved
+  langs:
+  - csharp
+  - vb
+  name: Status
+  nameWithType: Status
+  fullName: ServiceFlow.Class.Models.Status
+  type: Enum
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Status.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Status
+    path: ../ServiceFlow.Class/Models/Status.cs
+    startLine: 2
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: public enum Status
+    content.vb: Public Enum Status
+- uid: ServiceFlow.Class.Models.Status.Open
+  commentId: F:ServiceFlow.Class.Models.Status.Open
+  id: Open
+  parent: ServiceFlow.Class.Models.Status
+  langs:
+  - csharp
+  - vb
+  name: Open
+  nameWithType: Status.Open
+  fullName: ServiceFlow.Class.Models.Status.Open
+  type: Field
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Status.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Open
+    path: ../ServiceFlow.Class/Models/Status.cs
+    startLine: 4
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: Open = 0
+    return:
+      type: ServiceFlow.Class.Models.Status
+- uid: ServiceFlow.Class.Models.Status.Assigned
+  commentId: F:ServiceFlow.Class.Models.Status.Assigned
+  id: Assigned
+  parent: ServiceFlow.Class.Models.Status
+  langs:
+  - csharp
+  - vb
+  name: Assigned
+  nameWithType: Status.Assigned
+  fullName: ServiceFlow.Class.Models.Status.Assigned
+  type: Field
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Status.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Assigned
+    path: ../ServiceFlow.Class/Models/Status.cs
+    startLine: 5
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: Assigned = 1
+    return:
+      type: ServiceFlow.Class.Models.Status
+- uid: ServiceFlow.Class.Models.Status.InProgress
+  commentId: F:ServiceFlow.Class.Models.Status.InProgress
+  id: InProgress
+  parent: ServiceFlow.Class.Models.Status
+  langs:
+  - csharp
+  - vb
+  name: InProgress
+  nameWithType: Status.InProgress
+  fullName: ServiceFlow.Class.Models.Status.InProgress
+  type: Field
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Status.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: InProgress
+    path: ../ServiceFlow.Class/Models/Status.cs
+    startLine: 6
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: InProgress = 2
+    return:
+      type: ServiceFlow.Class.Models.Status
+- uid: ServiceFlow.Class.Models.Status.OnHold
+  commentId: F:ServiceFlow.Class.Models.Status.OnHold
+  id: OnHold
+  parent: ServiceFlow.Class.Models.Status
+  langs:
+  - csharp
+  - vb
+  name: OnHold
+  nameWithType: Status.OnHold
+  fullName: ServiceFlow.Class.Models.Status.OnHold
+  type: Field
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Status.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: OnHold
+    path: ../ServiceFlow.Class/Models/Status.cs
+    startLine: 7
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: OnHold = 3
+    return:
+      type: ServiceFlow.Class.Models.Status
+- uid: ServiceFlow.Class.Models.Status.Resolved
+  commentId: F:ServiceFlow.Class.Models.Status.Resolved
+  id: Resolved
+  parent: ServiceFlow.Class.Models.Status
+  langs:
+  - csharp
+  - vb
+  name: Resolved
+  nameWithType: Status.Resolved
+  fullName: ServiceFlow.Class.Models.Status.Resolved
+  type: Field
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Status.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Resolved
+    path: ../ServiceFlow.Class/Models/Status.cs
+    startLine: 8
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: Resolved = 4
+    return:
+      type: ServiceFlow.Class.Models.Status
+- uid: ServiceFlow.Class.Models.Status.Closed
+  commentId: F:ServiceFlow.Class.Models.Status.Closed
+  id: Closed
+  parent: ServiceFlow.Class.Models.Status
+  langs:
+  - csharp
+  - vb
+  name: Closed
+  nameWithType: Status.Closed
+  fullName: ServiceFlow.Class.Models.Status.Closed
+  type: Field
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Status.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Closed
+    path: ../ServiceFlow.Class/Models/Status.cs
+    startLine: 9
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: Closed = 5
+    return:
+      type: ServiceFlow.Class.Models.Status
+- uid: ServiceFlow.Class.Models.Status.Cancelled
+  commentId: F:ServiceFlow.Class.Models.Status.Cancelled
+  id: Cancelled
+  parent: ServiceFlow.Class.Models.Status
+  langs:
+  - csharp
+  - vb
+  name: Cancelled
+  nameWithType: Status.Cancelled
+  fullName: ServiceFlow.Class.Models.Status.Cancelled
+  type: Field
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Status.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Cancelled
+    path: ../ServiceFlow.Class/Models/Status.cs
+    startLine: 10
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: Cancelled = 6
+    return:
+      type: ServiceFlow.Class.Models.Status
+references:
+- uid: ServiceFlow.Class.Models
+  commentId: N:ServiceFlow.Class.Models
+  href: ServiceFlow.html
+  name: ServiceFlow.Class.Models
+  nameWithType: ServiceFlow.Class.Models
+  fullName: ServiceFlow.Class.Models
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Models
+    name: Models
+    href: ServiceFlow.Class.Models.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Models
+    name: Models
+    href: ServiceFlow.Class.Models.html
+- uid: ServiceFlow.Class.Models.Status
+  commentId: T:ServiceFlow.Class.Models.Status
+  parent: ServiceFlow.Class.Models
+  href: ServiceFlow.Class.Models.Status.html
+  name: Status
+  nameWithType: Status
+  fullName: ServiceFlow.Class.Models.Status

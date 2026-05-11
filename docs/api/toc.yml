@@ -1,0 +1,158 @@
+### YamlMime:TableOfContent
+items:
+- uid: ServiceFlow.Class.Data
+  name: ServiceFlow.Class.Data
+  type: Namespace
+  items:
+  - uid: ServiceFlow.Class.Data.ServiceFlowDB
+    name: ServiceFlowDB
+    type: Class
+- uid: ServiceFlow.Class.Migrations
+  name: ServiceFlow.Class.Migrations
+  type: Namespace
+  items:
+  - uid: ServiceFlow.Class.Migrations.InitialMigration
+    name: InitialMigration
+    type: Class
+- uid: ServiceFlow.Class.Models
+  name: ServiceFlow.Class.Models
+  type: Namespace
+  items:
+  - uid: ServiceFlow.Class.Models.ApplicationUser
+    name: ApplicationUser
+    type: Class
+  - uid: ServiceFlow.Class.Models.CategoryModel
+    name: CategoryModel
+    type: Class
+  - uid: ServiceFlow.Class.Models.CommentModel
+    name: CommentModel
+    type: Class
+  - uid: ServiceFlow.Class.Models.IEntity
+    name: IEntity
+    type: Interface
+  - uid: ServiceFlow.Class.Models.Priority
+    name: Priority
+    type: Enum
+  - uid: ServiceFlow.Class.Models.RequestModel
+    name: RequestModel
+    type: Class
+  - uid: ServiceFlow.Class.Models.Status
+    name: Status
+    type: Enum
+- uid: ServiceFlow.Class.Repositories
+  name: ServiceFlow.Class.Repositories
+  type: Namespace
+  items:
+  - uid: ServiceFlow.Class.Repositories.IRepository`1
+    name: IRepository<T>
+    type: Interface
+  - uid: ServiceFlow.Class.Repositories.Repository`1
+    name: Repository<T>
+    type: Class
+  - uid: ServiceFlow.Class.Repositories.RequestRepository
+    name: RequestRepository
+    type: Class
+- uid: ServiceFlow.Web.Controllers
+  name: ServiceFlow.Web.Controllers
+  type: Namespace
+  items:
+  - uid: ServiceFlow.Web.Controllers.AccountController
+    name: AccountController
+    type: Class
+  - uid: ServiceFlow.Web.Controllers.CategoryController
+    name: CategoryController
+    type: Class
+  - uid: ServiceFlow.Web.Controllers.ErrorController
+    name: ErrorController
+    type: Class
+  - uid: ServiceFlow.Web.Controllers.HelpController
+    name: HelpController
+    type: Class
+  - uid: ServiceFlow.Web.Controllers.HomeController
+    name: HomeController
+    type: Class
+  - uid: ServiceFlow.Web.Controllers.ProfileController
+    name: ProfileController
+    type: Class
+  - uid: ServiceFlow.Web.Controllers.RequestController
+    name: RequestController
+    type: Class
+  - uid: ServiceFlow.Web.Controllers.UserController
+    name: UserController
+    type: Class
+- uid: ServiceFlow.Web.Helpers
+  name: ServiceFlow.Web.Helpers
+  type: Namespace
+  items:
+  - uid: ServiceFlow.Web.Helpers.RoleInitializer
+    name: RoleInitializer
+    type: Class
+- uid: ServiceFlow.Web.Services
+  name: ServiceFlow.Web.Services
+  type: Namespace
+  items:
+  - uid: ServiceFlow.Web.Services.EmailService
+    name: EmailService
+    type: Class
+- uid: ServiceFlow.Web.ViewModels
+  name: ServiceFlow.Web.ViewModels
+  type: Namespace
+  items:
+  - uid: ServiceFlow.Web.ViewModels.CategoryViewModel
+    name: CategoryViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.ChangePasswordViewModel
+    name: ChangePasswordViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.CommentViewModel
+    name: CommentViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.CreateRequestViewModel
+    name: CreateRequestViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.DashboardViewModel
+    name: DashboardViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.EditRequestViewModel
+    name: EditRequestViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.EditUserViewModel
+    name: EditUserViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.ErrorViewModel
+    name: ErrorViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.ForgotPasswordViewModel
+    name: ForgotPasswordViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.LoginViewModel
+    name: LoginViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.PagedResult`1
+    name: PagedResult<T>
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.ProfileViewModel
+    name: ProfileViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.RegisterViewModel
+    name: RegisterViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.RequestDetailViewModel
+    name: RequestDetailViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.RequestListViewModel
+    name: RequestListViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.ResetPasswordViewModel
+    name: ResetPasswordViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.UserDetailViewModel
+    name: UserDetailViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.UserListViewModel
+    name: UserListViewModel
+    type: Class
+  - uid: ServiceFlow.Web.ViewModels.VerifyEmailViewModel
+    name: VerifyEmailViewModel
+    type: Class
+memberLayout: SamePage

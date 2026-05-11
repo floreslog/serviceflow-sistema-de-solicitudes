@@ -1,0 +1,980 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Class.Repositories.RequestRepository
+  commentId: T:ServiceFlow.Class.Repositories.RequestRepository
+  id: RequestRepository
+  parent: ServiceFlow.Class.Repositories
+  children:
+  - ServiceFlow.Class.Repositories.RequestRepository.#ctor(ServiceFlow.Class.Data.ServiceFlowDB)
+  - ServiceFlow.Class.Repositories.RequestRepository.GetAll
+  langs:
+  - csharp
+  - vb
+  name: RequestRepository
+  nameWithType: RequestRepository
+  fullName: ServiceFlow.Class.Repositories.RequestRepository
+  type: Class
+  source:
+    remote:
+      path: ServiceFlow.Class/Repositories/RequestRepository.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: RequestRepository
+    path: ../ServiceFlow.Class/Repositories/RequestRepository.cs
+    startLine: 5
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Repositories
+  syntax:
+    content: 'public class RequestRepository : Repository<RequestModel>, IRepository<RequestModel>'
+    content.vb: Public Class RequestRepository Inherits Repository(Of RequestModel) Implements IRepository(Of RequestModel)
+  inheritance:
+  - System.Object
+  - ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}
+  implements:
+  - ServiceFlow.Class.Repositories.IRepository{ServiceFlow.Class.Models.RequestModel}
+  inheritedMembers:
+  - ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.dbSet
+  - ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Create(ServiceFlow.Class.Models.RequestModel)
+  - ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Delete(System.Int32)
+  - ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.GetById(System.Int32)
+  - ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Update(ServiceFlow.Class.Models.RequestModel)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: ServiceFlow.Class.Repositories.RequestRepository.#ctor(ServiceFlow.Class.Data.ServiceFlowDB)
+  commentId: M:ServiceFlow.Class.Repositories.RequestRepository.#ctor(ServiceFlow.Class.Data.ServiceFlowDB)
+  id: '#ctor(ServiceFlow.Class.Data.ServiceFlowDB)'
+  parent: ServiceFlow.Class.Repositories.RequestRepository
+  langs:
+  - csharp
+  - vb
+  name: RequestRepository(ServiceFlowDB)
+  nameWithType: RequestRepository.RequestRepository(ServiceFlowDB)
+  fullName: ServiceFlow.Class.Repositories.RequestRepository.RequestRepository(ServiceFlow.Class.Data.ServiceFlowDB)
+  type: Constructor
+  source:
+    remote:
+      path: ServiceFlow.Class/Repositories/RequestRepository.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: .ctor
+    path: ../ServiceFlow.Class/Repositories/RequestRepository.cs
+    startLine: 7
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Repositories
+  syntax:
+    content: public RequestRepository(ServiceFlowDB db)
+    parameters:
+    - id: db
+      type: ServiceFlow.Class.Data.ServiceFlowDB
+    content.vb: Public Sub New(db As ServiceFlowDB)
+  overload: ServiceFlow.Class.Repositories.RequestRepository.#ctor*
+  nameWithType.vb: RequestRepository.New(ServiceFlowDB)
+  fullName.vb: ServiceFlow.Class.Repositories.RequestRepository.New(ServiceFlow.Class.Data.ServiceFlowDB)
+  name.vb: New(ServiceFlowDB)
+- uid: ServiceFlow.Class.Repositories.RequestRepository.GetAll
+  commentId: M:ServiceFlow.Class.Repositories.RequestRepository.GetAll
+  id: GetAll
+  parent: ServiceFlow.Class.Repositories.RequestRepository
+  langs:
+  - csharp
+  - vb
+  name: GetAll()
+  nameWithType: RequestRepository.GetAll()
+  fullName: ServiceFlow.Class.Repositories.RequestRepository.GetAll()
+  type: Method
+  source:
+    remote:
+      path: ServiceFlow.Class/Repositories/RequestRepository.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: GetAll
+    path: ../ServiceFlow.Class/Repositories/RequestRepository.cs
+    startLine: 10
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Repositories
+  example: []
+  syntax:
+    content: public override Task<ICollection<RequestModel>> GetAll()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{ServiceFlow.Class.Models.RequestModel}}
+    content.vb: Public Overrides Function GetAll() As Task(Of ICollection(Of RequestModel))
+  overridden: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.GetAll
+  overload: ServiceFlow.Class.Repositories.RequestRepository.GetAll*
+  implements:
+  - ServiceFlow.Class.Repositories.IRepository{ServiceFlow.Class.Models.RequestModel}.GetAll
+references:
+- uid: ServiceFlow.Class.Repositories
+  commentId: N:ServiceFlow.Class.Repositories
+  href: ServiceFlow.html
+  name: ServiceFlow.Class.Repositories
+  nameWithType: ServiceFlow.Class.Repositories
+  fullName: ServiceFlow.Class.Repositories
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Repositories
+    name: Repositories
+    href: ServiceFlow.Class.Repositories.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Repositories
+    name: Repositories
+    href: ServiceFlow.Class.Repositories.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}
+  commentId: T:ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}
+  parent: ServiceFlow.Class.Repositories
+  definition: ServiceFlow.Class.Repositories.Repository`1
+  href: ServiceFlow.Class.Repositories.Repository-1.html
+  name: Repository<RequestModel>
+  nameWithType: Repository<RequestModel>
+  fullName: ServiceFlow.Class.Repositories.Repository<ServiceFlow.Class.Models.RequestModel>
+  nameWithType.vb: Repository(Of RequestModel)
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of ServiceFlow.Class.Models.RequestModel)
+  name.vb: Repository(Of RequestModel)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository`1
+    name: Repository
+    href: ServiceFlow.Class.Repositories.Repository-1.html
+  - name: <
+  - uid: ServiceFlow.Class.Models.RequestModel
+    name: RequestModel
+    href: ServiceFlow.Class.Models.RequestModel.html
+  - name: '>'
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository`1
+    name: Repository
+    href: ServiceFlow.Class.Repositories.Repository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: ServiceFlow.Class.Models.RequestModel
+    name: RequestModel
+    href: ServiceFlow.Class.Models.RequestModel.html
+  - name: )
+- uid: ServiceFlow.Class.Repositories.IRepository{ServiceFlow.Class.Models.RequestModel}
+  commentId: T:ServiceFlow.Class.Repositories.IRepository{ServiceFlow.Class.Models.RequestModel}
+  parent: ServiceFlow.Class.Repositories
+  definition: ServiceFlow.Class.Repositories.IRepository`1
+  href: ServiceFlow.Class.Repositories.IRepository-1.html
+  name: IRepository<RequestModel>
+  nameWithType: IRepository<RequestModel>
+  fullName: ServiceFlow.Class.Repositories.IRepository<ServiceFlow.Class.Models.RequestModel>
+  nameWithType.vb: IRepository(Of RequestModel)
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of ServiceFlow.Class.Models.RequestModel)
+  name.vb: IRepository(Of RequestModel)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.IRepository`1
+    name: IRepository
+    href: ServiceFlow.Class.Repositories.IRepository-1.html
+  - name: <
+  - uid: ServiceFlow.Class.Models.RequestModel
+    name: RequestModel
+    href: ServiceFlow.Class.Models.RequestModel.html
+  - name: '>'
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.IRepository`1
+    name: IRepository
+    href: ServiceFlow.Class.Repositories.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: ServiceFlow.Class.Models.RequestModel
+    name: RequestModel
+    href: ServiceFlow.Class.Models.RequestModel.html
+  - name: )
+- uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.dbSet
+  commentId: F:ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.dbSet
+  parent: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}
+  definition: ServiceFlow.Class.Repositories.Repository`1.dbSet
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_dbSet
+  name: dbSet
+  nameWithType: Repository<RequestModel>.dbSet
+  fullName: ServiceFlow.Class.Repositories.Repository<ServiceFlow.Class.Models.RequestModel>.dbSet
+  nameWithType.vb: Repository(Of RequestModel).dbSet
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of ServiceFlow.Class.Models.RequestModel).dbSet
+- uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Create(ServiceFlow.Class.Models.RequestModel)
+  commentId: M:ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Create(ServiceFlow.Class.Models.RequestModel)
+  parent: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}
+  definition: ServiceFlow.Class.Repositories.Repository`1.Create(`0)
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Create__0_
+  name: Create(RequestModel)
+  nameWithType: Repository<RequestModel>.Create(RequestModel)
+  fullName: ServiceFlow.Class.Repositories.Repository<ServiceFlow.Class.Models.RequestModel>.Create(ServiceFlow.Class.Models.RequestModel)
+  nameWithType.vb: Repository(Of RequestModel).Create(RequestModel)
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of ServiceFlow.Class.Models.RequestModel).Create(ServiceFlow.Class.Models.RequestModel)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Create(ServiceFlow.Class.Models.RequestModel)
+    name: Create
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Create__0_
+  - name: (
+  - uid: ServiceFlow.Class.Models.RequestModel
+    name: RequestModel
+    href: ServiceFlow.Class.Models.RequestModel.html
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Create(ServiceFlow.Class.Models.RequestModel)
+    name: Create
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Create__0_
+  - name: (
+  - uid: ServiceFlow.Class.Models.RequestModel
+    name: RequestModel
+    href: ServiceFlow.Class.Models.RequestModel.html
+  - name: )
+- uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Delete(System.Int32)
+  commentId: M:ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Delete(System.Int32)
+  parent: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}
+  definition: ServiceFlow.Class.Repositories.Repository`1.Delete(System.Int32)
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Delete_System_Int32_
+  name: Delete(int)
+  nameWithType: Repository<RequestModel>.Delete(int)
+  fullName: ServiceFlow.Class.Repositories.Repository<ServiceFlow.Class.Models.RequestModel>.Delete(int)
+  nameWithType.vb: Repository(Of RequestModel).Delete(Integer)
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of ServiceFlow.Class.Models.RequestModel).Delete(Integer)
+  name.vb: Delete(Integer)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Delete(System.Int32)
+    name: Delete
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Delete_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Delete(System.Int32)
+    name: Delete
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Delete_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.GetById(System.Int32)
+  commentId: M:ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.GetById(System.Int32)
+  parent: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}
+  definition: ServiceFlow.Class.Repositories.Repository`1.GetById(System.Int32)
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetById_System_Int32_
+  name: GetById(int)
+  nameWithType: Repository<RequestModel>.GetById(int)
+  fullName: ServiceFlow.Class.Repositories.Repository<ServiceFlow.Class.Models.RequestModel>.GetById(int)
+  nameWithType.vb: Repository(Of RequestModel).GetById(Integer)
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of ServiceFlow.Class.Models.RequestModel).GetById(Integer)
+  name.vb: GetById(Integer)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.GetById(System.Int32)
+    name: GetById
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.GetById(System.Int32)
+    name: GetById
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Update(ServiceFlow.Class.Models.RequestModel)
+  commentId: M:ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Update(ServiceFlow.Class.Models.RequestModel)
+  parent: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}
+  definition: ServiceFlow.Class.Repositories.Repository`1.Update(`0)
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Update__0_
+  name: Update(RequestModel)
+  nameWithType: Repository<RequestModel>.Update(RequestModel)
+  fullName: ServiceFlow.Class.Repositories.Repository<ServiceFlow.Class.Models.RequestModel>.Update(ServiceFlow.Class.Models.RequestModel)
+  nameWithType.vb: Repository(Of RequestModel).Update(RequestModel)
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of ServiceFlow.Class.Models.RequestModel).Update(ServiceFlow.Class.Models.RequestModel)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Update(ServiceFlow.Class.Models.RequestModel)
+    name: Update
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Update__0_
+  - name: (
+  - uid: ServiceFlow.Class.Models.RequestModel
+    name: RequestModel
+    href: ServiceFlow.Class.Models.RequestModel.html
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.Update(ServiceFlow.Class.Models.RequestModel)
+    name: Update
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Update__0_
+  - name: (
+  - uid: ServiceFlow.Class.Models.RequestModel
+    name: RequestModel
+    href: ServiceFlow.Class.Models.RequestModel.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: ServiceFlow.Class.Repositories.Repository`1
+  commentId: T:ServiceFlow.Class.Repositories.Repository`1
+  href: ServiceFlow.Class.Repositories.Repository-1.html
+  name: Repository<T>
+  nameWithType: Repository<T>
+  fullName: ServiceFlow.Class.Repositories.Repository<T>
+  nameWithType.vb: Repository(Of T)
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of T)
+  name.vb: Repository(Of T)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository`1
+    name: Repository
+    href: ServiceFlow.Class.Repositories.Repository-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository`1
+    name: Repository
+    href: ServiceFlow.Class.Repositories.Repository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: ServiceFlow.Class.Repositories.IRepository`1
+  commentId: T:ServiceFlow.Class.Repositories.IRepository`1
+  href: ServiceFlow.Class.Repositories.IRepository-1.html
+  name: IRepository<T>
+  nameWithType: IRepository<T>
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>
+  nameWithType.vb: IRepository(Of T)
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T)
+  name.vb: IRepository(Of T)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.IRepository`1
+    name: IRepository
+    href: ServiceFlow.Class.Repositories.IRepository-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.IRepository`1
+    name: IRepository
+    href: ServiceFlow.Class.Repositories.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: ServiceFlow.Class.Repositories.Repository`1.dbSet
+  commentId: F:ServiceFlow.Class.Repositories.Repository`1.dbSet
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_dbSet
+  name: dbSet
+  nameWithType: Repository<T>.dbSet
+  fullName: ServiceFlow.Class.Repositories.Repository<T>.dbSet
+  nameWithType.vb: Repository(Of T).dbSet
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of T).dbSet
+- uid: ServiceFlow.Class.Repositories.Repository`1.Create(`0)
+  commentId: M:ServiceFlow.Class.Repositories.Repository`1.Create(`0)
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Create__0_
+  name: Create(T)
+  nameWithType: Repository<T>.Create(T)
+  fullName: ServiceFlow.Class.Repositories.Repository<T>.Create(T)
+  nameWithType.vb: Repository(Of T).Create(T)
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of T).Create(T)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository`1.Create(`0)
+    name: Create
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Create__0_
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository`1.Create(`0)
+    name: Create
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Create__0_
+  - name: (
+  - name: T
+  - name: )
+- uid: ServiceFlow.Class.Repositories.Repository`1.Delete(System.Int32)
+  commentId: M:ServiceFlow.Class.Repositories.Repository`1.Delete(System.Int32)
+  isExternal: true
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Delete_System_Int32_
+  name: Delete(int)
+  nameWithType: Repository<T>.Delete(int)
+  fullName: ServiceFlow.Class.Repositories.Repository<T>.Delete(int)
+  nameWithType.vb: Repository(Of T).Delete(Integer)
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of T).Delete(Integer)
+  name.vb: Delete(Integer)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository`1.Delete(System.Int32)
+    name: Delete
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Delete_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository`1.Delete(System.Int32)
+    name: Delete
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Delete_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: ServiceFlow.Class.Repositories.Repository`1.GetById(System.Int32)
+  commentId: M:ServiceFlow.Class.Repositories.Repository`1.GetById(System.Int32)
+  isExternal: true
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetById_System_Int32_
+  name: GetById(int)
+  nameWithType: Repository<T>.GetById(int)
+  fullName: ServiceFlow.Class.Repositories.Repository<T>.GetById(int)
+  nameWithType.vb: Repository(Of T).GetById(Integer)
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of T).GetById(Integer)
+  name.vb: GetById(Integer)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository`1.GetById(System.Int32)
+    name: GetById
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository`1.GetById(System.Int32)
+    name: GetById
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: ServiceFlow.Class.Repositories.Repository`1.Update(`0)
+  commentId: M:ServiceFlow.Class.Repositories.Repository`1.Update(`0)
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Update__0_
+  name: Update(T)
+  nameWithType: Repository<T>.Update(T)
+  fullName: ServiceFlow.Class.Repositories.Repository<T>.Update(T)
+  nameWithType.vb: Repository(Of T).Update(T)
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of T).Update(T)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository`1.Update(`0)
+    name: Update
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Update__0_
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository`1.Update(`0)
+    name: Update
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_Update__0_
+  - name: (
+  - name: T
+  - name: )
+- uid: ServiceFlow.Class.Repositories.RequestRepository.#ctor*
+  commentId: Overload:ServiceFlow.Class.Repositories.RequestRepository.#ctor
+  href: ServiceFlow.Class.Repositories.RequestRepository.html#ServiceFlow_Class_Repositories_RequestRepository__ctor_ServiceFlow_Class_Data_ServiceFlowDB_
+  name: RequestRepository
+  nameWithType: RequestRepository.RequestRepository
+  fullName: ServiceFlow.Class.Repositories.RequestRepository.RequestRepository
+  nameWithType.vb: RequestRepository.New
+  fullName.vb: ServiceFlow.Class.Repositories.RequestRepository.New
+  name.vb: New
+- uid: ServiceFlow.Class.Data.ServiceFlowDB
+  commentId: T:ServiceFlow.Class.Data.ServiceFlowDB
+  parent: ServiceFlow.Class.Data
+  href: ServiceFlow.Class.Data.ServiceFlowDB.html
+  name: ServiceFlowDB
+  nameWithType: ServiceFlowDB
+  fullName: ServiceFlow.Class.Data.ServiceFlowDB
+- uid: ServiceFlow.Class.Data
+  commentId: N:ServiceFlow.Class.Data
+  href: ServiceFlow.html
+  name: ServiceFlow.Class.Data
+  nameWithType: ServiceFlow.Class.Data
+  fullName: ServiceFlow.Class.Data
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Data
+    name: Data
+    href: ServiceFlow.Class.Data.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Data
+    name: Data
+    href: ServiceFlow.Class.Data.html
+- uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.GetAll
+  commentId: M:ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.GetAll
+  parent: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}
+  definition: ServiceFlow.Class.Repositories.Repository`1.GetAll
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetAll
+  name: GetAll()
+  nameWithType: Repository<RequestModel>.GetAll()
+  fullName: ServiceFlow.Class.Repositories.Repository<ServiceFlow.Class.Models.RequestModel>.GetAll()
+  nameWithType.vb: Repository(Of RequestModel).GetAll()
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of ServiceFlow.Class.Models.RequestModel).GetAll()
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.GetAll
+    name: GetAll
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository{ServiceFlow.Class.Models.RequestModel}.GetAll
+    name: GetAll
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetAll
+  - name: (
+  - name: )
+- uid: ServiceFlow.Class.Repositories.RequestRepository.GetAll*
+  commentId: Overload:ServiceFlow.Class.Repositories.RequestRepository.GetAll
+  href: ServiceFlow.Class.Repositories.RequestRepository.html#ServiceFlow_Class_Repositories_RequestRepository_GetAll
+  name: GetAll
+  nameWithType: RequestRepository.GetAll
+  fullName: ServiceFlow.Class.Repositories.RequestRepository.GetAll
+- uid: ServiceFlow.Class.Repositories.IRepository{ServiceFlow.Class.Models.RequestModel}.GetAll
+  commentId: M:ServiceFlow.Class.Repositories.IRepository{ServiceFlow.Class.Models.RequestModel}.GetAll
+  parent: ServiceFlow.Class.Repositories.IRepository{ServiceFlow.Class.Models.RequestModel}
+  definition: ServiceFlow.Class.Repositories.IRepository`1.GetAll
+  href: ServiceFlow.Class.Repositories.IRepository-1.html#ServiceFlow_Class_Repositories_IRepository_1_GetAll
+  name: GetAll()
+  nameWithType: IRepository<RequestModel>.GetAll()
+  fullName: ServiceFlow.Class.Repositories.IRepository<ServiceFlow.Class.Models.RequestModel>.GetAll()
+  nameWithType.vb: IRepository(Of RequestModel).GetAll()
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of ServiceFlow.Class.Models.RequestModel).GetAll()
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.IRepository{ServiceFlow.Class.Models.RequestModel}.GetAll
+    name: GetAll
+    href: ServiceFlow.Class.Repositories.IRepository-1.html#ServiceFlow_Class_Repositories_IRepository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.IRepository{ServiceFlow.Class.Models.RequestModel}.GetAll
+    name: GetAll
+    href: ServiceFlow.Class.Repositories.IRepository-1.html#ServiceFlow_Class_Repositories_IRepository_1_GetAll
+  - name: (
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{ServiceFlow.Class.Models.RequestModel}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.ICollection{ServiceFlow.Class.Models.RequestModel}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<ICollection<RequestModel>>
+  nameWithType: Task<ICollection<RequestModel>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ServiceFlow.Class.Models.RequestModel>>
+  nameWithType.vb: Task(Of ICollection(Of RequestModel))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.ICollection(Of ServiceFlow.Class.Models.RequestModel))
+  name.vb: Task(Of ICollection(Of RequestModel))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - uid: ServiceFlow.Class.Models.RequestModel
+    name: RequestModel
+    href: ServiceFlow.Class.Models.RequestModel.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: ServiceFlow.Class.Models.RequestModel
+    name: RequestModel
+    href: ServiceFlow.Class.Models.RequestModel.html
+  - name: )
+  - name: )
+- uid: ServiceFlow.Class.Repositories.Repository`1.GetAll
+  commentId: M:ServiceFlow.Class.Repositories.Repository`1.GetAll
+  href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetAll
+  name: GetAll()
+  nameWithType: Repository<T>.GetAll()
+  fullName: ServiceFlow.Class.Repositories.Repository<T>.GetAll()
+  nameWithType.vb: Repository(Of T).GetAll()
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of T).GetAll()
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository`1.GetAll
+    name: GetAll
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository`1.GetAll
+    name: GetAll
+    href: ServiceFlow.Class.Repositories.Repository-1.html#ServiceFlow_Class_Repositories_Repository_1_GetAll
+  - name: (
+  - name: )
+- uid: ServiceFlow.Class.Repositories.IRepository`1.GetAll
+  commentId: M:ServiceFlow.Class.Repositories.IRepository`1.GetAll
+  href: ServiceFlow.Class.Repositories.IRepository-1.html#ServiceFlow_Class_Repositories_IRepository_1_GetAll
+  name: GetAll()
+  nameWithType: IRepository<T>.GetAll()
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>.GetAll()
+  nameWithType.vb: IRepository(Of T).GetAll()
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T).GetAll()
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.IRepository`1.GetAll
+    name: GetAll
+    href: ServiceFlow.Class.Repositories.IRepository-1.html#ServiceFlow_Class_Repositories_IRepository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.IRepository`1.GetAll
+    name: GetAll
+    href: ServiceFlow.Class.Repositories.IRepository-1.html#ServiceFlow_Class_Repositories_IRepository_1_GetAll
+  - name: (
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks

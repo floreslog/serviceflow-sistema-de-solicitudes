@@ -1,0 +1,75 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Class.Repositories
+  commentId: N:ServiceFlow.Class.Repositories
+  id: ServiceFlow.Class.Repositories
+  children:
+  - ServiceFlow.Class.Repositories.IRepository`1
+  - ServiceFlow.Class.Repositories.Repository`1
+  - ServiceFlow.Class.Repositories.RequestRepository
+  langs:
+  - csharp
+  - vb
+  name: ServiceFlow.Class.Repositories
+  nameWithType: ServiceFlow.Class.Repositories
+  fullName: ServiceFlow.Class.Repositories
+  type: Namespace
+  assemblies:
+  - ServiceFlow.Class
+references:
+- uid: ServiceFlow.Class.Repositories.IRepository`1
+  commentId: T:ServiceFlow.Class.Repositories.IRepository`1
+  href: ServiceFlow.Class.Repositories.IRepository-1.html
+  name: IRepository<T>
+  nameWithType: IRepository<T>
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>
+  nameWithType.vb: IRepository(Of T)
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T)
+  name.vb: IRepository(Of T)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.IRepository`1
+    name: IRepository
+    href: ServiceFlow.Class.Repositories.IRepository-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.IRepository`1
+    name: IRepository
+    href: ServiceFlow.Class.Repositories.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: ServiceFlow.Class.Repositories.Repository`1
+  commentId: T:ServiceFlow.Class.Repositories.Repository`1
+  href: ServiceFlow.Class.Repositories.Repository-1.html
+  name: Repository<T>
+  nameWithType: Repository<T>
+  fullName: ServiceFlow.Class.Repositories.Repository<T>
+  nameWithType.vb: Repository(Of T)
+  fullName.vb: ServiceFlow.Class.Repositories.Repository(Of T)
+  name.vb: Repository(Of T)
+  spec.csharp:
+  - uid: ServiceFlow.Class.Repositories.Repository`1
+    name: Repository
+    href: ServiceFlow.Class.Repositories.Repository-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: ServiceFlow.Class.Repositories.Repository`1
+    name: Repository
+    href: ServiceFlow.Class.Repositories.Repository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: ServiceFlow.Class.Repositories.RequestRepository
+  commentId: T:ServiceFlow.Class.Repositories.RequestRepository
+  href: ServiceFlow.Class.Repositories.RequestRepository.html
+  name: RequestRepository
+  nameWithType: RequestRepository
+  fullName: ServiceFlow.Class.Repositories.RequestRepository

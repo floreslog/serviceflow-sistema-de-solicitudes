@@ -1,0 +1,54 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Web.Services
+  commentId: N:ServiceFlow.Web.Services
+  id: ServiceFlow.Web.Services
+  children:
+  - ServiceFlow.Web.Services.EmailService
+  langs:
+  - csharp
+  - vb
+  name: ServiceFlow.Web.Services
+  nameWithType: ServiceFlow.Web.Services
+  fullName: ServiceFlow.Web.Services
+  type: Namespace
+  assemblies:
+  - ServiceFlow.Web
+references:
+- uid: ServiceFlow.Web.Services.EmailService
+  commentId: T:ServiceFlow.Web.Services.EmailService
+  parent: ServiceFlow.Web.Services
+  href: ServiceFlow.Web.Services.EmailService.html
+  name: EmailService
+  nameWithType: EmailService
+  fullName: ServiceFlow.Web.Services.EmailService
+- uid: ServiceFlow.Web.Services
+  commentId: N:ServiceFlow.Web.Services
+  href: ServiceFlow.html
+  name: ServiceFlow.Web.Services
+  nameWithType: ServiceFlow.Web.Services
+  fullName: ServiceFlow.Web.Services
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Web
+    name: Web
+    href: ServiceFlow.Web.html
+  - name: .
+  - uid: ServiceFlow.Web.Services
+    name: Services
+    href: ServiceFlow.Web.Services.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Web
+    name: Web
+    href: ServiceFlow.Web.html
+  - name: .
+  - uid: ServiceFlow.Web.Services
+    name: Services
+    href: ServiceFlow.Web.Services.html

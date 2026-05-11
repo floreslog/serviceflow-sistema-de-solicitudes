@@ -1,0 +1,761 @@
+{
+  "source_base_path": "C:/Users/Nicolas DeLuna/source/repos/ServiceFlow/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Data.ServiceFlowDB.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Data.ServiceFlowDB.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Data.ServiceFlowDB",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Data.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Data.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Data",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Migrations.InitialMigration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Migrations.InitialMigration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Migrations.InitialMigration",
+      "Summary": "<p sourcefile=\"api/ServiceFlow.Class.Migrations.InitialMigration.yml\" sourcestartlinenumber=\"1\">A base class inherited by each EF Core migration.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Migrations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Migrations.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Migrations",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Models.ApplicationUser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Models.ApplicationUser.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Models.ApplicationUser",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Models.CategoryModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Models.CategoryModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Models.CategoryModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Models.CommentModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Models.CommentModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Models.CommentModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Models.IEntity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Models.IEntity.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Models.IEntity",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Models.Priority.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Models.Priority.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Models.Priority",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Models.RequestModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Models.RequestModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Models.RequestModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Models.Status.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Models.Status.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Models.Status",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Models.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Models",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Repositories.IRepository-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Repositories.IRepository-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Repositories.IRepository<T>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Repositories.Repository-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Repositories.Repository-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Repositories.Repository<T>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Repositories.RequestRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Repositories.RequestRepository.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Repositories.RequestRepository",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Class.Repositories.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Class.Repositories.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Class.Repositories",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Controllers.AccountController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Controllers.AccountController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Controllers.AccountController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Controllers.CategoryController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Controllers.CategoryController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Controllers.CategoryController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Controllers.ErrorController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Controllers.ErrorController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Controllers.ErrorController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Controllers.HelpController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Controllers.HelpController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Controllers.HelpController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Controllers.HomeController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Controllers.HomeController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Controllers.HomeController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Controllers.ProfileController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Controllers.ProfileController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Controllers.ProfileController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Controllers.RequestController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Controllers.RequestController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Controllers.RequestController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Controllers.UserController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Controllers.UserController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Controllers.UserController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Controllers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Controllers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Controllers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Helpers.RoleInitializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Helpers.RoleInitializer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Helpers.RoleInitializer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Helpers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Helpers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Services.EmailService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Services.EmailService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Services.EmailService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.Services.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.Services",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.CategoryViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.CategoryViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.CategoryViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.ChangePasswordViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.ChangePasswordViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.ChangePasswordViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.CommentViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.CommentViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.CommentViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.CreateRequestViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.CreateRequestViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.CreateRequestViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.DashboardViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.DashboardViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.DashboardViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.EditRequestViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.EditRequestViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.EditRequestViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.EditUserViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.EditUserViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.EditUserViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.ErrorViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.ErrorViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.ErrorViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.ForgotPasswordViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.ForgotPasswordViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.ForgotPasswordViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.LoginViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.LoginViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.LoginViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.PagedResult-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.PagedResult-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.PagedResult<T>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.ProfileViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.ProfileViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.ProfileViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.RegisterViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.RegisterViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.RegisterViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.RequestDetailViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.RequestDetailViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.RequestDetailViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.RequestListViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.RequestListViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.RequestListViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.ResetPasswordViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.ResetPasswordViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.ResetPasswordViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.UserDetailViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.UserDetailViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.UserDetailViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.UserListViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.UserListViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.UserListViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.VerifyEmailViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.VerifyEmailViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels.VerifyEmailViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ServiceFlow.Web.ViewModels.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ServiceFlow.Web.ViewModels.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ServiceFlow.Web.ViewModels",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

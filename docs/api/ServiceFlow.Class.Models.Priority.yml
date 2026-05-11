@@ -1,0 +1,174 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Class.Models.Priority
+  commentId: T:ServiceFlow.Class.Models.Priority
+  id: Priority
+  parent: ServiceFlow.Class.Models
+  children:
+  - ServiceFlow.Class.Models.Priority.High
+  - ServiceFlow.Class.Models.Priority.Low
+  - ServiceFlow.Class.Models.Priority.Medium
+  - ServiceFlow.Class.Models.Priority.Urgent
+  langs:
+  - csharp
+  - vb
+  name: Priority
+  nameWithType: Priority
+  fullName: ServiceFlow.Class.Models.Priority
+  type: Enum
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Priority.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Priority
+    path: ../ServiceFlow.Class/Models/Priority.cs
+    startLine: 2
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: public enum Priority
+    content.vb: Public Enum Priority
+- uid: ServiceFlow.Class.Models.Priority.Low
+  commentId: F:ServiceFlow.Class.Models.Priority.Low
+  id: Low
+  parent: ServiceFlow.Class.Models.Priority
+  langs:
+  - csharp
+  - vb
+  name: Low
+  nameWithType: Priority.Low
+  fullName: ServiceFlow.Class.Models.Priority.Low
+  type: Field
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Priority.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Low
+    path: ../ServiceFlow.Class/Models/Priority.cs
+    startLine: 4
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: Low = 0
+    return:
+      type: ServiceFlow.Class.Models.Priority
+- uid: ServiceFlow.Class.Models.Priority.Medium
+  commentId: F:ServiceFlow.Class.Models.Priority.Medium
+  id: Medium
+  parent: ServiceFlow.Class.Models.Priority
+  langs:
+  - csharp
+  - vb
+  name: Medium
+  nameWithType: Priority.Medium
+  fullName: ServiceFlow.Class.Models.Priority.Medium
+  type: Field
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Priority.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Medium
+    path: ../ServiceFlow.Class/Models/Priority.cs
+    startLine: 5
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: Medium = 1
+    return:
+      type: ServiceFlow.Class.Models.Priority
+- uid: ServiceFlow.Class.Models.Priority.High
+  commentId: F:ServiceFlow.Class.Models.Priority.High
+  id: High
+  parent: ServiceFlow.Class.Models.Priority
+  langs:
+  - csharp
+  - vb
+  name: High
+  nameWithType: Priority.High
+  fullName: ServiceFlow.Class.Models.Priority.High
+  type: Field
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Priority.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: High
+    path: ../ServiceFlow.Class/Models/Priority.cs
+    startLine: 6
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: High = 2
+    return:
+      type: ServiceFlow.Class.Models.Priority
+- uid: ServiceFlow.Class.Models.Priority.Urgent
+  commentId: F:ServiceFlow.Class.Models.Priority.Urgent
+  id: Urgent
+  parent: ServiceFlow.Class.Models.Priority
+  langs:
+  - csharp
+  - vb
+  name: Urgent
+  nameWithType: Priority.Urgent
+  fullName: ServiceFlow.Class.Models.Priority.Urgent
+  type: Field
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/Priority.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Urgent
+    path: ../ServiceFlow.Class/Models/Priority.cs
+    startLine: 7
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: Urgent = 3
+    return:
+      type: ServiceFlow.Class.Models.Priority
+references:
+- uid: ServiceFlow.Class.Models
+  commentId: N:ServiceFlow.Class.Models
+  href: ServiceFlow.html
+  name: ServiceFlow.Class.Models
+  nameWithType: ServiceFlow.Class.Models
+  fullName: ServiceFlow.Class.Models
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Models
+    name: Models
+    href: ServiceFlow.Class.Models.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Models
+    name: Models
+    href: ServiceFlow.Class.Models.html
+- uid: ServiceFlow.Class.Models.Priority
+  commentId: T:ServiceFlow.Class.Models.Priority
+  parent: ServiceFlow.Class.Models
+  href: ServiceFlow.Class.Models.Priority.html
+  name: Priority
+  nameWithType: Priority
+  fullName: ServiceFlow.Class.Models.Priority

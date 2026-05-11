@@ -1,0 +1,117 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Class.Models.IEntity
+  commentId: T:ServiceFlow.Class.Models.IEntity
+  id: IEntity
+  parent: ServiceFlow.Class.Models
+  children:
+  - ServiceFlow.Class.Models.IEntity.Id
+  langs:
+  - csharp
+  - vb
+  name: IEntity
+  nameWithType: IEntity
+  fullName: ServiceFlow.Class.Models.IEntity
+  type: Interface
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/IEntity.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: IEntity
+    path: ../ServiceFlow.Class/Models/IEntity.cs
+    startLine: 2
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: public interface IEntity
+    content.vb: Public Interface IEntity
+  derivedClasses:
+  - ServiceFlow.Class.Models.CategoryModel
+  - ServiceFlow.Class.Models.CommentModel
+  - ServiceFlow.Class.Models.RequestModel
+- uid: ServiceFlow.Class.Models.IEntity.Id
+  commentId: P:ServiceFlow.Class.Models.IEntity.Id
+  id: Id
+  parent: ServiceFlow.Class.Models.IEntity
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: IEntity.Id
+  fullName: ServiceFlow.Class.Models.IEntity.Id
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/IEntity.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Id
+    path: ../ServiceFlow.Class/Models/IEntity.cs
+    startLine: 4
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: int Id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Property Id As Integer
+  overload: ServiceFlow.Class.Models.IEntity.Id*
+references:
+- uid: ServiceFlow.Class.Models
+  commentId: N:ServiceFlow.Class.Models
+  href: ServiceFlow.html
+  name: ServiceFlow.Class.Models
+  nameWithType: ServiceFlow.Class.Models
+  fullName: ServiceFlow.Class.Models
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Models
+    name: Models
+    href: ServiceFlow.Class.Models.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Models
+    name: Models
+    href: ServiceFlow.Class.Models.html
+- uid: ServiceFlow.Class.Models.IEntity.Id*
+  commentId: Overload:ServiceFlow.Class.Models.IEntity.Id
+  href: ServiceFlow.Class.Models.IEntity.html#ServiceFlow_Class_Models_IEntity_Id
+  name: Id
+  nameWithType: IEntity.Id
+  fullName: ServiceFlow.Class.Models.IEntity.Id
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

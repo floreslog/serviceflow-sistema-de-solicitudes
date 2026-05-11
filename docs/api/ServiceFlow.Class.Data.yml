@@ -1,0 +1,54 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Class.Data
+  commentId: N:ServiceFlow.Class.Data
+  id: ServiceFlow.Class.Data
+  children:
+  - ServiceFlow.Class.Data.ServiceFlowDB
+  langs:
+  - csharp
+  - vb
+  name: ServiceFlow.Class.Data
+  nameWithType: ServiceFlow.Class.Data
+  fullName: ServiceFlow.Class.Data
+  type: Namespace
+  assemblies:
+  - ServiceFlow.Class
+references:
+- uid: ServiceFlow.Class.Data.ServiceFlowDB
+  commentId: T:ServiceFlow.Class.Data.ServiceFlowDB
+  parent: ServiceFlow.Class.Data
+  href: ServiceFlow.Class.Data.ServiceFlowDB.html
+  name: ServiceFlowDB
+  nameWithType: ServiceFlowDB
+  fullName: ServiceFlow.Class.Data.ServiceFlowDB
+- uid: ServiceFlow.Class.Data
+  commentId: N:ServiceFlow.Class.Data
+  href: ServiceFlow.html
+  name: ServiceFlow.Class.Data
+  nameWithType: ServiceFlow.Class.Data
+  fullName: ServiceFlow.Class.Data
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Data
+    name: Data
+    href: ServiceFlow.Class.Data.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Data
+    name: Data
+    href: ServiceFlow.Class.Data.html

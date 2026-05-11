@@ -1,0 +1,702 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.EditUserViewModel
+  id: EditUserViewModel
+  parent: ServiceFlow.Web.ViewModels
+  children:
+  - ServiceFlow.Web.ViewModels.EditUserViewModel.Email
+  - ServiceFlow.Web.ViewModels.EditUserViewModel.FirstName
+  - ServiceFlow.Web.ViewModels.EditUserViewModel.Id
+  - ServiceFlow.Web.ViewModels.EditUserViewModel.MaternalSurname
+  - ServiceFlow.Web.ViewModels.EditUserViewModel.PaternalSurname
+  - ServiceFlow.Web.ViewModels.EditUserViewModel.PhoneNumber
+  - ServiceFlow.Web.ViewModels.EditUserViewModel.Role
+  langs:
+  - csharp
+  - vb
+  name: EditUserViewModel
+  nameWithType: EditUserViewModel
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel
+  type: Class
+  source:
+    remote:
+      path: ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: EditUserViewModel
+    path: ../ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+    startLine: 4
+  assemblies:
+  - ServiceFlow.Web
+  namespace: ServiceFlow.Web.ViewModels
+  syntax:
+    content: public class EditUserViewModel
+    content.vb: Public Class EditUserViewModel
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.Id
+  commentId: P:ServiceFlow.Web.ViewModels.EditUserViewModel.Id
+  id: Id
+  parent: ServiceFlow.Web.ViewModels.EditUserViewModel
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: EditUserViewModel.Id
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.Id
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Id
+    path: ../ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+    startLine: 6
+  assemblies:
+  - ServiceFlow.Web
+  namespace: ServiceFlow.Web.ViewModels
+  syntax:
+    content: public string Id { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Id As String
+  overload: ServiceFlow.Web.ViewModels.EditUserViewModel.Id*
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.FirstName
+  commentId: P:ServiceFlow.Web.ViewModels.EditUserViewModel.FirstName
+  id: FirstName
+  parent: ServiceFlow.Web.ViewModels.EditUserViewModel
+  langs:
+  - csharp
+  - vb
+  name: FirstName
+  nameWithType: EditUserViewModel.FirstName
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.FirstName
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: FirstName
+    path: ../ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+    startLine: 7
+  assemblies:
+  - ServiceFlow.Web
+  namespace: ServiceFlow.Web.ViewModels
+  syntax:
+    content: >-
+      [Required]
+
+      [Display(Name = "Nombre")]
+
+      public string FirstName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <Display(Name:="Nombre")>
+
+      Public Property FirstName As String
+  overload: ServiceFlow.Web.ViewModels.EditUserViewModel.FirstName*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.DisplayAttribute
+    ctor: System.ComponentModel.DataAnnotations.DisplayAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Name
+      type: System.String
+      value: Nombre
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.PaternalSurname
+  commentId: P:ServiceFlow.Web.ViewModels.EditUserViewModel.PaternalSurname
+  id: PaternalSurname
+  parent: ServiceFlow.Web.ViewModels.EditUserViewModel
+  langs:
+  - csharp
+  - vb
+  name: PaternalSurname
+  nameWithType: EditUserViewModel.PaternalSurname
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.PaternalSurname
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: PaternalSurname
+    path: ../ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+    startLine: 10
+  assemblies:
+  - ServiceFlow.Web
+  namespace: ServiceFlow.Web.ViewModels
+  syntax:
+    content: >-
+      [Required]
+
+      [Display(Name = "Apellido Paterno")]
+
+      public string PaternalSurname { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <Display(Name:="Apellido Paterno")>
+
+      Public Property PaternalSurname As String
+  overload: ServiceFlow.Web.ViewModels.EditUserViewModel.PaternalSurname*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.DisplayAttribute
+    ctor: System.ComponentModel.DataAnnotations.DisplayAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Name
+      type: System.String
+      value: Apellido Paterno
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.MaternalSurname
+  commentId: P:ServiceFlow.Web.ViewModels.EditUserViewModel.MaternalSurname
+  id: MaternalSurname
+  parent: ServiceFlow.Web.ViewModels.EditUserViewModel
+  langs:
+  - csharp
+  - vb
+  name: MaternalSurname
+  nameWithType: EditUserViewModel.MaternalSurname
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.MaternalSurname
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: MaternalSurname
+    path: ../ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+    startLine: 13
+  assemblies:
+  - ServiceFlow.Web
+  namespace: ServiceFlow.Web.ViewModels
+  syntax:
+    content: >-
+      [Required]
+
+      [Display(Name = "Apellido Materno")]
+
+      public string MaternalSurname { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <Display(Name:="Apellido Materno")>
+
+      Public Property MaternalSurname As String
+  overload: ServiceFlow.Web.ViewModels.EditUserViewModel.MaternalSurname*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.DisplayAttribute
+    ctor: System.ComponentModel.DataAnnotations.DisplayAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Name
+      type: System.String
+      value: Apellido Materno
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.Email
+  commentId: P:ServiceFlow.Web.ViewModels.EditUserViewModel.Email
+  id: Email
+  parent: ServiceFlow.Web.ViewModels.EditUserViewModel
+  langs:
+  - csharp
+  - vb
+  name: Email
+  nameWithType: EditUserViewModel.Email
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.Email
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Email
+    path: ../ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+    startLine: 16
+  assemblies:
+  - ServiceFlow.Web
+  namespace: ServiceFlow.Web.ViewModels
+  syntax:
+    content: >-
+      [Required]
+
+      [EmailAddress]
+
+      [Display(Name = "Correo electrónico")]
+
+      public string Email { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <EmailAddress>
+
+      <Display(Name:="Correo electrónico")>
+
+      Public Property Email As String
+  overload: ServiceFlow.Web.ViewModels.EditUserViewModel.Email*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.EmailAddressAttribute
+    ctor: System.ComponentModel.DataAnnotations.EmailAddressAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.DisplayAttribute
+    ctor: System.ComponentModel.DataAnnotations.DisplayAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Name
+      type: System.String
+      value: Correo electrónico
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.PhoneNumber
+  commentId: P:ServiceFlow.Web.ViewModels.EditUserViewModel.PhoneNumber
+  id: PhoneNumber
+  parent: ServiceFlow.Web.ViewModels.EditUserViewModel
+  langs:
+  - csharp
+  - vb
+  name: PhoneNumber
+  nameWithType: EditUserViewModel.PhoneNumber
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.PhoneNumber
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: PhoneNumber
+    path: ../ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+    startLine: 20
+  assemblies:
+  - ServiceFlow.Web
+  namespace: ServiceFlow.Web.ViewModels
+  syntax:
+    content: >-
+      [Required]
+
+      [Display(Name = "Número de teléfono")]
+
+      public string PhoneNumber { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <Display(Name:="Número de teléfono")>
+
+      Public Property PhoneNumber As String
+  overload: ServiceFlow.Web.ViewModels.EditUserViewModel.PhoneNumber*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.DisplayAttribute
+    ctor: System.ComponentModel.DataAnnotations.DisplayAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Name
+      type: System.String
+      value: Número de teléfono
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.Role
+  commentId: P:ServiceFlow.Web.ViewModels.EditUserViewModel.Role
+  id: Role
+  parent: ServiceFlow.Web.ViewModels.EditUserViewModel
+  langs:
+  - csharp
+  - vb
+  name: Role
+  nameWithType: EditUserViewModel.Role
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.Role
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Role
+    path: ../ServiceFlow.Web/ViewModels/EditUserViewModel.cs
+    startLine: 23
+  assemblies:
+  - ServiceFlow.Web
+  namespace: ServiceFlow.Web.ViewModels
+  syntax:
+    content: >-
+      [Required]
+
+      [Display(Name = "Rol")]
+
+      public string Role { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <Display(Name:="Rol")>
+
+      Public Property Role As String
+  overload: ServiceFlow.Web.ViewModels.EditUserViewModel.Role*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.DisplayAttribute
+    ctor: System.ComponentModel.DataAnnotations.DisplayAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: Name
+      type: System.String
+      value: Rol
+references:
+- uid: ServiceFlow.Web.ViewModels
+  commentId: N:ServiceFlow.Web.ViewModels
+  href: ServiceFlow.html
+  name: ServiceFlow.Web.ViewModels
+  nameWithType: ServiceFlow.Web.ViewModels
+  fullName: ServiceFlow.Web.ViewModels
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Web
+    name: Web
+    href: ServiceFlow.Web.html
+  - name: .
+  - uid: ServiceFlow.Web.ViewModels
+    name: ViewModels
+    href: ServiceFlow.Web.ViewModels.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Web
+    name: Web
+    href: ServiceFlow.Web.html
+  - name: .
+  - uid: ServiceFlow.Web.ViewModels
+    name: ViewModels
+    href: ServiceFlow.Web.ViewModels.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.Id*
+  commentId: Overload:ServiceFlow.Web.ViewModels.EditUserViewModel.Id
+  href: ServiceFlow.Web.ViewModels.EditUserViewModel.html#ServiceFlow_Web_ViewModels_EditUserViewModel_Id
+  name: Id
+  nameWithType: EditUserViewModel.Id
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.Id
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.FirstName*
+  commentId: Overload:ServiceFlow.Web.ViewModels.EditUserViewModel.FirstName
+  href: ServiceFlow.Web.ViewModels.EditUserViewModel.html#ServiceFlow_Web_ViewModels_EditUserViewModel_FirstName
+  name: FirstName
+  nameWithType: EditUserViewModel.FirstName
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.FirstName
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.PaternalSurname*
+  commentId: Overload:ServiceFlow.Web.ViewModels.EditUserViewModel.PaternalSurname
+  href: ServiceFlow.Web.ViewModels.EditUserViewModel.html#ServiceFlow_Web_ViewModels_EditUserViewModel_PaternalSurname
+  name: PaternalSurname
+  nameWithType: EditUserViewModel.PaternalSurname
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.PaternalSurname
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.MaternalSurname*
+  commentId: Overload:ServiceFlow.Web.ViewModels.EditUserViewModel.MaternalSurname
+  href: ServiceFlow.Web.ViewModels.EditUserViewModel.html#ServiceFlow_Web_ViewModels_EditUserViewModel_MaternalSurname
+  name: MaternalSurname
+  nameWithType: EditUserViewModel.MaternalSurname
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.MaternalSurname
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.Email*
+  commentId: Overload:ServiceFlow.Web.ViewModels.EditUserViewModel.Email
+  href: ServiceFlow.Web.ViewModels.EditUserViewModel.html#ServiceFlow_Web_ViewModels_EditUserViewModel_Email
+  name: Email
+  nameWithType: EditUserViewModel.Email
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.Email
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.PhoneNumber*
+  commentId: Overload:ServiceFlow.Web.ViewModels.EditUserViewModel.PhoneNumber
+  href: ServiceFlow.Web.ViewModels.EditUserViewModel.html#ServiceFlow_Web_ViewModels_EditUserViewModel_PhoneNumber
+  name: PhoneNumber
+  nameWithType: EditUserViewModel.PhoneNumber
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.PhoneNumber
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel.Role*
+  commentId: Overload:ServiceFlow.Web.ViewModels.EditUserViewModel.Role
+  href: ServiceFlow.Web.ViewModels.EditUserViewModel.html#ServiceFlow_Web_ViewModels_EditUserViewModel_Role
+  name: Role
+  nameWithType: EditUserViewModel.Role
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel.Role

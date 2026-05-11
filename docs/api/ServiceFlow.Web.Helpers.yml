@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Web.Helpers
+  commentId: N:ServiceFlow.Web.Helpers
+  id: ServiceFlow.Web.Helpers
+  children:
+  - ServiceFlow.Web.Helpers.RoleInitializer
+  langs:
+  - csharp
+  - vb
+  name: ServiceFlow.Web.Helpers
+  nameWithType: ServiceFlow.Web.Helpers
+  fullName: ServiceFlow.Web.Helpers
+  type: Namespace
+  assemblies:
+  - ServiceFlow.Web
+references:
+- uid: ServiceFlow.Web.Helpers.RoleInitializer
+  commentId: T:ServiceFlow.Web.Helpers.RoleInitializer
+  href: ServiceFlow.Web.Helpers.RoleInitializer.html
+  name: RoleInitializer
+  nameWithType: RoleInitializer
+  fullName: ServiceFlow.Web.Helpers.RoleInitializer

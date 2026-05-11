@@ -1,0 +1,484 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Class.Repositories.IRepository`1
+  commentId: T:ServiceFlow.Class.Repositories.IRepository`1
+  id: IRepository`1
+  parent: ServiceFlow.Class.Repositories
+  children:
+  - ServiceFlow.Class.Repositories.IRepository`1.Create(`0)
+  - ServiceFlow.Class.Repositories.IRepository`1.Delete(System.Int32)
+  - ServiceFlow.Class.Repositories.IRepository`1.GetAll
+  - ServiceFlow.Class.Repositories.IRepository`1.GetById(System.Int32)
+  - ServiceFlow.Class.Repositories.IRepository`1.Update(`0)
+  langs:
+  - csharp
+  - vb
+  name: IRepository<T>
+  nameWithType: IRepository<T>
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>
+  type: Interface
+  source:
+    remote:
+      path: ServiceFlow.Class/Repositories/IRepository.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: IRepository
+    path: ../ServiceFlow.Class/Repositories/IRepository.cs
+    startLine: 4
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Repositories
+  syntax:
+    content: 'public interface IRepository<T> where T : IEntity'
+    typeParameters:
+    - id: T
+    content.vb: Public Interface IRepository(Of T As IEntity)
+  derivedClasses:
+  - ServiceFlow.Class.Repositories.Repository`1
+  - ServiceFlow.Class.Repositories.RequestRepository
+  nameWithType.vb: IRepository(Of T)
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T)
+  name.vb: IRepository(Of T)
+- uid: ServiceFlow.Class.Repositories.IRepository`1.Create(`0)
+  commentId: M:ServiceFlow.Class.Repositories.IRepository`1.Create(`0)
+  id: Create(`0)
+  parent: ServiceFlow.Class.Repositories.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Create(T)
+  nameWithType: IRepository<T>.Create(T)
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>.Create(T)
+  type: Method
+  source:
+    remote:
+      path: ServiceFlow.Class/Repositories/IRepository.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Create
+    path: ../ServiceFlow.Class/Repositories/IRepository.cs
+    startLine: 6
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Repositories
+  syntax:
+    content: Task<int> Create(T IEntity)
+    parameters:
+    - id: IEntity
+      type: '{T}'
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+    content.vb: Function Create(IEntity As T) As Task(Of Integer)
+  overload: ServiceFlow.Class.Repositories.IRepository`1.Create*
+  nameWithType.vb: IRepository(Of T).Create(T)
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T).Create(T)
+- uid: ServiceFlow.Class.Repositories.IRepository`1.Delete(System.Int32)
+  commentId: M:ServiceFlow.Class.Repositories.IRepository`1.Delete(System.Int32)
+  id: Delete(System.Int32)
+  parent: ServiceFlow.Class.Repositories.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Delete(int)
+  nameWithType: IRepository<T>.Delete(int)
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>.Delete(int)
+  type: Method
+  source:
+    remote:
+      path: ServiceFlow.Class/Repositories/IRepository.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Delete
+    path: ../ServiceFlow.Class/Repositories/IRepository.cs
+    startLine: 7
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Repositories
+  syntax:
+    content: Task Delete(int id)
+    parameters:
+    - id: id
+      type: System.Int32
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function Delete(id As Integer) As Task
+  overload: ServiceFlow.Class.Repositories.IRepository`1.Delete*
+  nameWithType.vb: IRepository(Of T).Delete(Integer)
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T).Delete(Integer)
+  name.vb: Delete(Integer)
+- uid: ServiceFlow.Class.Repositories.IRepository`1.GetAll
+  commentId: M:ServiceFlow.Class.Repositories.IRepository`1.GetAll
+  id: GetAll
+  parent: ServiceFlow.Class.Repositories.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: GetAll()
+  nameWithType: IRepository<T>.GetAll()
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>.GetAll()
+  type: Method
+  source:
+    remote:
+      path: ServiceFlow.Class/Repositories/IRepository.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: GetAll
+    path: ../ServiceFlow.Class/Repositories/IRepository.cs
+    startLine: 8
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Repositories
+  syntax:
+    content: Task<ICollection<T>> GetAll()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{{T}}}
+    content.vb: Function GetAll() As Task(Of ICollection(Of T))
+  overload: ServiceFlow.Class.Repositories.IRepository`1.GetAll*
+  nameWithType.vb: IRepository(Of T).GetAll()
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T).GetAll()
+- uid: ServiceFlow.Class.Repositories.IRepository`1.GetById(System.Int32)
+  commentId: M:ServiceFlow.Class.Repositories.IRepository`1.GetById(System.Int32)
+  id: GetById(System.Int32)
+  parent: ServiceFlow.Class.Repositories.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: GetById(int)
+  nameWithType: IRepository<T>.GetById(int)
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>.GetById(int)
+  type: Method
+  source:
+    remote:
+      path: ServiceFlow.Class/Repositories/IRepository.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: GetById
+    path: ../ServiceFlow.Class/Repositories/IRepository.cs
+    startLine: 9
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Repositories
+  syntax:
+    content: Task<T?> GetById(int id)
+    parameters:
+    - id: id
+      type: System.Int32
+    return:
+      type: System.Threading.Tasks.Task{{T}}
+    content.vb: Function GetById(id As Integer) As Task(Of T)
+  overload: ServiceFlow.Class.Repositories.IRepository`1.GetById*
+  nameWithType.vb: IRepository(Of T).GetById(Integer)
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T).GetById(Integer)
+  name.vb: GetById(Integer)
+- uid: ServiceFlow.Class.Repositories.IRepository`1.Update(`0)
+  commentId: M:ServiceFlow.Class.Repositories.IRepository`1.Update(`0)
+  id: Update(`0)
+  parent: ServiceFlow.Class.Repositories.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Update(T)
+  nameWithType: IRepository<T>.Update(T)
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>.Update(T)
+  type: Method
+  source:
+    remote:
+      path: ServiceFlow.Class/Repositories/IRepository.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Update
+    path: ../ServiceFlow.Class/Repositories/IRepository.cs
+    startLine: 10
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Repositories
+  syntax:
+    content: Task Update(T entity)
+    parameters:
+    - id: entity
+      type: '{T}'
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function Update(entity As T) As Task
+  overload: ServiceFlow.Class.Repositories.IRepository`1.Update*
+  nameWithType.vb: IRepository(Of T).Update(T)
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T).Update(T)
+references:
+- uid: ServiceFlow.Class.Repositories
+  commentId: N:ServiceFlow.Class.Repositories
+  href: ServiceFlow.html
+  name: ServiceFlow.Class.Repositories
+  nameWithType: ServiceFlow.Class.Repositories
+  fullName: ServiceFlow.Class.Repositories
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Repositories
+    name: Repositories
+    href: ServiceFlow.Class.Repositories.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Repositories
+    name: Repositories
+    href: ServiceFlow.Class.Repositories.html
+- uid: ServiceFlow.Class.Repositories.IRepository`1.Create*
+  commentId: Overload:ServiceFlow.Class.Repositories.IRepository`1.Create
+  href: ServiceFlow.Class.Repositories.IRepository-1.html#ServiceFlow_Class_Repositories_IRepository_1_Create__0_
+  name: Create
+  nameWithType: IRepository<T>.Create
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>.Create
+  nameWithType.vb: IRepository(Of T).Create
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T).Create
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Threading.Tasks.Task{System.Int32}
+  commentId: T:System.Threading.Tasks.Task{System.Int32}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<int>
+  nameWithType: Task<int>
+  fullName: System.Threading.Tasks.Task<int>
+  nameWithType.vb: Task(Of Integer)
+  fullName.vb: System.Threading.Tasks.Task(Of Integer)
+  name.vb: Task(Of Integer)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: ServiceFlow.Class.Repositories.IRepository`1.Delete*
+  commentId: Overload:ServiceFlow.Class.Repositories.IRepository`1.Delete
+  href: ServiceFlow.Class.Repositories.IRepository-1.html#ServiceFlow_Class_Repositories_IRepository_1_Delete_System_Int32_
+  name: Delete
+  nameWithType: IRepository<T>.Delete
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>.Delete
+  nameWithType.vb: IRepository(Of T).Delete
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T).Delete
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: ServiceFlow.Class.Repositories.IRepository`1.GetAll*
+  commentId: Overload:ServiceFlow.Class.Repositories.IRepository`1.GetAll
+  href: ServiceFlow.Class.Repositories.IRepository-1.html#ServiceFlow_Class_Repositories_IRepository_1_GetAll
+  name: GetAll
+  nameWithType: IRepository<T>.GetAll
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>.GetAll
+  nameWithType.vb: IRepository(Of T).GetAll
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T).GetAll
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{{T}}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.ICollection{`0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<ICollection<T>>
+  nameWithType: Task<ICollection<T>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.ICollection<T>>
+  nameWithType.vb: Task(Of ICollection(Of T))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.ICollection(Of T))
+  name.vb: Task(Of ICollection(Of T))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: ServiceFlow.Class.Repositories.IRepository`1.GetById*
+  commentId: Overload:ServiceFlow.Class.Repositories.IRepository`1.GetById
+  href: ServiceFlow.Class.Repositories.IRepository-1.html#ServiceFlow_Class_Repositories_IRepository_1_GetById_System_Int32_
+  name: GetById
+  nameWithType: IRepository<T>.GetById
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>.GetById
+  nameWithType.vb: IRepository(Of T).GetById
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T).GetById
+- uid: System.Threading.Tasks.Task{{T}}
+  commentId: T:System.Threading.Tasks.Task{`0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<T>
+  nameWithType: Task<T>
+  fullName: System.Threading.Tasks.Task<T>
+  nameWithType.vb: Task(Of T)
+  fullName.vb: System.Threading.Tasks.Task(Of T)
+  name.vb: Task(Of T)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: ServiceFlow.Class.Repositories.IRepository`1.Update*
+  commentId: Overload:ServiceFlow.Class.Repositories.IRepository`1.Update
+  href: ServiceFlow.Class.Repositories.IRepository-1.html#ServiceFlow_Class_Repositories_IRepository_1_Update__0_
+  name: Update
+  nameWithType: IRepository<T>.Update
+  fullName: ServiceFlow.Class.Repositories.IRepository<T>.Update
+  nameWithType.vb: IRepository(Of T).Update
+  fullName.vb: ServiceFlow.Class.Repositories.IRepository(Of T).Update

@@ -1,0 +1,72 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Web.Controllers
+  commentId: N:ServiceFlow.Web.Controllers
+  id: ServiceFlow.Web.Controllers
+  children:
+  - ServiceFlow.Web.Controllers.AccountController
+  - ServiceFlow.Web.Controllers.CategoryController
+  - ServiceFlow.Web.Controllers.ErrorController
+  - ServiceFlow.Web.Controllers.HelpController
+  - ServiceFlow.Web.Controllers.HomeController
+  - ServiceFlow.Web.Controllers.ProfileController
+  - ServiceFlow.Web.Controllers.RequestController
+  - ServiceFlow.Web.Controllers.UserController
+  langs:
+  - csharp
+  - vb
+  name: ServiceFlow.Web.Controllers
+  nameWithType: ServiceFlow.Web.Controllers
+  fullName: ServiceFlow.Web.Controllers
+  type: Namespace
+  assemblies:
+  - ServiceFlow.Web
+references:
+- uid: ServiceFlow.Web.Controllers.AccountController
+  commentId: T:ServiceFlow.Web.Controllers.AccountController
+  href: ServiceFlow.Web.Controllers.AccountController.html
+  name: AccountController
+  nameWithType: AccountController
+  fullName: ServiceFlow.Web.Controllers.AccountController
+- uid: ServiceFlow.Web.Controllers.CategoryController
+  commentId: T:ServiceFlow.Web.Controllers.CategoryController
+  href: ServiceFlow.Web.Controllers.CategoryController.html
+  name: CategoryController
+  nameWithType: CategoryController
+  fullName: ServiceFlow.Web.Controllers.CategoryController
+- uid: ServiceFlow.Web.Controllers.ErrorController
+  commentId: T:ServiceFlow.Web.Controllers.ErrorController
+  href: ServiceFlow.Web.Controllers.ErrorController.html
+  name: ErrorController
+  nameWithType: ErrorController
+  fullName: ServiceFlow.Web.Controllers.ErrorController
+- uid: ServiceFlow.Web.Controllers.HelpController
+  commentId: T:ServiceFlow.Web.Controllers.HelpController
+  href: ServiceFlow.Web.Controllers.HelpController.html
+  name: HelpController
+  nameWithType: HelpController
+  fullName: ServiceFlow.Web.Controllers.HelpController
+- uid: ServiceFlow.Web.Controllers.HomeController
+  commentId: T:ServiceFlow.Web.Controllers.HomeController
+  href: ServiceFlow.Web.Controllers.HomeController.html
+  name: HomeController
+  nameWithType: HomeController
+  fullName: ServiceFlow.Web.Controllers.HomeController
+- uid: ServiceFlow.Web.Controllers.ProfileController
+  commentId: T:ServiceFlow.Web.Controllers.ProfileController
+  href: ServiceFlow.Web.Controllers.ProfileController.html
+  name: ProfileController
+  nameWithType: ProfileController
+  fullName: ServiceFlow.Web.Controllers.ProfileController
+- uid: ServiceFlow.Web.Controllers.RequestController
+  commentId: T:ServiceFlow.Web.Controllers.RequestController
+  href: ServiceFlow.Web.Controllers.RequestController.html
+  name: RequestController
+  nameWithType: RequestController
+  fullName: ServiceFlow.Web.Controllers.RequestController
+- uid: ServiceFlow.Web.Controllers.UserController
+  commentId: T:ServiceFlow.Web.Controllers.UserController
+  href: ServiceFlow.Web.Controllers.UserController.html
+  name: UserController
+  nameWithType: UserController
+  fullName: ServiceFlow.Web.Controllers.UserController

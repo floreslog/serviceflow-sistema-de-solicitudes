@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Class.Migrations
+  commentId: N:ServiceFlow.Class.Migrations
+  id: ServiceFlow.Class.Migrations
+  children:
+  - ServiceFlow.Class.Migrations.InitialMigration
+  langs:
+  - csharp
+  - vb
+  name: ServiceFlow.Class.Migrations
+  nameWithType: ServiceFlow.Class.Migrations
+  fullName: ServiceFlow.Class.Migrations
+  type: Namespace
+  assemblies:
+  - ServiceFlow.Class
+references:
+- uid: ServiceFlow.Class.Migrations.InitialMigration
+  commentId: T:ServiceFlow.Class.Migrations.InitialMigration
+  href: ServiceFlow.Class.Migrations.InitialMigration.html
+  name: InitialMigration
+  nameWithType: InitialMigration
+  fullName: ServiceFlow.Class.Migrations.InitialMigration

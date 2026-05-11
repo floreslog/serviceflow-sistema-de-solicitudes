@@ -1,0 +1,209 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Web.ViewModels
+  commentId: N:ServiceFlow.Web.ViewModels
+  id: ServiceFlow.Web.ViewModels
+  children:
+  - ServiceFlow.Web.ViewModels.CategoryViewModel
+  - ServiceFlow.Web.ViewModels.ChangePasswordViewModel
+  - ServiceFlow.Web.ViewModels.CommentViewModel
+  - ServiceFlow.Web.ViewModels.CreateRequestViewModel
+  - ServiceFlow.Web.ViewModels.DashboardViewModel
+  - ServiceFlow.Web.ViewModels.EditRequestViewModel
+  - ServiceFlow.Web.ViewModels.EditUserViewModel
+  - ServiceFlow.Web.ViewModels.ErrorViewModel
+  - ServiceFlow.Web.ViewModels.ForgotPasswordViewModel
+  - ServiceFlow.Web.ViewModels.LoginViewModel
+  - ServiceFlow.Web.ViewModels.PagedResult`1
+  - ServiceFlow.Web.ViewModels.ProfileViewModel
+  - ServiceFlow.Web.ViewModels.RegisterViewModel
+  - ServiceFlow.Web.ViewModels.RequestDetailViewModel
+  - ServiceFlow.Web.ViewModels.RequestListViewModel
+  - ServiceFlow.Web.ViewModels.ResetPasswordViewModel
+  - ServiceFlow.Web.ViewModels.UserDetailViewModel
+  - ServiceFlow.Web.ViewModels.UserListViewModel
+  - ServiceFlow.Web.ViewModels.VerifyEmailViewModel
+  langs:
+  - csharp
+  - vb
+  name: ServiceFlow.Web.ViewModels
+  nameWithType: ServiceFlow.Web.ViewModels
+  fullName: ServiceFlow.Web.ViewModels
+  type: Namespace
+  assemblies:
+  - ServiceFlow.Web
+references:
+- uid: ServiceFlow.Web.ViewModels.CategoryViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.CategoryViewModel
+  parent: ServiceFlow.Web.ViewModels
+  href: ServiceFlow.Web.ViewModels.CategoryViewModel.html
+  name: CategoryViewModel
+  nameWithType: CategoryViewModel
+  fullName: ServiceFlow.Web.ViewModels.CategoryViewModel
+- uid: ServiceFlow.Web.ViewModels.ChangePasswordViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.ChangePasswordViewModel
+  parent: ServiceFlow.Web.ViewModels
+  href: ServiceFlow.Web.ViewModels.ChangePasswordViewModel.html
+  name: ChangePasswordViewModel
+  nameWithType: ChangePasswordViewModel
+  fullName: ServiceFlow.Web.ViewModels.ChangePasswordViewModel
+- uid: ServiceFlow.Web.ViewModels.CommentViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.CommentViewModel
+  href: ServiceFlow.Web.ViewModels.CommentViewModel.html
+  name: CommentViewModel
+  nameWithType: CommentViewModel
+  fullName: ServiceFlow.Web.ViewModels.CommentViewModel
+- uid: ServiceFlow.Web.ViewModels.CreateRequestViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.CreateRequestViewModel
+  parent: ServiceFlow.Web.ViewModels
+  href: ServiceFlow.Web.ViewModels.CreateRequestViewModel.html
+  name: CreateRequestViewModel
+  nameWithType: CreateRequestViewModel
+  fullName: ServiceFlow.Web.ViewModels.CreateRequestViewModel
+- uid: ServiceFlow.Web.ViewModels.DashboardViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.DashboardViewModel
+  href: ServiceFlow.Web.ViewModels.DashboardViewModel.html
+  name: DashboardViewModel
+  nameWithType: DashboardViewModel
+  fullName: ServiceFlow.Web.ViewModels.DashboardViewModel
+- uid: ServiceFlow.Web.ViewModels.EditRequestViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.EditRequestViewModel
+  parent: ServiceFlow.Web.ViewModels
+  href: ServiceFlow.Web.ViewModels.EditRequestViewModel.html
+  name: EditRequestViewModel
+  nameWithType: EditRequestViewModel
+  fullName: ServiceFlow.Web.ViewModels.EditRequestViewModel
+- uid: ServiceFlow.Web.ViewModels.EditUserViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.EditUserViewModel
+  parent: ServiceFlow.Web.ViewModels
+  href: ServiceFlow.Web.ViewModels.EditUserViewModel.html
+  name: EditUserViewModel
+  nameWithType: EditUserViewModel
+  fullName: ServiceFlow.Web.ViewModels.EditUserViewModel
+- uid: ServiceFlow.Web.ViewModels.ErrorViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.ErrorViewModel
+  href: ServiceFlow.Web.ViewModels.ErrorViewModel.html
+  name: ErrorViewModel
+  nameWithType: ErrorViewModel
+  fullName: ServiceFlow.Web.ViewModels.ErrorViewModel
+- uid: ServiceFlow.Web.ViewModels.ForgotPasswordViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.ForgotPasswordViewModel
+  parent: ServiceFlow.Web.ViewModels
+  href: ServiceFlow.Web.ViewModels.ForgotPasswordViewModel.html
+  name: ForgotPasswordViewModel
+  nameWithType: ForgotPasswordViewModel
+  fullName: ServiceFlow.Web.ViewModels.ForgotPasswordViewModel
+- uid: ServiceFlow.Web.ViewModels.LoginViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.LoginViewModel
+  parent: ServiceFlow.Web.ViewModels
+  href: ServiceFlow.Web.ViewModels.LoginViewModel.html
+  name: LoginViewModel
+  nameWithType: LoginViewModel
+  fullName: ServiceFlow.Web.ViewModels.LoginViewModel
+- uid: ServiceFlow.Web.ViewModels.PagedResult`1
+  commentId: T:ServiceFlow.Web.ViewModels.PagedResult`1
+  href: ServiceFlow.Web.ViewModels.PagedResult-1.html
+  name: PagedResult<T>
+  nameWithType: PagedResult<T>
+  fullName: ServiceFlow.Web.ViewModels.PagedResult<T>
+  nameWithType.vb: PagedResult(Of T)
+  fullName.vb: ServiceFlow.Web.ViewModels.PagedResult(Of T)
+  name.vb: PagedResult(Of T)
+  spec.csharp:
+  - uid: ServiceFlow.Web.ViewModels.PagedResult`1
+    name: PagedResult
+    href: ServiceFlow.Web.ViewModels.PagedResult-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: ServiceFlow.Web.ViewModels.PagedResult`1
+    name: PagedResult
+    href: ServiceFlow.Web.ViewModels.PagedResult-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: ServiceFlow.Web.ViewModels.ProfileViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.ProfileViewModel
+  parent: ServiceFlow.Web.ViewModels
+  href: ServiceFlow.Web.ViewModels.ProfileViewModel.html
+  name: ProfileViewModel
+  nameWithType: ProfileViewModel
+  fullName: ServiceFlow.Web.ViewModels.ProfileViewModel
+- uid: ServiceFlow.Web.ViewModels.RegisterViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.RegisterViewModel
+  parent: ServiceFlow.Web.ViewModels
+  href: ServiceFlow.Web.ViewModels.RegisterViewModel.html
+  name: RegisterViewModel
+  nameWithType: RegisterViewModel
+  fullName: ServiceFlow.Web.ViewModels.RegisterViewModel
+- uid: ServiceFlow.Web.ViewModels.RequestDetailViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.RequestDetailViewModel
+  href: ServiceFlow.Web.ViewModels.RequestDetailViewModel.html
+  name: RequestDetailViewModel
+  nameWithType: RequestDetailViewModel
+  fullName: ServiceFlow.Web.ViewModels.RequestDetailViewModel
+- uid: ServiceFlow.Web.ViewModels.RequestListViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.RequestListViewModel
+  href: ServiceFlow.Web.ViewModels.RequestListViewModel.html
+  name: RequestListViewModel
+  nameWithType: RequestListViewModel
+  fullName: ServiceFlow.Web.ViewModels.RequestListViewModel
+- uid: ServiceFlow.Web.ViewModels.ResetPasswordViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.ResetPasswordViewModel
+  parent: ServiceFlow.Web.ViewModels
+  href: ServiceFlow.Web.ViewModels.ResetPasswordViewModel.html
+  name: ResetPasswordViewModel
+  nameWithType: ResetPasswordViewModel
+  fullName: ServiceFlow.Web.ViewModels.ResetPasswordViewModel
+- uid: ServiceFlow.Web.ViewModels.UserDetailViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.UserDetailViewModel
+  href: ServiceFlow.Web.ViewModels.UserDetailViewModel.html
+  name: UserDetailViewModel
+  nameWithType: UserDetailViewModel
+  fullName: ServiceFlow.Web.ViewModels.UserDetailViewModel
+- uid: ServiceFlow.Web.ViewModels.UserListViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.UserListViewModel
+  href: ServiceFlow.Web.ViewModels.UserListViewModel.html
+  name: UserListViewModel
+  nameWithType: UserListViewModel
+  fullName: ServiceFlow.Web.ViewModels.UserListViewModel
+- uid: ServiceFlow.Web.ViewModels.VerifyEmailViewModel
+  commentId: T:ServiceFlow.Web.ViewModels.VerifyEmailViewModel
+  parent: ServiceFlow.Web.ViewModels
+  href: ServiceFlow.Web.ViewModels.VerifyEmailViewModel.html
+  name: VerifyEmailViewModel
+  nameWithType: VerifyEmailViewModel
+  fullName: ServiceFlow.Web.ViewModels.VerifyEmailViewModel
+- uid: ServiceFlow.Web.ViewModels
+  commentId: N:ServiceFlow.Web.ViewModels
+  href: ServiceFlow.html
+  name: ServiceFlow.Web.ViewModels
+  nameWithType: ServiceFlow.Web.ViewModels
+  fullName: ServiceFlow.Web.ViewModels
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Web
+    name: Web
+    href: ServiceFlow.Web.html
+  - name: .
+  - uid: ServiceFlow.Web.ViewModels
+    name: ViewModels
+    href: ServiceFlow.Web.ViewModels.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Web
+    name: Web
+    href: ServiceFlow.Web.html
+  - name: .
+  - uid: ServiceFlow.Web.ViewModels
+    name: ViewModels
+    href: ServiceFlow.Web.ViewModels.html

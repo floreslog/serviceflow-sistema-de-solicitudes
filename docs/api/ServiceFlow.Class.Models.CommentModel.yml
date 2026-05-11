@@ -1,0 +1,624 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Class.Models.CommentModel
+  commentId: T:ServiceFlow.Class.Models.CommentModel
+  id: CommentModel
+  parent: ServiceFlow.Class.Models
+  children:
+  - ServiceFlow.Class.Models.CommentModel.Author
+  - ServiceFlow.Class.Models.CommentModel.AuthorId
+  - ServiceFlow.Class.Models.CommentModel.CreatedAt
+  - ServiceFlow.Class.Models.CommentModel.Id
+  - ServiceFlow.Class.Models.CommentModel.Request
+  - ServiceFlow.Class.Models.CommentModel.RequestId
+  - ServiceFlow.Class.Models.CommentModel.Text
+  langs:
+  - csharp
+  - vb
+  name: CommentModel
+  nameWithType: CommentModel
+  fullName: ServiceFlow.Class.Models.CommentModel
+  type: Class
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/CommentModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: CommentModel
+    path: ../ServiceFlow.Class/Models/CommentModel.cs
+    startLine: 2
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: 'public class CommentModel : IEntity'
+    content.vb: Public Class CommentModel Implements IEntity
+  inheritance:
+  - System.Object
+  implements:
+  - ServiceFlow.Class.Models.IEntity
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: ServiceFlow.Class.Models.CommentModel.Id
+  commentId: P:ServiceFlow.Class.Models.CommentModel.Id
+  id: Id
+  parent: ServiceFlow.Class.Models.CommentModel
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: CommentModel.Id
+  fullName: ServiceFlow.Class.Models.CommentModel.Id
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/CommentModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Id
+    path: ../ServiceFlow.Class/Models/CommentModel.cs
+    startLine: 4
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  example: []
+  syntax:
+    content: public int Id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Id As Integer
+  overload: ServiceFlow.Class.Models.CommentModel.Id*
+  implements:
+  - ServiceFlow.Class.Models.IEntity.Id
+- uid: ServiceFlow.Class.Models.CommentModel.Text
+  commentId: P:ServiceFlow.Class.Models.CommentModel.Text
+  id: Text
+  parent: ServiceFlow.Class.Models.CommentModel
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: CommentModel.Text
+  fullName: ServiceFlow.Class.Models.CommentModel.Text
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/CommentModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Text
+    path: ../ServiceFlow.Class/Models/CommentModel.cs
+    startLine: 5
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: public string Text { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Text As String
+  overload: ServiceFlow.Class.Models.CommentModel.Text*
+- uid: ServiceFlow.Class.Models.CommentModel.CreatedAt
+  commentId: P:ServiceFlow.Class.Models.CommentModel.CreatedAt
+  id: CreatedAt
+  parent: ServiceFlow.Class.Models.CommentModel
+  langs:
+  - csharp
+  - vb
+  name: CreatedAt
+  nameWithType: CommentModel.CreatedAt
+  fullName: ServiceFlow.Class.Models.CommentModel.CreatedAt
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/CommentModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: CreatedAt
+    path: ../ServiceFlow.Class/Models/CommentModel.cs
+    startLine: 6
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: public DateTime CreatedAt { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Public Property CreatedAt As Date
+  overload: ServiceFlow.Class.Models.CommentModel.CreatedAt*
+- uid: ServiceFlow.Class.Models.CommentModel.RequestId
+  commentId: P:ServiceFlow.Class.Models.CommentModel.RequestId
+  id: RequestId
+  parent: ServiceFlow.Class.Models.CommentModel
+  langs:
+  - csharp
+  - vb
+  name: RequestId
+  nameWithType: CommentModel.RequestId
+  fullName: ServiceFlow.Class.Models.CommentModel.RequestId
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/CommentModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: RequestId
+    path: ../ServiceFlow.Class/Models/CommentModel.cs
+    startLine: 7
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: public int RequestId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property RequestId As Integer
+  overload: ServiceFlow.Class.Models.CommentModel.RequestId*
+- uid: ServiceFlow.Class.Models.CommentModel.Request
+  commentId: P:ServiceFlow.Class.Models.CommentModel.Request
+  id: Request
+  parent: ServiceFlow.Class.Models.CommentModel
+  langs:
+  - csharp
+  - vb
+  name: Request
+  nameWithType: CommentModel.Request
+  fullName: ServiceFlow.Class.Models.CommentModel.Request
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/CommentModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Request
+    path: ../ServiceFlow.Class/Models/CommentModel.cs
+    startLine: 8
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: public RequestModel Request { get; set; }
+    parameters: []
+    return:
+      type: ServiceFlow.Class.Models.RequestModel
+    content.vb: Public Property Request As RequestModel
+  overload: ServiceFlow.Class.Models.CommentModel.Request*
+- uid: ServiceFlow.Class.Models.CommentModel.AuthorId
+  commentId: P:ServiceFlow.Class.Models.CommentModel.AuthorId
+  id: AuthorId
+  parent: ServiceFlow.Class.Models.CommentModel
+  langs:
+  - csharp
+  - vb
+  name: AuthorId
+  nameWithType: CommentModel.AuthorId
+  fullName: ServiceFlow.Class.Models.CommentModel.AuthorId
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/CommentModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: AuthorId
+    path: ../ServiceFlow.Class/Models/CommentModel.cs
+    startLine: 11
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: public string AuthorId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AuthorId As String
+  overload: ServiceFlow.Class.Models.CommentModel.AuthorId*
+- uid: ServiceFlow.Class.Models.CommentModel.Author
+  commentId: P:ServiceFlow.Class.Models.CommentModel.Author
+  id: Author
+  parent: ServiceFlow.Class.Models.CommentModel
+  langs:
+  - csharp
+  - vb
+  name: Author
+  nameWithType: CommentModel.Author
+  fullName: ServiceFlow.Class.Models.CommentModel.Author
+  type: Property
+  source:
+    remote:
+      path: ServiceFlow.Class/Models/CommentModel.cs
+      branch: main
+      repo: https://github.com/floreslog/serviceflow-sistema-de-solicitudes.git
+    id: Author
+    path: ../ServiceFlow.Class/Models/CommentModel.cs
+    startLine: 12
+  assemblies:
+  - ServiceFlow.Class
+  namespace: ServiceFlow.Class.Models
+  syntax:
+    content: public ApplicationUser Author { get; set; }
+    parameters: []
+    return:
+      type: ServiceFlow.Class.Models.ApplicationUser
+    content.vb: Public Property Author As ApplicationUser
+  overload: ServiceFlow.Class.Models.CommentModel.Author*
+references:
+- uid: ServiceFlow.Class.Models
+  commentId: N:ServiceFlow.Class.Models
+  href: ServiceFlow.html
+  name: ServiceFlow.Class.Models
+  nameWithType: ServiceFlow.Class.Models
+  fullName: ServiceFlow.Class.Models
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Models
+    name: Models
+    href: ServiceFlow.Class.Models.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Models
+    name: Models
+    href: ServiceFlow.Class.Models.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: ServiceFlow.Class.Models.IEntity
+  commentId: T:ServiceFlow.Class.Models.IEntity
+  parent: ServiceFlow.Class.Models
+  href: ServiceFlow.Class.Models.IEntity.html
+  name: IEntity
+  nameWithType: IEntity
+  fullName: ServiceFlow.Class.Models.IEntity
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: ServiceFlow.Class.Models.CommentModel.Id*
+  commentId: Overload:ServiceFlow.Class.Models.CommentModel.Id
+  href: ServiceFlow.Class.Models.CommentModel.html#ServiceFlow_Class_Models_CommentModel_Id
+  name: Id
+  nameWithType: CommentModel.Id
+  fullName: ServiceFlow.Class.Models.CommentModel.Id
+- uid: ServiceFlow.Class.Models.IEntity.Id
+  commentId: P:ServiceFlow.Class.Models.IEntity.Id
+  parent: ServiceFlow.Class.Models.IEntity
+  href: ServiceFlow.Class.Models.IEntity.html#ServiceFlow_Class_Models_IEntity_Id
+  name: Id
+  nameWithType: IEntity.Id
+  fullName: ServiceFlow.Class.Models.IEntity.Id
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: ServiceFlow.Class.Models.CommentModel.Text*
+  commentId: Overload:ServiceFlow.Class.Models.CommentModel.Text
+  href: ServiceFlow.Class.Models.CommentModel.html#ServiceFlow_Class_Models_CommentModel_Text
+  name: Text
+  nameWithType: CommentModel.Text
+  fullName: ServiceFlow.Class.Models.CommentModel.Text
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: ServiceFlow.Class.Models.CommentModel.CreatedAt*
+  commentId: Overload:ServiceFlow.Class.Models.CommentModel.CreatedAt
+  href: ServiceFlow.Class.Models.CommentModel.html#ServiceFlow_Class_Models_CommentModel_CreatedAt
+  name: CreatedAt
+  nameWithType: CommentModel.CreatedAt
+  fullName: ServiceFlow.Class.Models.CommentModel.CreatedAt
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: ServiceFlow.Class.Models.CommentModel.RequestId*
+  commentId: Overload:ServiceFlow.Class.Models.CommentModel.RequestId
+  href: ServiceFlow.Class.Models.CommentModel.html#ServiceFlow_Class_Models_CommentModel_RequestId
+  name: RequestId
+  nameWithType: CommentModel.RequestId
+  fullName: ServiceFlow.Class.Models.CommentModel.RequestId
+- uid: ServiceFlow.Class.Models.CommentModel.Request*
+  commentId: Overload:ServiceFlow.Class.Models.CommentModel.Request
+  href: ServiceFlow.Class.Models.CommentModel.html#ServiceFlow_Class_Models_CommentModel_Request
+  name: Request
+  nameWithType: CommentModel.Request
+  fullName: ServiceFlow.Class.Models.CommentModel.Request
+- uid: ServiceFlow.Class.Models.RequestModel
+  commentId: T:ServiceFlow.Class.Models.RequestModel
+  parent: ServiceFlow.Class.Models
+  href: ServiceFlow.Class.Models.RequestModel.html
+  name: RequestModel
+  nameWithType: RequestModel
+  fullName: ServiceFlow.Class.Models.RequestModel
+- uid: ServiceFlow.Class.Models.CommentModel.AuthorId*
+  commentId: Overload:ServiceFlow.Class.Models.CommentModel.AuthorId
+  href: ServiceFlow.Class.Models.CommentModel.html#ServiceFlow_Class_Models_CommentModel_AuthorId
+  name: AuthorId
+  nameWithType: CommentModel.AuthorId
+  fullName: ServiceFlow.Class.Models.CommentModel.AuthorId
+- uid: ServiceFlow.Class.Models.CommentModel.Author*
+  commentId: Overload:ServiceFlow.Class.Models.CommentModel.Author
+  href: ServiceFlow.Class.Models.CommentModel.html#ServiceFlow_Class_Models_CommentModel_Author
+  name: Author
+  nameWithType: CommentModel.Author
+  fullName: ServiceFlow.Class.Models.CommentModel.Author
+- uid: ServiceFlow.Class.Models.ApplicationUser
+  commentId: T:ServiceFlow.Class.Models.ApplicationUser
+  parent: ServiceFlow.Class.Models
+  href: ServiceFlow.Class.Models.ApplicationUser.html
+  name: ApplicationUser
+  nameWithType: ApplicationUser
+  fullName: ServiceFlow.Class.Models.ApplicationUser

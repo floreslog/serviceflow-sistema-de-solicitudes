@@ -1,0 +1,101 @@
+### YamlMime:ManagedReference
+items:
+- uid: ServiceFlow.Class.Models
+  commentId: N:ServiceFlow.Class.Models
+  id: ServiceFlow.Class.Models
+  children:
+  - ServiceFlow.Class.Models.ApplicationUser
+  - ServiceFlow.Class.Models.CategoryModel
+  - ServiceFlow.Class.Models.CommentModel
+  - ServiceFlow.Class.Models.IEntity
+  - ServiceFlow.Class.Models.Priority
+  - ServiceFlow.Class.Models.RequestModel
+  - ServiceFlow.Class.Models.Status
+  langs:
+  - csharp
+  - vb
+  name: ServiceFlow.Class.Models
+  nameWithType: ServiceFlow.Class.Models
+  fullName: ServiceFlow.Class.Models
+  type: Namespace
+  assemblies:
+  - ServiceFlow.Class
+references:
+- uid: ServiceFlow.Class.Models.ApplicationUser
+  commentId: T:ServiceFlow.Class.Models.ApplicationUser
+  parent: ServiceFlow.Class.Models
+  href: ServiceFlow.Class.Models.ApplicationUser.html
+  name: ApplicationUser
+  nameWithType: ApplicationUser
+  fullName: ServiceFlow.Class.Models.ApplicationUser
+- uid: ServiceFlow.Class.Models.CategoryModel
+  commentId: T:ServiceFlow.Class.Models.CategoryModel
+  parent: ServiceFlow.Class.Models
+  href: ServiceFlow.Class.Models.CategoryModel.html
+  name: CategoryModel
+  nameWithType: CategoryModel
+  fullName: ServiceFlow.Class.Models.CategoryModel
+- uid: ServiceFlow.Class.Models.CommentModel
+  commentId: T:ServiceFlow.Class.Models.CommentModel
+  href: ServiceFlow.Class.Models.CommentModel.html
+  name: CommentModel
+  nameWithType: CommentModel
+  fullName: ServiceFlow.Class.Models.CommentModel
+- uid: ServiceFlow.Class.Models.IEntity
+  commentId: T:ServiceFlow.Class.Models.IEntity
+  parent: ServiceFlow.Class.Models
+  href: ServiceFlow.Class.Models.IEntity.html
+  name: IEntity
+  nameWithType: IEntity
+  fullName: ServiceFlow.Class.Models.IEntity
+- uid: ServiceFlow.Class.Models.Priority
+  commentId: T:ServiceFlow.Class.Models.Priority
+  parent: ServiceFlow.Class.Models
+  href: ServiceFlow.Class.Models.Priority.html
+  name: Priority
+  nameWithType: Priority
+  fullName: ServiceFlow.Class.Models.Priority
+- uid: ServiceFlow.Class.Models.RequestModel
+  commentId: T:ServiceFlow.Class.Models.RequestModel
+  parent: ServiceFlow.Class.Models
+  href: ServiceFlow.Class.Models.RequestModel.html
+  name: RequestModel
+  nameWithType: RequestModel
+  fullName: ServiceFlow.Class.Models.RequestModel
+- uid: ServiceFlow.Class.Models.Status
+  commentId: T:ServiceFlow.Class.Models.Status
+  parent: ServiceFlow.Class.Models
+  href: ServiceFlow.Class.Models.Status.html
+  name: Status
+  nameWithType: Status
+  fullName: ServiceFlow.Class.Models.Status
+- uid: ServiceFlow.Class.Models
+  commentId: N:ServiceFlow.Class.Models
+  href: ServiceFlow.html
+  name: ServiceFlow.Class.Models
+  nameWithType: ServiceFlow.Class.Models
+  fullName: ServiceFlow.Class.Models
+  spec.csharp:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Models
+    name: Models
+    href: ServiceFlow.Class.Models.html
+  spec.vb:
+  - uid: ServiceFlow
+    name: ServiceFlow
+    href: ServiceFlow.html
+  - name: .
+  - uid: ServiceFlow.Class
+    name: Class
+    href: ServiceFlow.Class.html
+  - name: .
+  - uid: ServiceFlow.Class.Models
+    name: Models
+    href: ServiceFlow.Class.Models.html
