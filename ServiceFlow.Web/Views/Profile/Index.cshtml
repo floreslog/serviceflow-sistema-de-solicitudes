@@ -171,6 +171,8 @@
 
     <!-- CARD CAMBIAR CONTRASEÑA -->
     <div class="profile-card">
+        @if (ViewBag.HasPassword == true)
+        {
         <div class="d-flex justify-content-between align-items-center mb-3">
             <p class="profile-section-label mb-0">Seguridad</p>
             <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#passwordModal">
@@ -178,68 +180,81 @@
             </button>
         </div>
         <p style="font-size:0.85rem; color:#9aa0a6; margin:0;">
-            Última actualización de contraseña gestionada por el sistema.
+            Actualiza tu contraseña si notas actividad inusual.
         </p>
+        }
+        else
+        {
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <p class="profile-section-label mb-0">Seguridad</p>
+            </div>
+            <p style="font-size:0.85rem; color:#9aa0a6; margin:0;">
+                Tu cuenta está vinculada con Google. La autenticación se gestiona sin contraseñas.
+            </p>
+        }
     </div>
 
 </div>
 
-<!-- MODAL CAMBIAR CONTRASEÑA -->
-<div class="modal fade" id="passwordModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0">
-                <h5 class="modal-title fw-bold" style="color:#25262a;">
-                    <i class="bi bi-shield-lock me-2"></i>Cambiar contraseña
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+@if (ViewBag.HasPassword == true)
+{
+    <!-- MODAL CAMBIAR CONTRASEÑA -->
+    <div class="modal fade" id="passwordModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" style="color:#25262a;">
+                        <i class="bi bi-shield-lock me-2"></i>Cambiar contraseña
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form asp-controller="Profile" asp-action="ChangePassword" method="post">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" style="font-size:0.82rem;">Contraseña actual</label>
+                            <div class="input-group">
+                                <input name="CurrentPassword" type="password" id="currentPwd" class="form-control border-end-0" />
+                                <button type="button" class="btn border-start-0" style="border-color:#ced4da;" onclick="togglePassword('currentPwd', this)">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" style="font-size:0.82rem;">Nueva contraseña</label>
+                            <div class="input-group">
+                                <input name="NewPassword" type="password" id="newPwd" class="form-control border-end-0" />
+                                <button type="button" class="btn border-start-0" style="border-color:#ced4da;" onclick="togglePassword('newPwd', this)">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" style="font-size:0.82rem;">Confirmar nueva contraseña</label>
+                            <div class="input-group">
+                                <input name="ConfirmNewPassword" type="password" id="confirmPwd" class="form-control border-end-0" />
+                                <button type="button" class="btn border-start-0" style="border-color:#ced4da;" onclick="togglePassword('confirmPwd', this)">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <hr />
+                        <p class="small fw-semibold mb-2">
+                            Escribe <span class="text-danger fw-bold">CONFIRMAR</span> para continuar:
+                        </p>
+                        <input type="text" id="confirmInput" class="form-control" placeholder="CONFIRMAR" autocomplete="off" />
+                        <p id="confirmError" class="text-danger small mt-1 d-none">Debes escribir CONFIRMAR exactamente.</p>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="passwordBtn" class="btn btn-danger" disabled>
+                            Cambiar contraseña
+                        </button>
+                    </div>
+                </form>
             </div>
-            <form asp-controller="Profile" asp-action="ChangePassword" method="post">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold" style="font-size:0.82rem;">Contraseña actual</label>
-                        <div class="input-group">
-                            <input name="CurrentPassword" type="password" id="currentPwd" class="form-control border-end-0" />
-                            <button type="button" class="btn border-start-0" style="border-color:#ced4da;" onclick="togglePassword('currentPwd', this)">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold" style="font-size:0.82rem;">Nueva contraseña</label>
-                        <div class="input-group">
-                            <input name="NewPassword" type="password" id="newPwd" class="form-control border-end-0" />
-                            <button type="button" class="btn border-start-0" style="border-color:#ced4da;" onclick="togglePassword('newPwd', this)">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold" style="font-size:0.82rem;">Confirmar nueva contraseña</label>
-                        <div class="input-group">
-                            <input name="ConfirmNewPassword" type="password" id="confirmPwd" class="form-control border-end-0" />
-                            <button type="button" class="btn border-start-0" style="border-color:#ced4da;" onclick="togglePassword('confirmPwd', this)">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <hr />
-                    <p class="small fw-semibold mb-2">
-                        Escribe <span class="text-danger fw-bold">CONFIRMAR</span> para continuar:
-                    </p>
-                    <input type="text" id="confirmInput" class="form-control" placeholder="CONFIRMAR" autocomplete="off" />
-                    <p id="confirmError" class="text-danger small mt-1 d-none">Debes escribir CONFIRMAR exactamente.</p>
-                </div>
-                <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" id="passwordBtn" class="btn btn-danger" disabled>
-                        Cambiar contraseña
-                    </button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
+}
 
 <script>
         function toggleEdit() {

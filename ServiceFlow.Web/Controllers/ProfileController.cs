@@ -35,7 +35,7 @@ namespace ServiceFlow.Web.Controllers
                 PhoneNumber = user.PhoneNumber,
                 Role = roles.FirstOrDefault()
             };
-
+            ViewBag.HasPassword = await userManager.HasPasswordAsync(user);
             return View(vm);
         }
 
