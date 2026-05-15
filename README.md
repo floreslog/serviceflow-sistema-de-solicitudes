@@ -31,19 +31,9 @@ ServiceFlow es una aplicación web de tipo Help Desk desarrollada con **ASP.NET 
   <img src="screenshots/login_screen.png" width="900"/>
 </p>
 
-### Dashboard principal
-<p align="center">
-  <img src="screenshots/ayuda_screen.png" width="900"/>
-</p>
-
 ### Gestión de solicitudes
 <p align="center">
   <img src="screenshots/solicitudes_screen.png" width="900"/>
-</p>
-
-### Perfil de usuario
-<p align="center">
-  <img src="screenshots/miperfil_screen.png" width="900"/>
 </p>
 
 ### Detalles de solicitud
@@ -57,6 +47,16 @@ ServiceFlow es una aplicación web de tipo Help Desk desarrollada con **ASP.NET 
 </p>
 
 > Para prevenir eliminaciones accidentales, las acciones críticas requieren escribir `CONFIRMAR` manualmente antes de habilitar la eliminación.
+
+### Perfil de usuario
+<p align="center">
+  <img src="screenshots/miperfil_screen.png" width="900"/>
+</p>
+
+### Pagina de Ayuda
+<p align="center">
+  <img src="screenshots/ayuda_screen.png" width="900"/>
+</p>
 
 ---
 
