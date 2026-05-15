@@ -195,7 +195,7 @@ namespace ServiceFlow.Web.Controllers
 
             user.FirstName = model.FirstName;
             user.PaternalSurname = model.PaternalSurname;
-            user.MaternalSurname = model.MaternalSurname;
+            user.MaternalSurname = model.MaternalSurname ?? "";
             user.Email = model.Email;
             user.UserName = model.Email;
             user.PhoneNumber = model.PhoneNumber;
