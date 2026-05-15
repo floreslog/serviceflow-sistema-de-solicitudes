@@ -1,79 +1,367 @@
 ﻿@model ServiceFlow.Web.ViewModels.LoginViewModel
 @{
     ViewData["Title"] = "Iniciar Sesión";
+    Layout = null;
 }
-<div class="container mt-5">
-    <div class="row justify-content-center w-100">
-        <div class="col-md-5">
-            <div class="card shadow">
-                <div class="card-body p-4">
-                    <h3 class="card-title text-center mb-4">Iniciar Sesión</h3>
-                    @if (TempData["Success"] != null)
-                    {
-                        <div class="alert alert-success">@TempData["Success"]</div>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión — ServiceFlow</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+            *, *::before, *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            html, body {
+                height: 100%;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                background: #ffffff;
+            }
+
+            .login-wrapper {
+                display: flex;
+                min-height: 100vh;
+            }
+
+            /* PANEL IZQUIERDO */
+            .login-left {
+                width: 45%;
+                background-color: #131317;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 60px 48px;
+                position: relative;
+                flex-shrink: 0;
+            }
+
+                .login-left::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: -60px;
+                    width: 120px;
+                    height: 100%;
+                    background-color: #131317;
+                    clip-path: ellipse(60px 100% at 0% 50%);
+                    z-index: 2;
+                }
+
+            .login-brand {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+                text-align: center;
+            }
+
+                .login-brand img {
+                    width: 72px;
+                    height: 72px;
+                    filter: brightness(0) invert(1);
+                    opacity: 0.95;
+                }
+
+            .login-brand-name {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #ffffff;
+                letter-spacing: -0.5px;
+            }
+
+            .login-brand-tagline {
+                font-size: 0.9rem;
+                color: #6c757d;
+                line-height: 1.6;
+                max-width: 280px;
+            }
+
+            .login-brand-divider {
+                width: 40px;
+                height: 2px;
+                background-color: #2a2a32;
+                border-radius: 2px;
+            }
+
+            .login-left-footer {
+                position: absolute;
+                bottom: 28px;
+                font-size: 0.72rem;
+                color: #3a3b40;
+            }
+
+            /* PANEL DERECHO */
+            .login-right {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 60px 48px;
+                background: #ffffff;
+                position: relative;
+                z-index: 1;
+            }
+
+            .login-form-container {
+                width: 100%;
+                max-width: 380px;
+            }
+
+            .login-form-title {
+                font-size: 1.4rem;
+                font-weight: 700;
+                color: #131317;
+                margin-bottom: 6px;
+            }
+
+            .login-form-subtitle {
+                font-size: 0.85rem;
+                color: #9aa0a6;
+                margin-bottom: 32px;
+            }
+
+            .form-label {
+                font-size: 0.78rem;
+                font-weight: 600;
+                color: #495057;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin-bottom: 6px;
+            }
+
+            .form-control {
+                border: 1px solid #e9ecef;
+                border-radius: 8px;
+                padding: 10px 14px;
+                font-size: 0.875rem;
+                color: #25262a;
+                transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            }
+
+                .form-control:focus {
+                    border-color: #131317;
+                    box-shadow: 0 0 0 3px rgba(19,19,23,0.08);
+                    outline: none;
+                }
+
+            .input-group .form-control {
+                border-right: none;
+                border-radius: 8px 0 0 8px;
+            }
+
+            .input-group .btn {
+                border: 1px solid #e9ecef;
+                border-left: none;
+                border-radius: 0 8px 8px 0;
+                background: #ffffff;
+                color: #6c757d;
+                padding: 10px 14px;
+            }
+
+                .input-group .btn:hover {
+                    background: #f8f9fa;
+                }
+
+            .btn-login {
+                width: 100%;
+                background-color: #131317;
+                color: #ffffff;
+                border: none;
+                border-radius: 8px;
+                padding: 11px;
+                font-size: 0.875rem;
+                font-weight: 600;
+                letter-spacing: 0.03em;
+                transition: background-color 0.2s ease;
+                cursor: pointer;
+            }
+
+                .btn-login:hover {
+                    background-color: #25262a;
+                }
+
+            .btn-google {
+                width: 100%;
+                background: #ffffff;
+                border: 1px solid #e9ecef;
+                border-radius: 8px;
+                padding: 10px;
+                font-size: 0.875rem;
+                font-weight: 500;
+                color: #25262a;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                text-decoration: none;
+                transition: border-color 0.2s ease, background-color 0.2s ease;
+            }
+
+                .btn-google:hover {
+                    border-color: #25262a;
+                    background-color: #fafafa;
+                    color: #25262a;
+                }
+
+            .login-divider {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin: 20px 0;
+            }
+
+                .login-divider::before,
+                .login-divider::after {
+                    content: '';
+                    flex: 1;
+                    height: 1px;
+                    background-color: #e9ecef;
+                }
+
+                .login-divider span {
+                    font-size: 0.75rem;
+                    color: #9aa0a6;
+                    white-space: nowrap;
+                }
+
+            .login-footer-links {
+                margin-top: 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+
+                .login-footer-links a {
+                    font-size: 0.82rem;
+                    color: #9aa0a6;
+                    text-decoration: none;
+                    transition: color 0.2s ease;
+                }
+
+                    .login-footer-links a:hover {
+                        color: #131317;
                     }
-                    <form asp-action="Login" asp-controller="Account" method="post">
-                        <div class="mb-3">
-                            <label asp-for="Email" class="form-label"></label>
-                            <input asp-for="Email" class="form-control" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="Password" class="form-label"></label>
-                            <div class="input-group">
-                                <input asp-for="Password" class="form-control border-end-0" />
-                                <button type="button" class="btn border-start-0" style="border-color: #ced4da;" onclick="togglePassword('Password', this)">
-                                    <i class="bi bi-eye"></i>
-                                </button>
-                            </div>
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
-                        <div class="text-center">
-                            <button type="submit" class="btn px-5" style="background-color: #25262a; color: white;">Acceder</button>
-                        </div>
-                        <div class="text-center mt-2">
-                            <a asp-action="ForgotPassword" asp-controller="Account" class="text-muted small">
-                                ¿Olvidaste tu contraseña?
-                            </a>
-                        </div>
-                    </form>
-                    <hr />
-                    <p class="text-center mb-0">
-                        ¿Aun no tienes una cuenta? <a asp-action="Register" asp-controller="Account">Crea una.</a>
-                    </p>
-                    <hr />
-                    <div class="text-center">
-                        <p class="text-muted small mb-3">O inicia sesión con</p>
-                        <a href="/Account/GoogleLogin" class="btn btn-outline-secondary px-4 d-inline-flex align-items-center gap-2">
-                            <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
-                                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
-                                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
-                                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
-                                <path fill="none" d="M0 0h48v48H0z" />
-                            </svg>
-                            Continuar con Google
-                        </a>
+
+            .alert-success {
+                font-size: 0.82rem;
+                border-radius: 8px;
+                padding: 10px 14px;
+                margin-bottom: 20px;
+            }
+
+            .text-danger {
+                font-size: 0.78rem;
+            }
+
+            @@media (max-width: 768px) {
+                .login-left {
+                    display: none;
+                }
+
+                .login-right {
+                    padding: 40px 24px;
+                }
+            }
+    </style>
+</head>
+<body>
+
+    <div class="login-wrapper">
+
+        <!-- PANEL IZQUIERDO -->
+        <div class="login-left">
+            <div class="login-brand">
+                <img src="~/images/ICON.svg" alt="ServiceFlow" />
+                <div>
+                    <div class="login-brand-name">ServiceFlow</div>
+                    <div class="login-brand-divider" style="margin: 12px auto;"></div>
+                    <div class="login-brand-tagline">
+                        Sistema de gestión de solicitudes internas. Eficiencia, trazabilidad y control en un solo lugar.
                     </div>
                 </div>
             </div>
+            <div class="login-left-footer">© 2026 ServiceFlow</div>
+        </div>
+
+        <!-- PANEL DERECHO -->
+        <div class="login-right">
+            <div class="login-form-container">
+
+                <h1 class="login-form-title">Bienvenido</h1>
+                <p class="login-form-subtitle">Ingresa tus credenciales para continuar</p>
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success">@TempData["Success"]</div>
+                }
+
+                <form asp-action="Login" asp-controller="Account" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" placeholder="correo@empresa.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label"></label>
+                        <div class="input-group">
+                            <input asp-for="Password" class="form-control border-end-0" placeholder="••••••••" />
+                            <button type="button" class="btn border-start-0" onclick="togglePassword('Password', this)">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                    <button type="submit" class="btn-login">Acceder</button>
+                </form>
+
+                <div class="login-divider"><span>o continúa con</span></div>
+
+                <a href="/Account/GoogleLogin" class="btn-google">
+                    <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                        <path fill="none" d="M0 0h48v48H0z" />
+                    </svg>
+                    Continuar con Google
+                </a>
+
+                <div class="login-footer-links">
+                    <a asp-action="ForgotPassword" asp-controller="Account">¿Olvidaste tu contraseña?</a>
+                    <a asp-action="Register" asp-controller="Account">¿No tienes cuenta? Regístrate</a>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    function togglePassword(inputId, btn) {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function togglePassword(inputId, btn) {
         const input = document.getElementById(inputId);
         const icon = btn.querySelector('i');
         if (input.type === "password") {
-            input.type = "text";
-            icon.classList.remove('bi-eye');
-            icon.classList.add('bi-eye-slash');
+        input.type = "text";
+        icon.classList.replace('bi-eye', 'bi-eye-slash');
         } else {
-            input.type = "password";
-            icon.classList.remove('bi-eye-slash');
-            icon.classList.add('bi-eye');
+        input.type = "password";
+        icon.classList.replace('bi-eye-slash', 'bi-eye');
         }
-    }
-</script>
+        }
+    </script>
+</body>
+</html>
