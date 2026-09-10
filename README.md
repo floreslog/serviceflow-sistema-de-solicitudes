@@ -164,7 +164,7 @@ Esto creará la base de datos y todas las tablas automáticamente, incluyendo lo
 Al iniciar la aplicación por primera vez, se crean automáticamente los roles del sistema y un usuario administrador inicial:
 
 - Email: `admin@serviceflow.com`
-- Password: `Admin123*`
+- Password: `@Admin2026`
 
 > Se recomienda cambiar estas credenciales al primer inicio.
 
